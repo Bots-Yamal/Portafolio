@@ -7,15 +7,10 @@
 <title>Portafolio de Lamine Yamal</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
 }
 
 body{
@@ -27,106 +22,67 @@ body{
 }
 
 /* =========================
-   FONDO GALAXIA
+   GALAXIA
 ========================= */
 
 .galaxy{
     position:fixed;
     inset:0;
-    z-index:-5;
-
+    z-index:-10;
     background:
-    radial-gradient(circle at 15% 20%, rgba(125,34,190,.45), transparent 30%),
-    radial-gradient(circle at 85% 25%, rgba(76,16,135,.40), transparent 32%),
-    radial-gradient(circle at 50% 80%, rgba(145,40,210,.28), transparent 35%),
-    radial-gradient(circle at 30% 70%, rgba(67,16,110,.35), transparent 30%),
-    linear-gradient(135deg,#020104,#08020d,#030105);
+        radial-gradient(circle at 15% 20%,rgba(132,38,196,.45),transparent 30%),
+        radial-gradient(circle at 85% 25%,rgba(82,20,145,.4),transparent 32%),
+        radial-gradient(circle at 50% 85%,rgba(155,43,220,.25),transparent 35%),
+        linear-gradient(135deg,#020104,#09020f,#030105);
 }
-
-/* Nebulosas */
 
 .nebula{
     position:fixed;
     border-radius:50%;
-    filter:blur(90px);
+    filter:blur(100px);
     opacity:.25;
-    z-index:-4;
-    animation:nebulaMove 12s ease-in-out infinite alternate;
+    z-index:-9;
+    animation:nebula 12s ease-in-out infinite alternate;
 }
 
 .nebula1{
-    width:400px;
-    height:400px;
-    background:#8c2cff;
-    top:-100px;
+    width:420px;
+    height:420px;
+    background:#942cff;
+    top:-150px;
     left:-120px;
 }
 
 .nebula2{
-    width:350px;
-    height:350px;
-    background:#5510a5;
+    width:380px;
+    height:380px;
+    background:#5210a0;
+    right:-130px;
     bottom:-100px;
-    right:-100px;
-    animation-delay:3s;
 }
 
-@keyframes nebulaMove{
-    from{
-        transform:translate(0,0) scale(1);
-    }
-
-    to{
-        transform:translate(50px,30px) scale(1.15);
-    }
-}
-
-/* ESTRELLAS */
-
-.stars,
-.stars2{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-3;
+@keyframes nebula{
+    from{transform:translate(0,0) scale(1);}
+    to{transform:translate(50px,30px) scale(1.15);}
 }
 
 .stars{
+    position:fixed;
+    inset:0;
+    z-index:-8;
+    pointer-events:none;
     background-image:
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(#b75cff 1px, transparent 1px);
-
-    background-size:
-    55px 55px,
-    85px 85px;
-
-    background-position:
-    0 0,
-    20px 30px;
-
-    opacity:.35;
+        radial-gradient(white 1px,transparent 1px),
+        radial-gradient(#c177ff 1px,transparent 1px);
+    background-size:55px 55px,90px 90px;
+    background-position:0 0,25px 30px;
+    opacity:.32;
+    animation:moveStars 35s linear infinite;
 }
 
-.stars2{
-    background-image:
-    radial-gradient(#ffffff 1.5px, transparent 1.5px);
-
-    background-size:130px 130px;
-    background-position:40px 20px;
-
-    opacity:.22;
-
-    animation:starsMove 30s linear infinite;
-}
-
-@keyframes starsMove{
-    from{
-        transform:translateY(0);
-    }
-
-    to{
-        transform:translateY(130px);
-    }
+@keyframes moveStars{
+    from{transform:translateY(0);}
+    to{transform:translateY(150px);}
 }
 
 /* =========================
@@ -136,21 +92,25 @@ body{
 .page{
     display:none;
     min-height:100vh;
-    padding:40px 20px 80px;
-    animation:pageEnter .45s ease;
+    padding:35px 20px 70px;
+    animation:entrada .4s ease;
 }
 
 .page.active{
     display:block;
 }
 
-@keyframes pageEnter{
+#inicio.active{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
 
+@keyframes entrada{
     from{
         opacity:0;
         transform:translateY(15px);
     }
-
     to{
         opacity:1;
         transform:translateY(0);
@@ -161,143 +121,111 @@ body{
    INICIO
 ========================= */
 
-#inicio{
-    align-items:center;
-    justify-content:center;
-}
-
-#inicio.active{
-    display:flex;
-}
-
 .hero{
     width:100%;
-    max-width:950px;
+    max-width:1000px;
     text-align:center;
 }
 
 .badge{
     display:inline-block;
-
-    padding:8px 16px;
-
-    border:1px solid rgba(194,112,255,.5);
+    padding:8px 17px;
     border-radius:30px;
-
-    background:rgba(103,35,154,.16);
-
-    color:#d49cff;
-
+    border:1px solid rgba(194,112,255,.45);
+    background:rgba(100,30,150,.15);
+    color:#d89eff;
     margin-bottom:25px;
-
-    box-shadow:
-    0 0 25px rgba(157,67,221,.15);
 }
 
 .hero h1{
     font-size:clamp(42px,8vw,78px);
-
     line-height:1.05;
 
-    background:
-    linear-gradient(
+    background:linear-gradient(
         90deg,
-        #ffffff,
-        #dbadff,
-        #a64cff,
-        #ffffff
+        #fff,
+        #e0baff,
+        #a448ed,
+        #fff
     );
 
     background-size:200%;
-
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 
-    animation:titleGlow 6s linear infinite;
+    animation:title 6s linear infinite;
 }
 
-@keyframes titleGlow{
-
-    0%{
-        background-position:0%;
-    }
-
-    100%{
-        background-position:200%;
-    }
+@keyframes title{
+    from{background-position:0%;}
+    to{background-position:200%;}
 }
 
-.hero-subtitle{
-    color:#ca8aff;
-
-    font-size:22px;
-
+.subtitle{
+    color:#cb8aff;
+    font-size:21px;
     margin-top:20px;
 }
 
-.hero-text{
-    max-width:720px;
-
-    margin:20px auto 0;
-
-    color:#cfc7d4;
-
+.hero p{
+    max-width:750px;
+    margin:20px auto;
     line-height:1.8;
-
-    font-size:16px;
+    color:#cec5d3;
 }
 
-/* BOTONES INICIO */
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:8px;
+    padding:9px 15px;
+    border-radius:30px;
+    background:rgba(27,142,74,.12);
+    border:1px solid rgba(66,214,125,.25);
+    color:#83e7a9;
+}
 
-.main-menu{
+.status-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#5be58e;
+    box-shadow:0 0 12px #5be58e;
+}
 
+/* =========================
+   BOTONES
+========================= */
+
+.menu{
     display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
-
-    gap:15px;
-
-    margin-top:40px;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:14px;
+    margin-top:35px;
 }
 
-.menu-btn{
-
-    border:1px solid rgba(194,105,255,.5);
-
-    background:
-    linear-gradient(
+.menu button,
+.back{
+    border:1px solid rgba(193,101,250,.4);
+    background:linear-gradient(
         135deg,
         rgba(72,20,110,.8),
-        rgba(126,35,190,.65)
+        rgba(125,34,188,.65)
     );
-
     color:white;
-
-    padding:18px 15px;
-
-    border-radius:16px;
-
+    border-radius:15px;
+    padding:17px;
     cursor:pointer;
-
-    font-size:15px;
-
     font-weight:bold;
-
     transition:.3s;
-
-    box-shadow:
-    0 0 25px rgba(130,44,195,.15);
 }
 
-.menu-btn:hover{
-
-    transform:translateY(-5px);
-
-    border-color:#d19aff;
-
-    box-shadow:
-    0 0 30px rgba(165,72,230,.45);
+.menu button:hover,
+.back:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 30px rgba(165,72,230,.4);
+    border-color:#d18fff;
 }
 
 /* =========================
@@ -305,328 +233,233 @@ body{
 ========================= */
 
 .container{
-
-    width:100%;
-
-    max-width:950px;
-
+    max-width:1000px;
     margin:auto;
 }
 
 .topbar{
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    margin-bottom:45px;
+    margin-bottom:40px;
 }
 
-.back-btn{
-
-    border:1px solid #9141c5;
-
-    background:rgba(79,20,115,.45);
-
-    color:white;
-
-    padding:11px 18px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    transition:.25s;
+.back{
+    padding:11px 17px;
 }
 
-.back-btn:hover{
-
-    background:#7025a6;
-
-    transform:translateX(-3px);
-}
-
-.mini-logo{
-
-    color:#bc72ed;
-
+.logo{
+    color:#c57af4;
     font-weight:bold;
 }
 
 .title{
-
     text-align:center;
-
+    color:#d796ff;
     font-size:clamp(34px,7vw,55px);
-
-    color:#d79aff;
-
-    margin-bottom:15px;
+    margin-bottom:12px;
 }
 
 .description{
-
     text-align:center;
-
-    max-width:700px;
-
+    max-width:720px;
     margin:0 auto 35px;
-
-    color:#bdb3c4;
-
+    color:#bdb4c2;
     line-height:1.7;
 }
 
-/* TARJETAS */
-
 .card{
-
-    background:
-    linear-gradient(
+    background:linear-gradient(
         145deg,
         rgba(17,8,24,.92),
         rgba(31,10,46,.82)
     );
 
-    border:
-    1px solid rgba(184,91,246,.3);
-
+    border:1px solid rgba(184,91,246,.28);
     border-radius:22px;
-
-    padding:32px;
-
+    padding:30px;
     margin-bottom:20px;
-
     backdrop-filter:blur(12px);
-
-    box-shadow:
-    0 15px 50px rgba(0,0,0,.3),
-    0 0 35px rgba(114,33,164,.12);
+    box-shadow:0 15px 50px rgba(0,0,0,.3);
 }
 
-.card h2{
-
-    color:#d18aff;
-
-    margin-bottom:15px;
-}
-
+.card h2,
 .card h3{
-
-    color:#c879ff;
-
-    margin-bottom:10px;
+    color:#d28cff;
+    margin-bottom:12px;
 }
 
 .card p{
-
     color:#d2cbd6;
-
     line-height:1.8;
-
     margin-bottom:13px;
 }
 
 .purple{
-
-    color:#cf85ff;
-
+    color:#d28aff;
     font-weight:bold;
 }
 
-/* PERFIL */
+/* =========================
+   GRID
+========================= */
 
-.profile-name{
-
-    font-size:35px;
-
-    margin-bottom:7px;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:16px;
 }
 
-.profile-info{
+.box{
+    padding:22px;
+    border-radius:17px;
+    background:rgba(88,25,125,.15);
+    border:1px solid rgba(175,80,230,.25);
+    transition:.3s;
+}
 
-    color:#ad7dcc;
+.box:hover{
+    transform:translateY(-4px);
+    border-color:#a95cdb;
+}
 
-    margin-bottom:22px;
+.icon{
+    font-size:30px;
+    margin-bottom:12px;
 }
 
 /* =========================
-   SERVIDOR
+   COPY
+========================= */
+
+.copy-container{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#08040c;
+    border:1px solid rgba(168,79,215,.3);
+    border-radius:12px;
+    padding:8px;
+    margin:10px 0 18px;
+}
+
+.copy-text{
+    flex:1;
+    padding:7px 9px;
+    color:#dda6ff;
+    word-break:break-all;
+}
+
+.copy-btn{
+    flex-shrink:0;
+    border:1px solid #9345bd;
+    background:#5c197e;
+    color:white;
+    padding:10px 14px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.25s;
+}
+
+.copy-btn:hover{
+    background:#7d25a9;
+    box-shadow:0 0 15px rgba(187,90,240,.35);
+}
+
+/* =========================
+   SERVER
 ========================= */
 
 .server-header{
-
     text-align:center;
-
     margin-bottom:25px;
 }
 
 .server-icon{
-
     font-size:55px;
 }
 
 .server-name{
-
     font-size:36px;
-
     color:#d795ff;
-
     margin:10px 0;
 }
 
 .role{
-
     display:inline-block;
-
     padding:8px 15px;
-
     border-radius:20px;
-
     background:rgba(137,48,195,.2);
-
     border:1px solid #8140aa;
-
     color:#dda7ff;
 }
 
-.edition-buttons{
-
+.editions{
     display:flex;
-
     justify-content:center;
-
+    gap:14px;
     flex-wrap:wrap;
-
-    gap:15px;
-
-    margin-top:30px;
+    margin:30px 0 10px;
 }
 
-.edition{
-
-    padding:14px 30px;
-
+.editions button{
+    padding:14px 28px;
     border-radius:12px;
-
     border:1px solid #a74ee0;
-
-    background:
-    linear-gradient(135deg,#501276,#8b28c9);
-
+    background:linear-gradient(135deg,#501276,#8b28c9);
     color:white;
-
     cursor:pointer;
-
     font-weight:bold;
-
-    transition:.3s;
-}
-
-.edition:hover{
-
-    transform:scale(1.05);
-
-    box-shadow:
-    0 0 25px rgba(170,74,230,.5);
 }
 
 .server-data{
-
     display:none;
-
     margin-top:25px;
-
     padding:25px;
-
     border-radius:16px;
-
     background:rgba(78,21,111,.18);
-
     border:1px solid rgba(174,79,228,.3);
-
-    text-align:center;
-
-    animation:pageEnter .3s ease;
 }
 
 .server-data.active{
-
     display:block;
 }
 
-.ip-box{
-
-    background:#08040c;
-
-    border:1px solid rgba(156,74,203,.25);
-
-    padding:13px;
-
-    border-radius:10px;
-
-    margin:10px 0;
-
-    color:#dda3ff;
-
-    word-break:break-all;
-}
-
 /* =========================
-   SERVICIOS
+   HABILIDADES
 ========================= */
 
-.grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(230px,1fr));
-
-    gap:17px;
+.skill{
+    margin-bottom:20px;
 }
 
-.service{
-
-    background:
-    rgba(81,24,116,.16);
-
-    border:
-    1px solid rgba(166,73,219,.25);
-
-    border-radius:17px;
-
-    padding:23px;
-
-    transition:.3s;
-}
-
-.service:hover{
-
-    transform:translateY(-4px);
-
-    border-color:#a75adb;
-}
-
-.service-icon{
-
-    font-size:30px;
-
-    margin-bottom:13px;
-}
-
-.service h3{
-
-    color:#d28aff;
-
+.skill-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
     margin-bottom:9px;
 }
 
-.service p{
+.skill-name{
+    font-weight:bold;
+}
 
-    font-size:14px;
+.skill-level{
+    color:#ca83f6;
+}
+
+.skill-bar{
+    height:9px;
+    background:#100718;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.skill-progress{
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#6e1da0,#c165ff);
 }
 
 /* =========================
@@ -634,36 +467,71 @@ body{
 ========================= */
 
 .goal{
-
-    display:flex;
-
-    gap:18px;
-
-    align-items:flex-start;
-
     padding:20px;
-
     border-radius:16px;
-
     background:rgba(82,23,120,.14);
-
     border:1px solid rgba(172,80,224,.25);
-
     margin-bottom:15px;
 }
 
-.goal-icon{
-
-    font-size:30px;
-}
-
-.goal h3{
-
-    margin-bottom:6px;
+.goal-status{
+    display:inline-block;
+    margin-top:8px;
+    font-size:13px;
+    color:#cf91f7;
 }
 
 /* =========================
-   RESPONSIVE
+   CONTACTO
+========================= */
+
+.contact-card{
+    text-align:center;
+    padding:45px 25px;
+}
+
+.contact-icon{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.contact-name{
+    font-size:clamp(25px,7vw,45px);
+    color:#dfa6ff;
+    font-weight:bold;
+    word-break:break-word;
+    margin:25px 0 5px;
+}
+
+.contact-label{
+    color:#a89bad;
+    margin-bottom:20px;
+}
+
+/* MENSAJE COPIADO */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:30px;
+    transform:translate(-50%,30px);
+    background:#190b22;
+    border:1px solid #a74bd7;
+    padding:13px 20px;
+    border-radius:12px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:100;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* =========================
+   MÓVIL
 ========================= */
 
 @media(max-width:600px){
@@ -672,250 +540,182 @@ body{
         padding:25px 15px 60px;
     }
 
-    .card{
-        padding:23px 18px;
-    }
-
-    .topbar{
-        margin-bottom:35px;
-    }
-
     .hero h1{
-        font-size:44px;
+        font-size:43px;
     }
 
-    .main-menu{
+    .menu{
         grid-template-columns:1fr;
     }
 
-    .goal{
-        flex-direction:column;
+    .card{
+        padding:22px 18px;
     }
 
-}
+    .copy-container{
+        flex-direction:column;
+        align-items:stretch;
+    }
 
+    .copy-btn{
+        width:100%;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<!-- FONDO -->
-
 <div class="galaxy"></div>
 <div class="nebula nebula1"></div>
 <div class="nebula nebula2"></div>
 <div class="stars"></div>
-<div class="stars2"></div>
 
-
-<!-- =========================
-     INICIO
-========================= -->
+<!-- INICIO -->
 
 <div id="inicio" class="page active">
 
 <div class="hero">
 
-    <div class="badge">
-        ✦ PORTAFOLIO PERSONAL ✦
-    </div>
+<div class="badge">
+✦ PORTAFOLIO PERSONAL ✦
+</div>
 
-    <h1>
-        PORTAFOLIO DE<br>
-        LAMINE YAMAL
-    </h1>
+<h1>
+PORTAFOLIO DE<br>
+LAMINE YAMAL
+</h1>
 
-    <div class="hero-subtitle">
-        Discord • Minecraft • Bots • Programación
-    </div>
+<div class="subtitle">
+Discord • Minecraft • Bots • Programación
+</div>
 
-    <p class="hero-text">
+<p>
+Bienvenido a mi espacio personal. Aquí podrás conocer más
+sobre mí, las comunidades en las que participo, mis habilidades,
+los proyectos que voy desarrollando y las metas que quiero
+alcanzar en el futuro.
+</p>
 
-        Bienvenido a mi espacio personal.
+<div class="status">
+<span class="status-dot"></span>
+Disponible para nuevos proyectos
+</div>
 
-        Aquí podrás conocer un poco más sobre mí,
-        las comunidades en las que participo,
-        los servicios y configuraciones que realizo,
-        algunos de mis proyectos y las metas que
-        quiero alcanzar en el futuro.
+<div class="menu">
 
-    </p>
+<button onclick="abrir('quien')">
+👤 Quién Soy
+</button>
 
+<button onclick="abrir('servidores')">
+🛡️ Servidores Moderando
+</button>
 
-    <div class="main-menu">
+<button onclick="abrir('hago')">
+⚙️ Qué Hago
+</button>
 
-        <button
-        class="menu-btn"
-        onclick="abrir('quien')">
-            👤 Quién Soy
-        </button>
+<button onclick="abrir('habilidades')">
+📊 Mis Habilidades
+</button>
 
-        <button
-        class="menu-btn"
-        onclick="abrir('servidores')">
-            🛡️ Servidores Moderando
-        </button>
+<button onclick="abrir('proyectos')">
+🚀 Mis Proyectos
+</button>
 
-        <button
-        class="menu-btn"
-        onclick="abrir('hago')">
-            ⚙️ Qué Hago
-        </button>
+<button onclick="abrir('metas')">
+🎯 Mis Metas
+</button>
 
-        <button
-        class="menu-btn"
-        onclick="abrir('proyectos')">
-            🚀 Mis Proyectos
-        </button>
-
-        <button
-        class="menu-btn"
-        onclick="abrir('metas')">
-            🎯 Mis Metas
-        </button>
-
-    </div>
+<button onclick="abrir('contacto')">
+📬 Contacto
+</button>
 
 </div>
 
 </div>
+</div>
 
-
-<!-- =========================
-     QUIÉN SOY
-========================= -->
+<!-- QUIEN SOY -->
 
 <div id="quien" class="page">
 
 <div class="container">
 
 <div class="topbar">
-
-    <button
-    class="back-btn"
-    onclick="abrir('inicio')">
-        ← Volver
-    </button>
-
-    <div class="mini-logo">
-        ✦ PORTAFOLIO
-    </div>
-
+<button class="back" onclick="abrir('inicio')">← Volver</button>
+<div class="logo">✦ PORTAFOLIO</div>
 </div>
 
-
-<h1 class="title">
-    👤 Quién Soy
-</h1>
+<h1 class="title">👤 Quién Soy</h1>
 
 <p class="description">
-    Un poco sobre mí, mis intereses y las cosas
-    que disfruto crear.
+Conoce un poco más sobre mí y las cosas que me gusta crear.
 </p>
-
 
 <div class="card">
 
-    <h2 class="profile-name">
-        Ryan Méndez
-    </h2>
+<h2>Ryan Méndez</h2>
 
-    <div class="profile-info">
-        16 años • Argentina 🇦🇷
-    </div>
+<p class="purple">
+16 años • Argentina 🇦🇷
+</p>
 
-    <p>
+<p>
+¡Hola! Soy <span class="purple">Ryan Méndez</span>.
+Me interesa especialmente el mundo de la tecnología,
+las comunidades online, Minecraft, Discord y el desarrollo
+de bots.
+</p>
 
-        ¡Hola! Soy
-        <span class="purple">
-            Ryan Méndez
-        </span>.
+<p>
+Disfruto aprender cómo funcionan diferentes sistemas
+y utilizar esos conocimientos para desarrollar mis propios
+proyectos. Me gusta transformar ideas sencillas en sistemas
+organizados, funcionales y fáciles de utilizar.
+</p>
 
-        Me interesa especialmente el mundo de
-        la tecnología, las comunidades online,
-        Minecraft, Discord y el desarrollo de bots.
+<p>
+Gran parte de mi experiencia está relacionada con la
+configuración y administración de comunidades de Discord,
+además del desarrollo y configuración de bots.
+</p>
 
-    </p>
-
-    <p>
-
-        Disfruto aprender cómo funcionan diferentes
-        sistemas y después utilizar esos conocimientos
-        para crear mis propios proyectos.
-
-        Una de las cosas que más me gusta es transformar
-        una idea sencilla en algo organizado,
-        funcional y que otras personas puedan utilizar.
-
-    </p>
-
-    <p>
-
-        Gran parte de mi experiencia está relacionada
-        con la configuración y administración de
-        comunidades de Discord, además de trabajar
-        con bots y diferentes sistemas para servidores.
-
-    </p>
-
-    <p>
-
-        Todavía sigo aprendiendo y experimentando
-        constantemente.
-
-        Mi objetivo es mejorar mis conocimientos,
-        desarrollar proyectos cada vez más grandes
-        y continuar creciendo dentro del mundo
-        de la tecnología.
-
-    </p>
+<p>
+Continuamente intento aprender nuevas cosas para mejorar
+mis proyectos y ampliar las herramientas con las que puedo
+trabajar.
+</p>
 
 </div>
 
 </div>
 </div>
 
-
-<!-- =========================
-     SERVIDORES
-========================= -->
+<!-- SERVIDORES -->
 
 <div id="servidores" class="page">
 
 <div class="container">
 
 <div class="topbar">
-
-<button
-class="back-btn"
-onclick="abrir('inicio')">
-← Volver
-</button>
-
-<div class="mini-logo">
-✦ PORTAFOLIO
+<button class="back" onclick="abrir('inicio')">← Volver</button>
+<div class="logo">✦ PORTAFOLIO</div>
 </div>
 
-</div>
-
-
-<h1 class="title">
-🛡️ Servidores Moderando
-</h1>
+<h1 class="title">🛡️ Servidores Moderando</h1>
 
 <p class="description">
-Comunidades en las que participo actualmente
-como parte de su equipo.
+Comunidades en las que actualmente participo como parte
+de su equipo.
 </p>
-
 
 <div class="card">
 
 <div class="server-header">
 
-<div class="server-icon">
-⛏️
-</div>
+<div class="server-icon">⛏️</div>
 
 <div class="server-name">
 SylenMC
@@ -927,101 +727,100 @@ SylenMC
 
 </div>
 
-
 <p>
-
 Actualmente formo parte del equipo de
-<span class="purple">
-SylenMC
-</span>,
-una comunidad de Minecraft disponible
-para jugadores de Java y Bedrock.
-
+<span class="purple">SylenMC</span>,
+una comunidad de Minecraft disponible para jugadores
+de Java y Bedrock.
 </p>
 
 <p>
-
-Dentro del servidor desempeño el rol de
-<span class="purple">
-Head.Manager
-</span>.
-
-Mi trabajo está relacionado con la organización
-y administración de diferentes áreas de la
-comunidad, además de colaborar con el equipo
-para mantener el servidor organizado.
-
+Dentro de la comunidad desempeño el rol de
+<span class="purple">Head.Manager</span>,
+participando en la organización, administración y
+gestión de diferentes áreas del servidor.
 </p>
 
 <p>
-
-También ayudo a gestionar situaciones dentro
-de la comunidad, orientar a los usuarios y
-colaborar en decisiones relacionadas con el
-funcionamiento del servidor.
-
+También colaboro con el equipo, ayudo a gestionar
+situaciones dentro de la comunidad y contribuyo a
+mantener un espacio organizado para sus jugadores.
 </p>
 
+<div class="editions">
 
-<div class="edition-buttons">
-
-<button
-class="edition"
-onclick="mostrarServer('bedrock')">
-
+<button onclick="mostrarServer('bedrock')">
 🟩 BEDROCK
-
 </button>
 
-
-<button
-class="edition"
-onclick="mostrarServer('java')">
-
+<button onclick="mostrarServer('java')">
 ☕ JAVA
-
 </button>
 
 </div>
 
+<!-- BEDROCK -->
 
-<div
-id="bedrock"
-class="server-data">
+<div id="bedrock" class="server-data">
 
-<h3>
-🟩 Minecraft Bedrock
-</h3>
+<h3>🟩 Minecraft Bedrock</h3>
 
-<p>Dirección IP</p>
+<p>IP</p>
 
-<div class="ip-box">
+<div class="copy-container">
+
+<div class="copy-text">
 sylenmc.diavlohosting.com
+</div>
+
+<button
+class="copy-btn"
+onclick="copiar('sylenmc.diavlohosting.com')">
+📋 Copy
+</button>
+
 </div>
 
 <p>Puerto</p>
 
-<div class="ip-box">
+<div class="copy-container">
+
+<div class="copy-text">
 19016
 </div>
 
+<button
+class="copy-btn"
+onclick="copiar('19016')">
+📋 Copy
+</button>
+
 </div>
 
+</div>
 
-<div
-id="java"
-class="server-data">
+<!-- JAVA -->
 
-<h3>
-☕ Minecraft Java
-</h3>
+<div id="java" class="server-data">
 
-<p>Dirección IP</p>
+<h3>☕ Minecraft Java</h3>
 
-<div class="ip-box">
+<p>IP</p>
+
+<div class="copy-container">
+
+<div class="copy-text">
 sylenmc.diavlohosting.com
 </div>
 
+<button
+class="copy-btn"
+onclick="copiar('sylenmc.diavlohosting.com')">
+📋 Copy
+</button>
+
+</div>
+
 </div>
 
 </div>
@@ -1029,502 +828,454 @@ sylenmc.diavlohosting.com
 </div>
 </div>
 
-
-<!-- =========================
-     QUÉ HAGO
-========================= -->
+<!-- QUE HAGO -->
 
 <div id="hago" class="page">
 
 <div class="container">
 
 <div class="topbar">
-
-<button
-class="back-btn"
-onclick="abrir('inicio')">
-← Volver
-</button>
-
-<div class="mini-logo">
-✦ PORTAFOLIO
+<button class="back" onclick="abrir('inicio')">← Volver</button>
+<div class="logo">✦ PORTAFOLIO</div>
 </div>
 
-</div>
-
-
-<h1 class="title">
-⚙️ ¿Qué Hago?
-</h1>
+<h1 class="title">⚙️ ¿Qué Hago?</h1>
 
 <p class="description">
-
-Trabajo principalmente con Discord,
-configuración de comunidades,
-bots y diferentes proyectos relacionados
+Trabajo principalmente con Discord, bots, configuración
+de comunidades y diferentes proyectos relacionados
 con programación.
-
 </p>
-
 
 <div class="grid">
 
-
-<div class="service">
-
-<div class="service-icon">
-🤖
+<div class="box">
+<div class="icon">🤖</div>
+<h3>Bots de Discord</h3>
+<p>
+Desarrollo bots personalizados con sistemas de moderación,
+economía, tickets, registros, sorteos y comandos
+dependiendo de las necesidades del proyecto.
+</p>
 </div>
 
-<h3>
-Bots de Discord
-</h3>
-
+<div class="box">
+<div class="icon">⚙️</div>
+<h3>Configuración</h3>
 <p>
+Creo y organizo servidores de Discord desde cero,
+incluyendo categorías, canales, estructura general
+y configuración de diferentes sistemas.
+</p>
+</div>
 
-Puedo desarrollar bots personalizados
-dependiendo de las necesidades de cada
-comunidad.
+<div class="box">
+<div class="icon">🎫</div>
+<h3>Tickets</h3>
+<p>
+Configuro sistemas para soporte, compras, reportes,
+postulaciones, alianzas y diferentes tipos de atención.
+</p>
+</div>
 
-Pueden incluir moderación, economía,
-tickets, registros, comandos personalizados,
-sorteos y otras funciones.
+<div class="box">
+<div class="icon">🛡️</div>
+<h3>Moderación</h3>
+<p>
+Configuro herramientas para facilitar la moderación,
+advertencias, registros y organización del equipo.
+</p>
+</div>
 
+<div class="box">
+<div class="icon">👑</div>
+<h3>Roles y Permisos</h3>
+<p>
+Creo jerarquías de roles y configuro permisos para
+mantener correctamente organizada una comunidad.
+</p>
+</div>
+
+<div class="box">
+<div class="icon">💰</div>
+<h3>Economía</h3>
+<p>
+Trabajo con sistemas de economía virtual,
+monedas, tiendas, recompensas y diferentes
+mecánicas para comunidades.
+</p>
+</div>
+
+<div class="box">
+<div class="icon">📊</div>
+<h3>Logs</h3>
+<p>
+Configuro sistemas de registros para moderación,
+tickets, acciones importantes y movimientos
+dentro del servidor.
+</p>
+</div>
+
+<div class="box">
+<div class="icon">🎨</div>
+<h3>Personalización</h3>
+<p>
+Adapto categorías, mensajes, embeds, nombres
+y sistemas al estilo específico de cada comunidad.
+</p>
+</div>
+
+<div class="box">
+<div class="icon">🧑‍💻</div>
+<h3>Programación</h3>
+<p>
+Desarrollo y pruebo proyectos que me permiten
+seguir aprendiendo y ampliar las cosas que puedo crear.
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- HABILIDADES -->
+
+<div id="habilidades" class="page">
+
+<div class="container">
+
+<div class="topbar">
+<button class="back" onclick="abrir('inicio')">← Volver</button>
+<div class="logo">✦ PORTAFOLIO</div>
+</div>
+
+<h1 class="title">📊 Mis Habilidades</h1>
+
+<p class="description">
+Áreas en las que tengo experiencia o que actualmente
+estoy aprendiendo y mejorando.
 </p>
 
+<div class="card">
+
+<div class="skill">
+
+<div class="skill-top">
+<span class="skill-name">⚙️ Configuración de Discord</span>
+<span class="skill-level">Avanzando</span>
 </div>
 
-
-<div class="service">
-
-<div class="service-icon">
-⚙️
+<div class="skill-bar">
+<div class="skill-progress" style="width:85%"></div>
 </div>
-
-<h3>
-Configuración de Discord
-</h3>
-
-<p>
-
-Puedo crear y organizar servidores desde
-cero, configurando categorías, canales,
-roles, permisos y diferentes áreas para
-conseguir una estructura limpia y sencilla
-de utilizar.
-
-</p>
 
 </div>
 
+<div class="skill">
 
-<div class="service">
-
-<div class="service-icon">
-🎫
+<div class="skill-top">
+<span class="skill-name">🤖 Bots de Discord</span>
+<span class="skill-level">Intermedio</span>
 </div>
 
-<h3>
-Sistemas de Tickets
-</h3>
-
-<p>
-
-Configuración de sistemas para soporte,
-compras, reportes, postulaciones,
-alianzas u otras áreas que necesite
-una comunidad.
-
-</p>
+<div class="skill-bar">
+<div class="skill-progress" style="width:70%"></div>
+</div>
 
 </div>
 
+<div class="skill">
 
-<div class="service">
-
-<div class="service-icon">
-🛡️
+<div class="skill-top">
+<span class="skill-name">🛡️ Administración de comunidades</span>
+<span class="skill-level">Avanzando</span>
 </div>
 
-<h3>
-Moderación
-</h3>
-
-<p>
-
-Puedo configurar sistemas y herramientas
-para facilitar la moderación de una comunidad,
-incluyendo registros, advertencias,
-permisos y organización del equipo.
-
-</p>
+<div class="skill-bar">
+<div class="skill-progress" style="width:82%"></div>
+</div>
 
 </div>
 
+<div class="skill">
 
-<div class="service">
-
-<div class="service-icon">
-💰
+<div class="skill-top">
+<span class="skill-name">🟨 JavaScript</span>
+<span class="skill-level">Aprendiendo</span>
 </div>
 
-<h3>
-Economía Virtual
-</h3>
-
-<p>
-
-Creación y configuración de sistemas
-de economía para bots, incluyendo
-monedas virtuales, tiendas, recompensas
-y diferentes mecánicas.
-
-</p>
+<div class="skill-bar">
+<div class="skill-progress" style="width:60%"></div>
+</div>
 
 </div>
 
+<div class="skill">
 
-<div class="service">
-
-<div class="service-icon">
-📋
+<div class="skill-top">
+<span class="skill-name">🌐 Desarrollo Web</span>
+<span class="skill-level">Aprendiendo</span>
 </div>
 
-<h3>
-Roles y Permisos
-</h3>
-
-<p>
-
-Organizo jerarquías de roles y permisos
-para que cada miembro del staff tenga
-acceso únicamente a las herramientas
-que necesita.
-
-</p>
-
+<div class="skill-bar">
+<div class="skill-progress" style="width:50%"></div>
 </div>
 
-
-<div class="service">
-
-<div class="service-icon">
-📊
 </div>
-
-<h3>
-Logs y Registros
-</h3>
-
-<p>
-
-Configuración de canales y sistemas
-de registros para moderación,
-tickets, movimientos importantes
-y diferentes acciones dentro del servidor.
-
-</p>
-
-</div>
-
-
-<div class="service">
-
-<div class="service-icon">
-✨
-</div>
-
-<h3>
-Personalización
-</h3>
-
-<p>
-
-Intento que cada servidor tenga
-su propia identidad mediante nombres,
-categorías, mensajes, embeds,
-sistemas y una estructura adaptada
-al estilo de su comunidad.
-
-</p>
-
-</div>
-
-
-<div class="service">
-
-<div class="service-icon">
-🧑‍💻
-</div>
-
-<h3>
-Proyectos y Programación
-</h3>
-
-<p>
-
-También desarrollo y experimento
-con diferentes proyectos para continuar
-aprendiendo programación y ampliar
-las cosas que puedo crear.
-
-</p>
-
-</div>
-
 
 </div>
 
 </div>
 </div>
 
-
-<!-- =========================
-     PROYECTOS
-========================= -->
+<!-- PROYECTOS -->
 
 <div id="proyectos" class="page">
 
 <div class="container">
 
 <div class="topbar">
-
-<button
-class="back-btn"
-onclick="abrir('inicio')">
-← Volver
-</button>
-
-<div class="mini-logo">
-✦ PORTAFOLIO
+<button class="back" onclick="abrir('inicio')">← Volver</button>
+<div class="logo">✦ PORTAFOLIO</div>
 </div>
 
-</div>
-
-
-<h1 class="title">
-🚀 Mis Proyectos
-</h1>
+<h1 class="title">🚀 Mis Proyectos</h1>
 
 <p class="description">
-Un espacio para mostrar las cosas
-que voy creando.
+Algunos de los tipos de proyectos en los que trabajo.
 </p>
 
+<div class="grid">
 
-<div class="card">
+<div class="box">
 
-<h2>
-💻 Desarrollo
-</h2>
+<div class="icon">🤖</div>
+
+<h3>Bots personalizados</h3>
 
 <p>
-
-Mis proyectos están relacionados
-principalmente con bots de Discord,
-configuraciones de comunidades,
-scripts y diferentes experimentos
-de programación.
-
+Bots creados para comunidades de Discord con diferentes
+sistemas y funciones dependiendo de cada proyecto.
 </p>
 
-<p>
-
-Me gusta probar nuevas ideas,
-crear sistemas desde cero y
-posteriormente ir mejorándolos
-a medida que aprendo nuevas cosas.
-
+<p class="purple">
+🟢 En desarrollo constante
 </p>
 
+</div>
+
+<div class="box">
+
+<div class="icon">🌌</div>
+
+<h3>Mi Portafolio</h3>
+
 <p>
+Esta página forma parte de mis proyectos personales
+y continuará recibiendo mejoras y nuevas funciones.
+</p>
 
-Esta sección continuará creciendo
-con el tiempo a medida que termine
-nuevos proyectos y pueda mostrar
-más de mi trabajo.
+<p class="purple">
+🟢 Activo
+</p>
 
+</div>
+
+<div class="box">
+
+<div class="icon">⚙️</div>
+
+<h3>Configuraciones</h3>
+
+<p>
+Diseño y organización de comunidades con sistemas,
+roles, canales y herramientas personalizadas.
+</p>
+
+<p class="purple">
+🟢 Activo
 </p>
 
 </div>
 
 </div>
+
+</div>
 </div>
 
-
-<!-- =========================
-     METAS
-========================= -->
+<!-- METAS -->
 
 <div id="metas" class="page">
 
 <div class="container">
 
 <div class="topbar">
-
-<button
-class="back-btn"
-onclick="abrir('inicio')">
-← Volver
-</button>
-
-<div class="mini-logo">
-✦ PORTAFOLIO
+<button class="back" onclick="abrir('inicio')">← Volver</button>
+<div class="logo">✦ PORTAFOLIO</div>
 </div>
 
-</div>
-
-
-<h1 class="title">
-🎯 Mis Metas
-</h1>
+<h1 class="title">🎯 Mis Metas</h1>
 
 <p class="description">
-
-Algunas de las cosas que quiero
-conseguir a medida que continúo
+Objetivos que quiero alcanzar mientras continúo
 aprendiendo y desarrollando proyectos.
-
 </p>
-
 
 <div class="card">
 
+<div class="goal">
+
+<h3>🌐 Tener mi propio dominio</h3>
+
+<p>
+Quiero tener un dominio propio para mis páginas,
+proyectos y servicios.
+</p>
+
+<span class="goal-status">
+🟡 Meta futura
+</span>
+
+</div>
 
 <div class="goal">
 
-<div class="goal-icon">
-🌐
-</div>
-
-<div>
-
-<h3>
-Tener mi propio dominio
-</h3>
+<h3>🖥️ Tener mi propio VPS</h3>
 
 <p>
+Quiero disponer de un VPS para alojar bots,
+páginas y diferentes proyectos propios.
+</p>
 
-Una de mis metas es tener un dominio
-propio para mis proyectos y crear una
-identidad más profesional para las
-páginas y servicios que desarrolle.
+<span class="goal-status">
+🟡 Meta futura
+</span>
 
+</div>
+
+<div class="goal">
+
+<h3>🤖 Crear bots más avanzados</h3>
+
+<p>
+Quiero continuar mejorando mis conocimientos
+para desarrollar bots cada vez más completos.
+</p>
+
+<span class="goal-status">
+🔵 En progreso
+</span>
+
+</div>
+
+<div class="goal">
+
+<h3>📚 Seguir aprendiendo programación</h3>
+
+<p>
+Continuar aprendiendo nuevas tecnologías y utilizar
+esos conocimientos para desarrollar proyectos
+cada vez más grandes.
+</p>
+
+<span class="goal-status">
+🔵 En progreso
+</span>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- CONTACTO -->
+
+<div id="contacto" class="page">
+
+<div class="container">
+
+<div class="topbar">
+<button class="back" onclick="abrir('inicio')">← Volver</button>
+<div class="logo">✦ PORTAFOLIO</div>
+</div>
+
+<h1 class="title">📬 Contacto</h1>
+
+<p class="description">
+Si quieres hablar conmigo sobre algún proyecto,
+configuración o bot, puedes encontrarme en Discord.
+</p>
+
+<div class="card contact-card">
+
+<div class="contact-icon">
+💬
+</div>
+
+<h2>
+Discord
+</h2>
+
+<div class="contact-name">
+ryan_lamienyamal
+</div>
+
+<div class="contact-label">
+Usuario de Discord
+</div>
+
+<div class="copy-container">
+
+<div class="copy-text">
+ryan_lamienyamal
+</div>
+
+<button
+class="copy-btn"
+onclick="copiar('ryan_lamienyamal')">
+📋 Copy
+</button>
+
+</div>
+
+<p>
+Puedes copiar mi usuario utilizando el botón de arriba
+y buscarme directamente en Discord.
 </p>
 
 </div>
 
 </div>
-
-
-<div class="goal">
-
-<div class="goal-icon">
-🖥️
 </div>
 
-<div>
+<!-- TOAST -->
 
-<h3>
-Tener mi propio VPS
-</h3>
-
-<p>
-
-Quiero disponer de un VPS donde pueda
-alojar mis propios proyectos, páginas,
-servicios y bots sin depender completamente
-de plataformas externas.
-
-</p>
-
+<div id="toast" class="toast">
+✅ ¡Copiado!
 </div>
-
-</div>
-
-
-<div class="goal">
-
-<div class="goal-icon">
-🤖
-</div>
-
-<div>
-
-<h3>
-Crear bots más avanzados
-</h3>
-
-<p>
-
-Quiero continuar aprendiendo programación
-para poder desarrollar bots cada vez más
-completos, estables y personalizados.
-
-</p>
-
-</div>
-
-</div>
-
-
-<div class="goal">
-
-<div class="goal-icon">
-📚
-</div>
-
-<div>
-
-<h3>
-Seguir aprendiendo
-</h3>
-
-<p>
-
-Mi principal meta es continuar mejorando
-mis conocimientos de programación,
-servidores y tecnología para poder
-convertir ideas cada vez más grandes
-en proyectos reales.
-
-</p>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-</div>
-
 
 <script>
 
-/* CAMBIAR DE PÁGINA */
+/* CAMBIAR PÁGINAS */
 
 function abrir(id){
 
-    const paginas =
-    document.querySelectorAll(".page");
+    document
+    .querySelectorAll(".page")
+    .forEach(page => {
+        page.classList.remove("active");
+    });
 
-    paginas.forEach(
-        pagina =>
-        pagina.classList.remove("active")
-    );
-
-    const destino =
-    document.getElementById(id);
-
-    destino.classList.add("active");
+    document
+    .getElementById(id)
+    .classList.add("active");
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
-
 }
 
 
@@ -1532,19 +1283,63 @@ function abrir(id){
 
 function mostrarServer(tipo){
 
-    const bedrock =
-    document.getElementById("bedrock");
+    document
+    .getElementById("bedrock")
+    .classList.remove("active");
 
-    const java =
-    document.getElementById("java");
-
-    bedrock.classList.remove("active");
-    java.classList.remove("active");
+    document
+    .getElementById("java")
+    .classList.remove("active");
 
     document
     .getElementById(tipo)
     .classList.add("active");
+}
 
+
+/* COPIAR */
+
+function copiar(texto){
+
+    navigator.clipboard
+    .writeText(texto)
+    .then(() => {
+
+        const toast =
+        document.getElementById("toast");
+
+        toast.classList.add("show");
+
+        setTimeout(() => {
+            toast.classList.remove("show");
+        },1500);
+
+    })
+    .catch(() => {
+
+        const temporal =
+        document.createElement("textarea");
+
+        temporal.value = texto;
+
+        document.body.appendChild(temporal);
+
+        temporal.select();
+
+        document.execCommand("copy");
+
+        temporal.remove();
+
+        const toast =
+        document.getElementById("toast");
+
+        toast.classList.add("show");
+
+        setTimeout(() => {
+            toast.classList.remove("show");
+        },1500);
+
+    });
 }
 
 </script>
