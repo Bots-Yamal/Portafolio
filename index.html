@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Portafolio de Lamine Yamal</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, #43126b 0%, transparent 30%),
+        radial-gradient(circle at 80% 40%, #29084f 0%, transparent 35%),
+        radial-gradient(circle at 50% 80%, #19032f 0%, transparent 35%),
+        #050507;
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ESTRELLAS */
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(#b66cff 1px, transparent 1px);
+      background-size: 60px 60px, 90px 90px;
+      background-position: 0 0, 30px 30px;
+      opacity: 0.22;
+      z-index: -1;
+    }
+
+    /* PORTADA */
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .hero {
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 8vw, 75px);
+      background: linear-gradient(90deg, #ffffff, #c675ff, #8d3cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      text-shadow: 0 0 35px rgba(164, 74, 255, 0.2);
+    }
+
+    .hero h2 {
+      color: #c889ff;
+      margin-bottom: 18px;
+      font-size: 24px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      color: #d2cbd8;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    /* BOTONES */
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      background: linear-gradient(135deg, #5e168c, #932cff);
+      border: 1px solid #b95cff;
+      box-shadow: 0 0 18px rgba(161, 65, 255, 0.3);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 30px rgba(184, 93, 255, 0.7);
+    }
+
+    /* SECCIONES */
+
+    section {
+      padding: 90px 20px;
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 35px;
+      color: #c46cff;
+    }
+
+    .card {
+      background: rgba(13, 8, 20, 0.78);
+      border: 1px solid rgba(181, 92, 255, 0.35);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 0 35px rgba(117, 35, 184, 0.15);
+      backdrop-filter: blur(10px);
+      line-height: 1.8;
+    }
+
+    .card h3 {
+      font-size: 27px;
+      color: #d497ff;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      color: #d4ced8;
+      margin-bottom: 15px;
+    }
+
+    .highlight {
+      color: #c56fff;
+      font-weight: bold;
+    }
+
+    /* SYLEN */
+
+    .server-logo {
+      font-size: 55px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .server-name {
+      text-align: center;
+      font-size: 32px;
+      color: #d18cff;
+      margin-bottom: 20px;
+    }
+
+    .edition-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 30px 0;
+    }
+
+    .edition-btn {
+      border: none;
+      padding: 14px 30px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      background: linear-gradient(135deg, #51157c, #962cff);
+      border: 1px solid #b55cff;
+      transition: 0.3s;
+    }
+
+    .edition-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #852bd1;
+    }
+
+    .server-info {
+      display: none;
+      max-width: 600px;
+      margin: 25px auto 0;
+      background: rgba(104, 31, 158, 0.15);
+      border: 1px solid #7130a3;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .server-info.active {
+      display: block;
+      animation: aparecer 0.35s ease;
+    }
+
+    .server-info h4 {
+      color: #d392ff;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .ip {
+      background: #09060d;
+      padding: 12px;
+      border-radius: 10px;
+      margin: 10px 0;
+      color: #dca6ff;
+      word-break: break-all;
+    }
+
+    /* SERVICIOS */
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .service {
+      background: rgba(119, 39, 180, 0.12);
+      border: 1px solid rgba(176, 87, 255, 0.3);
+      border-radius: 15px;
+      padding: 22px;
+    }
+
+    .service h4 {
+      color: #ce83ff;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .service p {
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 50px 20px;
+      border-top: 1px solid rgba(164, 75, 255, 0.2);
+      color: #9e92a6;
+    }
+
+    footer strong {
+      color: #c86eff;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 25px 20px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .menu {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      section {
+        padding: 65px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PORTADA -->
+
+  <header>
+
+    <div class="hero">
+
+      <h1>PORTAFOLIO DE LAMINE YAMAL</h1>
+
+      <h2>Bienvenido a mi portafolio 🌌</h2>
+
+      <p>
+        Este es mi espacio personal donde podrás conocer un poco más
+        sobre mí, descubrir lo que hago, conocer las comunidades en las
+        que participo y ver algunos de mis proyectos.
+        Me interesa especialmente el mundo de Discord, Minecraft,
+        los bots y la programación.
+      </p>
+
+      <div class="menu">
+
+        <a href="#quien-soy" class="btn">
+          👤 Quién Soy
+        </a>
+
+        <a href="#servidores" class="btn">
+          🛡️ Servidores Moderando
+        </a>
+
+        <a href="#que-hago" class="btn">
+          💻 Qué Hago
+        </a>
+
+        <a href="#proyectos" class="btn">
+          🚀 Mis Proyectos
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- QUIEN SOY -->
+
+  <section id="quien-soy">
+
+    <h2 class="section-title">👤 Quién Soy</h2>
+
+    <div class="card">
+
+      <h3>Ryan Méndez</h3>
+
+      <p>
+        ¡Hola! Soy <span class="highlight">Ryan Méndez</span>,
+        tengo <span class="highlight">16 años</span> y vivo en
+        <span class="highlight">Argentina</span>.
+      </p>
+
+      <p>
+        Me interesa mucho el mundo de la tecnología y especialmente
+        todo lo relacionado con Discord, Minecraft, bots y programación.
+      </p>
+
+      <p>
+        Me gusta crear, configurar y experimentar con diferentes
+        proyectos. Siempre busco aprender cosas nuevas y mejorar mis
+        conocimientos para poder realizar trabajos cada vez más
+        completos, organizados y profesionales.
+      </p>
+
+      <p>
+        Este portafolio fue creado para reunir parte de lo que hago
+        y permitir que otras personas puedan conocer mis habilidades,
+        proyectos y experiencia dentro de diferentes comunidades.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- SERVIDORES -->
+
+  <section id="servidores">
+
+    <h2 class="section-title">🛡️ Servidores Moderando</h2>
+
+    <div class="card">
+
+      <div class="server-logo">🎮</div>
+
+      <div class="server-name">
+        SylenMC
+      </div>
+
+      <p>
+        Actualmente formo parte de la moderación de
+        <span class="highlight">SylenMC</span>, una comunidad de
+        Minecraft disponible para jugadores de Bedrock Edition y
+        Java Edition.
+      </p>
+
+      <p>
+        Dentro de la comunidad colaboro con la moderación y organización
+        del servidor, ayudando a los usuarios cuando lo necesitan y
+        contribuyendo a mantener un espacio organizado y agradable para
+        todos los jugadores.
+      </p>
+
+      <p style="text-align:center;">
+        Selecciona tu versión de Minecraft:
+      </p>
+
+      <div class="edition-buttons">
+
+        <button
+          class="edition-btn"
+          onclick="mostrarServidor('bedrock')">
+          🟩 BEDROCK
+        </button>
+
+        <button
+          class="edition-btn"
+          onclick="mostrarServidor('java')">
+          ☕ JAVA
+        </button>
+
+      </div>
+
+      <!-- BEDROCK -->
+
+      <div id="bedrock" class="server-info">
+
+        <h4>🟩 Minecraft Bedrock</h4>
+
+        <p>IP del servidor</p>
+
+        <div class="ip">
+          sylenmc.diavlohosting.com
+        </div>
+
+        <p>Puerto</p>
+
+        <div class="ip">
+          19016
+        </div>
+
+      </div>
+
+      <!-- JAVA -->
+
+      <div id="java" class="server-info">
+
+        <h4>☕ Minecraft Java</h4>
+
+        <p>IP del servidor</p>
+
+        <div class="ip">
+          sylenmc.diavlohosting.com
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- QUE HAGO -->
+
+  <section id="que-hago">
+
+    <h2 class="section-title">💻 ¿Qué Hago?</h2>
+
+    <div class="card">
+
+      <p>
+        Me dedico principalmente a realizar diferentes trabajos
+        relacionados con
+        <span class="highlight">Discord, bots y comunidades online</span>.
+      </p>
+
+      <p>
+        Puedo configurar servidores de Discord desde cero o mejorar
+        servidores existentes, buscando que tengan una estructura
+        organizada, sencilla de utilizar y adaptada al estilo de
+        cada comunidad.
+      </p>
+
+      <div class="services">
+
+        <div class="service">
+
+          <h4>🤖 Bots de Discord</h4>
+
+          <p>
+            Desarrollo bots personalizados dependiendo de las
+            funciones que necesite cada servidor. El precio puede
+            variar según la complejidad del proyecto.
+          </p>
+
+        </div>
+
+        <div class="service">
+
+          <h4>⚙️ Configuración</h4>
+
+          <p>
+            Configuro servidores de Discord con categorías,
+            canales, roles, permisos y una estructura organizada.
+          </p>
+
+        </div>
+
+        <div class="service">
+
+          <h4>🎫 Sistemas</h4>
+
+          <p>
+            Puedo trabajar con sistemas de tickets, sugerencias,
+            bienvenidas, registros y otras herramientas para
+            comunidades.
+          </p>
+
+        </div>
+
+        <div class="service">
+
+          <h4>🛡️ Moderación</h4>
+
+          <p>
+            Configuración de herramientas de moderación,
+            registros, advertencias y sistemas que ayudan
+            a mantener organizada una comunidad.
+          </p>
+
+        </div>
+
+        <div class="service">
+
+          <h4>💰 Economía</h4>
+
+          <p>
+            Creación y configuración de sistemas de economía
+            virtual para bots y comunidades de Discord.
+          </p>
+
+        </div>
+
+        <div class="service">
+
+          <h4>🧑‍💻 Programación</h4>
+
+          <p>
+            Constantemente estoy aprendiendo y desarrollando
+            nuevos proyectos para mejorar mis conocimientos
+            y ampliar las cosas que puedo crear.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROYECTOS -->
+
+  <section id="proyectos">
+
+    <h2 class="section-title">🚀 Mis Proyectos</h2>
+
+    <div class="card">
+
+      <h3>Proyectos y desarrollo</h3>
+
+      <p>
+        En esta sección podrás encontrar algunos de los proyectos
+        en los que he trabajado y otros que estoy desarrollando
+        actualmente.
+      </p>
+
+      <p>
+        Mis proyectos están relacionados principalmente con
+        <span class="highlight">
+          bots de Discord, configuraciones de servidores,
+          sistemas personalizados, scripts y programación.
+        </span>
+      </p>
+
+      <p>
+        Constantemente estoy probando nuevas ideas y aprendiendo
+        nuevas formas de mejorar mis proyectos. Me interesa crear
+        sistemas que no solamente funcionen, sino que también sean
+        cómodos y fáciles de utilizar.
+      </p>
+
+      <p>
+        Con el tiempo iré agregando aquí nuevos trabajos para
+        crear una colección de todo lo que he desarrollado y
+        mostrar mi progreso.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      🌌 Gracias por visitar mi portafolio
+    </p>
+
+    <br>
+
+    <p>
+      <strong>Ryan Méndez</strong>
+      • Discord • Minecraft • Bots • Programación
+    </p>
+
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    function mostrarServidor(tipo) {
+
+      const bedrock = document.getElementById("bedrock");
+      const java = document.getElementById("java");
+
+      bedrock.classList.remove("active");
+      java.classList.remove("active");
+
+      document
+        .getElementById(tipo)
+        .classList.add("active");
+    }
+
+  </script>
+
+</body>
+</html>
