@@ -18,6 +18,8 @@
     --red3:#690000;
     --text:#f5f5f5;
     --muted:#a7a7ad;
+    --border:rgba(255,255,255,.07);
+    --shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
 *{
@@ -36,6 +38,36 @@ body{
     color:var(--text);
     min-height:100vh;
     overflow-x:hidden;
+}
+
+/* =========================
+   SELECCIÓN
+========================= */
+
+::selection{
+    background:#ff2b2b;
+    color:white;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#050505;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#7b0000;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#ff2b2b;
 }
 
 /* =========================
@@ -265,6 +297,21 @@ body{
     color:#ff6565;
     font-size:13px;
     margin-bottom:28px;
+    animation:heroTag 1s ease;
+}
+
+@keyframes heroTag{
+
+    from{
+        opacity:0;
+        transform:translateY(-8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
 }
 
 .hero-tag-dot{
@@ -332,6 +379,34 @@ body{
     color:#ddd;
 }
 
+/* =========================
+   BADGES PROFESIONALES
+========================= */
+
+.hero-badges{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-top:25px;
+}
+
+.hero-badge{
+    padding:7px 12px;
+    border-radius:20px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.08);
+    color:#aaa;
+    font-size:12px;
+    transition:.25s;
+}
+
+.hero-badge:hover{
+    color:white;
+    border-color:rgba(255,60,60,.3);
+    transform:translateY(-2px);
+}
+
 .availability{
     display:flex;
     justify-content:center;
@@ -368,6 +443,24 @@ body{
 .stat-card{
     text-align:center;
     padding:25px 15px;
+    position:relative;
+    overflow:hidden;
+}
+
+.stat-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #ff2b2b,
+        transparent
+    );
+    opacity:.7;
 }
 
 .stat-number{
@@ -419,10 +512,10 @@ body{
         rgba(16,16,18,.96),
         rgba(9,9,10,.96)
     );
-    border:1px solid rgba(255,255,255,.07);
+    border:1px solid var(--border);
     border-radius:18px;
     padding:30px;
-    box-shadow:0 20px 60px rgba(0,0,0,.25);
+    box-shadow:var(--shadow);
     transition:.3s;
 }
 
@@ -505,6 +598,47 @@ body{
     background:#090909;
     border:1px solid rgba(255,255,255,.06);
     color:#ccc;
+    transition:.25s;
+}
+
+.status-item:hover{
+    border-color:rgba(255,50,50,.25);
+    transform:translateY(-2px);
+}
+
+/* =========================
+   BLOQUE PROFESIONAL
+========================= */
+
+.professional-box{
+    max-width:850px;
+    margin:45px auto 0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.professional-item{
+    padding:22px;
+    border-radius:15px;
+    background:linear-gradient(
+        145deg,
+        rgba(255,40,40,.07),
+        rgba(255,255,255,.025)
+    );
+    border:1px solid rgba(255,60,60,.12);
+}
+
+.professional-item strong{
+    display:block;
+    margin-bottom:6px;
+    color:#fff;
+}
+
+.professional-item span{
+    color:#999;
+    font-size:13px;
+    line-height:1.6;
 }
 
 /* =========================
@@ -524,15 +658,17 @@ body{
 }
 
 .avatar{
-    width:70px;
-    height:70px;
+    width:78px;
+    height:78px;
     flex-shrink:0;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:18px;
+    border-radius:20px;
     overflow:hidden;
     background:linear-gradient(135deg,#e12727,#690000);
+    border:2px solid rgba(255,60,60,.3);
+    box-shadow:0 10px 35px rgba(200,0,0,.18);
 }
 
 .avatar img{
@@ -549,6 +685,22 @@ body{
 .profile-meta{
     color:#ff5555;
     font-size:14px;
+}
+
+.profile-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:20px 0 25px;
+}
+
+.profile-tag{
+    padding:7px 11px;
+    border-radius:20px;
+    background:#0a0a0a;
+    border:1px solid rgba(255,255,255,.07);
+    color:#aaa;
+    font-size:12px;
 }
 
 /* =========================
@@ -593,6 +745,23 @@ body{
     background:rgba(255,40,40,.07);
     border:1px solid rgba(255,60,60,.20);
     font-size:13px;
+}
+
+.server-features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin:25px 0;
+}
+
+.server-feature{
+    text-align:center;
+    padding:15px 10px;
+    border-radius:12px;
+    background:#090909;
+    border:1px solid rgba(255,255,255,.06);
+    color:#aaa;
+    font-size:12px;
 }
 
 .edition-buttons{
@@ -687,6 +856,21 @@ body{
 
 .service-card{
     min-height:210px;
+    position:relative;
+    overflow:hidden;
+}
+
+.service-card::after{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    right:-45px;
+    bottom:-45px;
+    background:#b00000;
+    filter:blur(45px);
+    opacity:.08;
 }
 
 .icon{
@@ -719,6 +903,20 @@ body{
     font-weight:700;
 }
 
+.skill-bar{
+    height:6px;
+    margin-top:13px;
+    border-radius:20px;
+    overflow:hidden;
+    background:#171717;
+}
+
+.skill-fill{
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#ff3030,#8e0000);
+}
+
 /* =========================
    TECNOLOGÍAS
 ========================= */
@@ -739,12 +937,28 @@ body{
     margin-bottom:10px;
 }
 
+.tech-level{
+    display:block;
+    margin-top:8px;
+    color:#777;
+    font-size:11px;
+}
+
 /* =========================
    PROYECTOS
 ========================= */
 
 .project-card{
-    min-height:280px;
+    min-height:310px;
+    position:relative;
+}
+
+.project-number{
+    color:#ff4444;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2px;
+    margin-bottom:12px;
 }
 
 .project-status{
@@ -850,6 +1064,12 @@ body{
     background:#090909;
     border:1px solid rgba(255,255,255,.06);
     margin-bottom:12px;
+    transition:.25s;
+}
+
+.goal:hover{
+    border-color:rgba(255,60,60,.25);
+    transform:translateX(4px);
 }
 
 .goal-icon{
@@ -875,6 +1095,36 @@ body{
 
 .progress{
     color:#66a2ff;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    max-width:850px;
+    margin:50px auto 0;
+    text-align:center;
+    padding:40px 30px;
+    border-radius:20px;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,40,40,.10),
+        rgba(255,255,255,.025)
+    );
+    border:1px solid rgba(255,60,60,.16);
+}
+
+.cta h2{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.cta p{
+    color:#999;
+    line-height:1.7;
+    margin-bottom:22px;
 }
 
 /* =========================
@@ -1040,6 +1290,33 @@ textarea.form-input{
 }
 
 /* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:30px;
+    transform:translate(-50%,20px);
+    padding:12px 18px;
+    border-radius:10px;
+    background:#151515;
+    border:1px solid rgba(255,60,60,.25);
+    color:#fff;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:2000;
+    box-shadow:0 10px 35px rgba(0,0,0,.4);
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -1088,6 +1365,10 @@ textarea.form-input{
 
     .stats-grid{
         grid-template-columns:repeat(2,1fr);
+    }
+
+    .server-features{
+        grid-template-columns:1fr;
     }
 
 }
@@ -1144,6 +1425,10 @@ textarea.form-input{
         grid-template-columns:1fr;
     }
 
+    .professional-box{
+        grid-template-columns:1fr;
+    }
+
     .stats-grid{
         grid-template-columns:repeat(2,1fr);
     }
@@ -1155,6 +1440,39 @@ textarea.form-input{
     .profile-img{
         width:39px;
         height:39px;
+    }
+
+    .hero-badges{
+        padding:0 10px;
+    }
+
+}
+
+/* =========================
+   DISPOSITIVOS TÁCTILES
+========================= */
+
+@media(hover:none),(pointer:coarse){
+
+    .cursor-glow{
+        display:none;
+    }
+
+}
+
+/* =========================
+   REDUCIR ANIMACIONES
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+        scroll-behavior:auto !important;
     }
 
 }
@@ -1182,7 +1500,7 @@ textarea.form-input{
 
 <img
 src="IMG_2080.JPG"
-alt="Lamine Yamal"
+alt="Ryan Méndez"
 class="profile-img">
 
 </div>
@@ -1249,8 +1567,11 @@ Contacto
 
 <button
 class="menu-toggle"
-onclick="toggleMenu()">
+onclick="toggleMenu()"
+aria-label="Abrir menú">
+
 ☰
+
 </button>
 
 </div>
@@ -1295,6 +1616,27 @@ mis proyectos actuales y las metas que quiero
 alcanzar.
 
 </p>
+
+
+<div class="hero-badges">
+
+<div class="hero-badge">
+🤖 Bots de Discord
+</div>
+
+<div class="hero-badge">
+🎮 Minecraft
+</div>
+
+<div class="hero-badge">
+🌐 Desarrollo web
+</div>
+
+<div class="hero-badge">
+⚙️ Configuración
+</div>
+
+</div>
 
 
 <div class="hero-buttons">
@@ -1372,7 +1714,7 @@ Proyectos realizados
 
 <div
 class="stat-number counter"
-data-target="1">
+data-target="2">
 0+
 </div>
 
@@ -1436,6 +1778,68 @@ Estado actual
 </div>
 
 
+<!-- BLOQUE PROFESIONAL -->
+
+<div class="professional-box">
+
+<div class="professional-item">
+
+<strong>
+💼 Enfoque
+</strong>
+
+<span>
+Comunidades digitales, bots de Discord,
+configuración y proyectos tecnológicos.
+</span>
+
+</div>
+
+
+<div class="professional-item">
+
+<strong>
+🚀 Objetivo
+</strong>
+
+<span>
+Convertir ideas en proyectos funcionales
+y seguir mejorando mis conocimientos.
+</span>
+
+</div>
+
+
+<div class="professional-item">
+
+<strong>
+🧠 Actualmente aprendiendo
+</strong>
+
+<span>
+JavaScript, desarrollo web y sistemas
+más avanzados para Discord.
+</span>
+
+</div>
+
+
+<div class="professional-item">
+
+<strong>
+🎯 Mentalidad
+</strong>
+
+<span>
+Aprender, experimentar, solucionar
+problemas y seguir avanzando.
+</span>
+
+</div>
+
+</div>
+
+
 <!-- VISITAS -->
 
 <div class="visit-card card">
@@ -1445,7 +1849,7 @@ Estado actual
 </div>
 
 <div class="visit-label">
-Visitas registradas
+Visitas registradas en este navegador
 </div>
 
 </div>
@@ -1489,7 +1893,7 @@ en las que estoy desarrollando mi experiencia.
 
 <img
 src="IMG_2080.JPG"
-alt="Lamine Yamal">
+alt="Ryan Méndez">
 
 </div>
 
@@ -1505,6 +1909,31 @@ Ryan Méndez
 </div>
 
 </div>
+
+</div>
+
+
+<div class="profile-tags">
+
+<span class="profile-tag">
+Discord
+</span>
+
+<span class="profile-tag">
+Minecraft
+</span>
+
+<span class="profile-tag">
+JavaScript
+</span>
+
+<span class="profile-tag">
+Bots
+</span>
+
+<span class="profile-tag">
+Desarrollo web
+</span>
 
 </div>
 
@@ -1539,6 +1968,28 @@ Mi objetivo es continuar creciendo dentro del
 mundo tecnológico y convertir nuevas ideas en
 proyectos funcionales.
 </p>
+
+</div>
+
+
+<div class="cta">
+
+<h2>
+Construyendo paso a paso.
+</h2>
+
+<p>
+Cada proyecto es una oportunidad para aprender
+algo nuevo y mejorar lo que ya sé.
+</p>
+
+<button
+class="primary-btn"
+onclick="abrir('proyectos')">
+
+Ver mis proyectos
+
+</button>
 
 </div>
 
@@ -1609,6 +2060,23 @@ para Java Edition y Bedrock Edition.
 Dentro de la comunidad desempeño el rol de
 <span class="red">Head.Manager</span>.
 </p>
+
+
+<div class="server-features">
+
+<div class="server-feature">
+🟩 Bedrock
+</div>
+
+<div class="server-feature">
+☕ Java Edition
+</div>
+
+<div class="server-feature">
+🛡️ Administración
+</div>
+
+</div>
 
 
 <div class="edition-buttons">
@@ -1847,6 +2315,28 @@ continúo aprendiendo programación.
 </div>
 
 
+<div class="cta">
+
+<h2>
+¿Tienes una idea?
+</h2>
+
+<p>
+Puedo ayudarte a convertirla en una estructura
+más organizada y funcional.
+</p>
+
+<button
+class="primary-btn"
+onclick="abrir('contacto')">
+
+Contactar →
+
+</button>
+
+</div>
+
+
 <div class="footer">
 Ryan Méndez • Servicios
 </div>
@@ -1901,6 +2391,10 @@ roles, permisos y sistemas.
 AVANZANDO
 </span>
 
+<div class="skill-bar">
+<div class="skill-fill" style="width:80%;"></div>
+</div>
+
 </div>
 
 
@@ -1921,6 +2415,10 @@ para diferentes comunidades.
 INTERMEDIO
 </span>
 
+<div class="skill-bar">
+<div class="skill-fill" style="width:65%;"></div>
+</div>
+
 </div>
 
 
@@ -1940,6 +2438,10 @@ de comunidades.
 <span class="skill-level">
 AVANZANDO
 </span>
+
+<div class="skill-bar">
+<div class="skill-fill" style="width:80%;"></div>
+</div>
 
 </div>
 
@@ -1963,6 +2465,10 @@ y diferentes proyectos.
 APRENDIENDO
 </span>
 
+<div class="skill-bar">
+<div class="skill-fill" style="width:45%;"></div>
+</div>
+
 </div>
 
 
@@ -1985,6 +2491,10 @@ con páginas web.
 APRENDIENDO
 </span>
 
+<div class="skill-bar">
+<div class="skill-fill" style="width:45%;"></div>
+</div>
+
 </div>
 
 
@@ -2006,6 +2516,10 @@ adaptación de sistemas.
 <span class="skill-level">
 EN DESARROLLO
 </span>
+
+<div class="skill-bar">
+<div class="skill-fill" style="width:55%;"></div>
+</div>
 
 </div>
 
@@ -2033,30 +2547,35 @@ Tecnologías que utilizo
 <div class="card tech-card">
 <div class="tech-icon">🟨</div>
 <h3>JavaScript</h3>
+<span class="tech-level">Aprendiendo</span>
 </div>
 
 
 <div class="card tech-card">
 <div class="tech-icon">🟢</div>
 <h3>Node.js</h3>
+<span class="tech-level">Utilizado en proyectos</span>
 </div>
 
 
 <div class="card tech-card">
 <div class="tech-icon">🤖</div>
 <h3>Discord.js</h3>
+<span class="tech-level">Bots de Discord</span>
 </div>
 
 
 <div class="card tech-card">
 <div class="tech-icon">🌐</div>
 <h3>HTML / CSS</h3>
+<span class="tech-level">Desarrollo web</span>
 </div>
 
 
 <div class="card tech-card">
 <div class="tech-icon">▲</div>
 <h3>Netlify</h3>
+<span class="tech-level">Hosting web</span>
 </div>
 
 </div>
@@ -2210,6 +2729,10 @@ estoy trabajando.
 
 <div class="card project-card">
 
+<div class="project-number">
+01 / BOT DEVELOPMENT
+</div>
+
 <div class="icon">
 🤖
 </div>
@@ -2241,6 +2764,10 @@ con sistemas personalizados.
 
 
 <div class="card project-card">
+
+<div class="project-number">
+02 / WEB
+</div>
 
 <div class="icon">
 🌐
@@ -2275,6 +2802,10 @@ mi experiencia y proyectos.
 
 <div class="card project-card">
 
+<div class="project-number">
+03 / COMMUNITY
+</div>
+
 <div class="icon">
 ⚙️
 </div>
@@ -2307,6 +2838,20 @@ con diferentes sistemas.
 </div>
 
 
+<div class="cta">
+
+<h2>
+Más proyectos próximamente.
+</h2>
+
+<p>
+Este portafolio seguirá creciendo a medida
+que desarrolle nuevas ideas y sistemas.
+</p>
+
+</div>
+
+
 <div class="footer">
 Ryan Méndez • Proyectos
 </div>
@@ -2333,6 +2878,11 @@ Trayectoria
 <h1 class="section-title">
 Mi experiencia
 </h1>
+
+<p class="section-description">
+Un recorrido por las áreas en las que he ido
+adquiriendo conocimientos y experiencia.
+</p>
 
 </div>
 
@@ -2408,6 +2958,20 @@ programación y desarrollo web.
 </div>
 
 
+<div class="cta">
+
+<h2>
+Siempre aprendiendo.
+</h2>
+
+<p>
+Mi objetivo es seguir adquiriendo conocimientos
+y llevar proyectos cada vez más completos.
+</p>
+
+</div>
+
+
 <div class="footer">
 Ryan Méndez • Experiencia
 </div>
@@ -2434,6 +2998,11 @@ Futuro
 <h1 class="section-title">
 Mis metas
 </h1>
+
+<p class="section-description">
+Objetivos que quiero alcanzar mientras
+continúo desarrollándome.
+</p>
 
 </div>
 
@@ -2574,6 +3143,20 @@ más avanzadas.
 </div>
 
 
+<div class="cta">
+
+<h2>
+El próximo objetivo: seguir creciendo.
+</h2>
+
+<p>
+La meta no es hacerlo perfecto desde el principio,
+sino mejorar con cada proyecto.
+</p>
+
+</div>
+
+
 <div class="footer">
 Ryan Méndez • Metas
 </div>
@@ -2691,6 +3274,7 @@ Tu nombre
 id="contactName"
 class="form-input"
 type="text"
+maxlength="50"
 placeholder="Escribe tu nombre">
 
 </div>
@@ -2705,8 +3289,8 @@ Tu mensaje
 <textarea
 id="contactMessage"
 class="form-input"
-placeholder="Escribe tu mensaje...">
-</textarea>
+maxlength="1000"
+placeholder="Escribe tu mensaje..."></textarea>
 
 </div>
 
@@ -2741,7 +3325,8 @@ onclick="prepararMensaje()">
 <button
 class="theme-button"
 onclick="cambiarTema()"
-title="Cambiar tema">
+title="Cambiar tema"
+aria-label="Cambiar tema">
 
 🎨
 
@@ -2912,6 +3497,10 @@ function mostrarCopiado(){
     document.getElementById("toast");
 
 
+    toast.textContent =
+    "✓ Copiado al portapapeles";
+
+
     toast.classList.add("show");
 
 
@@ -2935,6 +3524,10 @@ document.getElementById("cursorGlow");
 document.addEventListener(
 "mousemove",
 function(event){
+
+    if(!cursorGlow){
+        return;
+    }
 
     cursorGlow.style.left =
     event.clientX + "px";
@@ -2977,6 +3570,7 @@ function iniciarContadores(){
 
 
         const duration = 1000;
+
 
         const stepTime =
         Math.max(
