@@ -3,214 +3,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090909">
+<meta name="theme-color" content="#ff1744">
 <meta name="description" content="Portafolio personal de Ryan Méndez">
+
 <title>Portafolio | Ryan Méndez</title>
 
 <style>
+:root{
+    --bg:#050505;
+    --bg2:#0a0a0a;
+    --card:#0d0d0d;
+    --card2:#111111;
+    --red:#ff1744;
+    --red2:#ff4d6d;
+    --text:#f5f5f5;
+    --muted:#999;
+    --border:rgba(255,23,68,.20);
+    --green:#39ff88;
+    --yellow:#ffd43b;
+    --blue:#4da6ff;
+    --shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Inter,Arial,sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-:root{
-    --bg:#050505;
-    --bg2:#0b0b0b;
-    --card:#101010;
-    --card2:#151515;
-    --red:#ff1744;
-    --red2:#ff4569;
-    --text:#fff;
-    --muted:#999;
-    --border:rgba(255,255,255,.08);
-    --shadow:0 20px 60px rgba(0,0,0,.45);
+html{
+    scroll-behavior:smooth;
 }
 
 body{
     background:var(--bg);
     color:var(--text);
-    min-height:100vh;
     overflow-x:hidden;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-button,
-input,
-textarea,
-select{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
+/* BACKGROUND */
 
 .background{
     position:fixed;
     inset:0;
     z-index:-5;
+    overflow:hidden;
+    pointer-events:none;
     background:
-        radial-gradient(circle at 15% 20%,rgba(255,23,68,.12),transparent 25%),
-        radial-gradient(circle at 85% 70%,rgba(255,23,68,.08),transparent 25%),
-        #050505;
+        radial-gradient(circle at 15% 20%,rgba(255,23,68,.08),transparent 28%),
+        radial-gradient(circle at 85% 70%,rgba(255,23,68,.06),transparent 30%),
+        var(--bg);
 }
 
 .grid-bg{
-    position:fixed;
+    position:absolute;
     inset:0;
-    z-index:-4;
-    opacity:.25;
+    opacity:.16;
     background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
     background-size:45px 45px;
 }
 
 .glow{
-    position:fixed;
-    width:350px;
-    height:350px;
+    position:absolute;
+    width:500px;
+    height:500px;
     border-radius:50%;
     filter:blur(100px);
-    background:rgba(255,23,68,.08);
-    z-index:-3;
+    background:rgba(255,23,68,.09);
+}
+
+.glow.one{
+    top:-250px;
+    left:-200px;
+}
+
+.glow.two{
+    right:-250px;
+    bottom:-250px;
 }
 
 .orb{
-    position:fixed;
-    width:160px;
-    height:160px;
+    position:absolute;
+    width:8px;
+    height:8px;
     border-radius:50%;
-    background:rgba(255,23,68,.07);
-    filter:blur(50px);
-    z-index:-2;
+    background:var(--red);
+    box-shadow:0 0 20px var(--red);
+    animation:floatOrb 7s infinite ease-in-out;
+    opacity:.6;
 }
 
 .orb.one{
-    top:10%;
-    left:-60px;
+    top:25%;
+    left:12%;
 }
 
 .orb.two{
-    right:-50px;
-    bottom:15%;
+    top:65%;
+    right:15%;
+    animation-delay:2s;
 }
+
+@keyframes floatOrb{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-30px);
+    }
+}
+
+/* CURSOR */
 
 #cursorGlow{
     position:fixed;
-    width:180px;
-    height:180px;
+    width:250px;
+    height:250px;
     border-radius:50%;
     pointer-events:none;
-    background:radial-gradient(circle,rgba(255,23,68,.08),transparent 70%);
+    z-index:9998;
     transform:translate(-50%,-50%);
-    z-index:-1;
+    background:radial-gradient(circle,rgba(255,23,68,.10),transparent 65%);
 }
 
-/* SCROLL */
+/* SCROLL BAR */
 
 #scrollProgress{
     position:fixed;
     top:0;
     left:0;
-    height:3px;
     width:0%;
+    height:3px;
     background:var(--red);
-    z-index:9999;
+    z-index:10000;
+    box-shadow:0 0 12px var(--red);
 }
 
 /* NAVBAR */
 
-.navbar{
+nav{
     position:fixed;
-    top:15px;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(1200px,calc(100% - 30px));
-    height:68px;
-    padding:0 18px;
+    top:0;
+    left:0;
+    right:0;
+    z-index:5000;
+    height:72px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    background:rgba(10,10,10,.78);
-    backdrop-filter:blur(20px);
-    border:1px solid var(--border);
-    border-radius:20px;
-    z-index:1000;
-    box-shadow:var(--shadow);
+    padding:0 6%;
+    background:rgba(5,5,5,.72);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.05);
 }
 
-.brand{
+.logo{
     display:flex;
     align-items:center;
-    gap:12px;
-    font-weight:800;
-    letter-spacing:.5px;
+    gap:10px;
+    font-weight:900;
+    letter-spacing:2px;
 }
 
 .profile-img{
-    width:40px;
-    height:40px;
-    display:grid;
-    place-items:center;
-    border-radius:13px;
-    background:linear-gradient(135deg,var(--red),#5e0015);
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--red),#33000d);
+    color:white;
     font-weight:900;
-    box-shadow:0 0 25px rgba(255,23,68,.2);
-}
-
-.brand-text span{
-    color:var(--red);
+    border:1px solid rgba(255,23,68,.5);
+    box-shadow:0 0 20px rgba(255,23,68,.2);
 }
 
 .nav-links{
     display:flex;
     align-items:center;
-    gap:4px;
+    gap:5px;
 }
 
 .nav-link{
     border:0;
-    background:transparent;
+    background:none;
     color:#aaa;
     padding:10px 12px;
-    border-radius:10px;
-    transition:.25s;
+    cursor:pointer;
+    border-radius:9px;
+    transition:.2s;
 }
 
 .nav-link:hover,
 .nav-link.active{
-    color:#fff;
-    background:rgba(255,255,255,.06);
-}
-
-.nav-link.active{
-    box-shadow:inset 0 -2px 0 var(--red);
+    color:white;
+    background:rgba(255,23,68,.09);
 }
 
 .nav-actions{
     display:flex;
-    gap:7px;
+    align-items:center;
+    gap:8px;
 }
 
 .icon-btn{
-    width:38px;
-    height:38px;
-    border:1px solid var(--border);
-    border-radius:11px;
-    background:#111;
-    color:#fff;
+    width:40px;
+    height:40px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#0c0c0c;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
     transition:.2s;
 }
 
 .icon-btn:hover{
-    border-color:rgba(255,23,68,.4);
+    border-color:var(--red);
     color:var(--red);
 }
 
@@ -223,7 +235,7 @@ button{
 .page{
     display:none;
     min-height:100vh;
-    padding:130px 20px 80px;
+    padding:120px 7% 80px;
 }
 
 .page.active{
@@ -231,61 +243,60 @@ button{
 }
 
 .container{
-    width:min(1150px,100%);
+    max-width:1200px;
     margin:auto;
 }
 
 .section-title{
-    margin-bottom:35px;
+    margin-bottom:45px;
 }
 
-.section-title .small{
+.section-title span{
     color:var(--red);
-    font-size:13px;
-    font-weight:800;
-    letter-spacing:2px;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:3px;
     text-transform:uppercase;
 }
 
 .section-title h2{
-    font-size:clamp(32px,5vw,54px);
-    margin-top:8px;
+    font-size:clamp(32px,5vw,55px);
+    margin-top:10px;
 }
 
 .section-title p{
     color:var(--muted);
     margin-top:10px;
-    max-width:650px;
-    line-height:1.7;
 }
 
 /* HERO */
 
 .hero{
+    min-height:100vh;
+    padding-top:150px;
     display:grid;
-    grid-template-columns:1.3fr .7fr;
+    grid-template-columns:1.2fr .8fr;
     gap:50px;
     align-items:center;
-    min-height:calc(100vh - 180px);
 }
 
 .hero-tag{
     display:inline-flex;
-    padding:8px 12px;
-    border:1px solid rgba(255,23,68,.25);
+    padding:8px 13px;
+    border:1px solid var(--border);
     background:rgba(255,23,68,.06);
-    color:#ff8ca1;
+    color:#ff7b92;
     border-radius:999px;
     font-size:12px;
-    font-weight:800;
+    font-weight:bold;
     letter-spacing:1px;
 }
 
 .hero h1{
-    font-size:clamp(48px,8vw,90px);
+    font-size:clamp(48px,8vw,95px);
     line-height:.95;
-    margin:20px 0;
-    letter-spacing:-4px;
+    margin:22px 0;
+    letter-spacing:-5px;
 }
 
 .hero h1 span{
@@ -295,148 +306,135 @@ button{
 .hero-description{
     max-width:650px;
     color:#aaa;
-    font-size:17px;
-    line-height:1.8;
-}
-
-.hero-badges{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin:25px 0;
-}
-
-.badge{
-    border:1px solid var(--border);
-    background:#0d0d0d;
-    padding:8px 12px;
-    border-radius:9px;
-    color:#bbb;
-    font-size:13px;
+    font-size:18px;
+    line-height:1.7;
 }
 
 .hero-buttons{
     display:flex;
-    flex-wrap:wrap;
     gap:12px;
+    margin-top:30px;
+    flex-wrap:wrap;
 }
 
 .btn{
-    border:1px solid var(--border);
-    background:#111;
-    color:#fff;
-    padding:13px 18px;
-    border-radius:12px;
-    transition:.25s;
+    border:0;
+    padding:13px 19px;
+    border-radius:11px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
 }
 
-.btn:hover{
-    transform:translateY(-2px);
-    border-color:rgba(255,23,68,.4);
-}
-
-.btn.primary{
+.btn-primary{
     background:var(--red);
+    color:white;
+    box-shadow:0 10px 35px rgba(255,23,68,.2);
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 40px rgba(255,23,68,.35);
+}
+
+.btn-secondary{
+    color:white;
+    background:#111;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.btn-secondary:hover{
     border-color:var(--red);
 }
 
-.btn.primary:hover{
-    box-shadow:0 10px 30px rgba(255,23,68,.2);
-}
-
-.availability{
-    margin-top:22px;
+.badges{
     display:flex;
-    align-items:center;
-    gap:9px;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.badge{
+    padding:8px 11px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#0d0d0d;
     color:#aaa;
-    font-size:13px;
+    border-radius:8px;
+    font-size:12px;
 }
 
-.dot{
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#22c55e;
-    box-shadow:0 0 12px #22c55e;
-}
+/* COMMAND CENTER */
 
-/* COMMAND CARD */
-
-.command-card{
+.command-center{
     background:linear-gradient(145deg,#111,#080808);
     border:1px solid var(--border);
-    border-radius:24px;
-    padding:22px;
+    border-radius:22px;
+    padding:25px;
     box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
 }
 
-.command-header{
+.command-center::before{
+    content:"";
+    position:absolute;
+    width:200px;
+    height:200px;
+    background:var(--red);
+    opacity:.08;
+    filter:blur(80px);
+    right:-80px;
+    top:-80px;
+}
+
+.command-head{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
+    margin-bottom:25px;
 }
 
-.command-header small{
-    color:#777;
-}
-
-.online{
-    color:#22c55e;
+.status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--green);
     font-size:12px;
-    font-weight:700;
+    font-weight:bold;
 }
 
-.command-main{
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:20px;
-    background:#0b0b0b;
+.status-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 12px var(--green);
 }
 
-.command-avatar{
-    width:65px;
-    height:65px;
-    display:grid;
-    place-items:center;
-    border-radius:18px;
-    background:linear-gradient(135deg,var(--red),#4d0010);
-    font-size:28px;
-    font-weight:900;
-    margin-bottom:15px;
-}
-
-.command-main h3{
-    font-size:22px;
-}
-
-.command-main p{
-    color:#777;
-    margin-top:5px;
-}
-
-.command-info{
+.command-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:10px;
-    margin-top:20px;
 }
 
-.info-box{
-    border:1px solid var(--border);
-    padding:12px;
+.command-item{
+    background:#090909;
+    border:1px solid rgba(255,255,255,.05);
+    padding:14px;
     border-radius:12px;
 }
 
-.info-box small{
+.command-item small{
     display:block;
     color:#666;
-    margin-bottom:5px;
+    font-size:10px;
+    margin-bottom:6px;
+    text-transform:uppercase;
+    letter-spacing:1px;
 }
 
-.info-box strong{
-    font-size:13px;
+.command-item strong{
+    font-size:14px;
 }
 
 /* STATS */
@@ -445,14 +443,14 @@ button{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:12px;
-    margin-top:35px;
+    margin-top:20px;
 }
 
 .stat{
     padding:22px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.025);
-    border-radius:18px;
+    background:#0c0c0c;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:15px;
 }
 
 .stat strong{
@@ -463,41 +461,178 @@ button{
 
 .stat span{
     color:#777;
+    font-size:12px;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.panel{
+    background:#0b0b0b;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:18px;
+    padding:22px;
+}
+
+.panel h3{
+    margin-bottom:18px;
+}
+
+.progress-row{
+    margin-bottom:16px;
+}
+
+.progress-label{
+    display:flex;
+    justify-content:space-between;
+    color:#aaa;
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.progress{
+    height:7px;
+    border-radius:99px;
+    background:#191919;
+    overflow:hidden;
+}
+
+.progress i{
+    display:block;
+    height:100%;
+    background:var(--red);
+    border-radius:99px;
+    width:0;
+    transition:1.2s;
+}
+
+.activity-list{
+    list-style:none;
+}
+
+.activity-list li{
+    display:flex;
+    gap:10px;
+    padding:11px 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    color:#aaa;
     font-size:13px;
+}
+
+.activity-list li:last-child{
+    border-bottom:0;
+}
+
+/* DISCORD VISUAL */
+
+.discord-demo{
+    margin-top:20px;
+    background:#090909;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.discord-top{
+    padding:13px 16px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    color:#aaa;
+    font-size:13px;
+}
+
+.discord-body{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    min-height:250px;
+}
+
+.discord-sidebar{
+    padding:15px;
+    border-right:1px solid rgba(255,255,255,.05);
+    background:#070707;
+}
+
+.discord-sidebar p{
+    color:#777;
+    font-size:11px;
+    margin:10px 0;
+}
+
+.discord-channel{
+    color:#aaa;
+    padding:7px;
+    border-radius:6px;
+    font-size:12px;
+}
+
+.discord-channel.active{
+    background:rgba(255,23,68,.1);
+    color:white;
+}
+
+.discord-chat{
+    padding:18px;
+}
+
+.message{
+    margin-bottom:18px;
+}
+
+.message b{
+    color:#fff;
+    font-size:13px;
+}
+
+.message span{
+    color:#555;
+    font-size:10px;
+}
+
+.message p{
+    color:#aaa;
+    font-size:12px;
+    margin-top:5px;
 }
 
 /* CARDS */
 
-.grid{
+.cards{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:16px;
+    gap:15px;
 }
 
 .card{
-    border:1px solid var(--border);
-    background:linear-gradient(145deg,#111,#0b0b0b);
-    border-radius:20px;
-    padding:22px;
-    transition:.3s;
+    background:linear-gradient(145deg,#101010,#090909);
+    border:1px solid rgba(255,255,255,.06);
+    padding:23px;
+    border-radius:18px;
+    transition:.25s;
 }
 
 .card:hover{
     transform:translateY(-5px);
-    border-color:rgba(255,23,68,.28);
-    box-shadow:0 20px 50px rgba(0,0,0,.3);
+    border-color:var(--border);
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
 }
 
 .card-icon{
-    width:46px;
-    height:46px;
-    display:grid;
-    place-items:center;
-    background:rgba(255,23,68,.09);
-    border:1px solid rgba(255,23,68,.15);
-    border-radius:13px;
-    margin-bottom:18px;
-    font-size:20px;
+    width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    background:rgba(255,23,68,.1);
+    color:var(--red);
+    margin-bottom:16px;
+    font-weight:bold;
 }
 
 .card h3{
@@ -506,364 +641,369 @@ button{
 
 .card p{
     color:#888;
-    line-height:1.7;
+    line-height:1.6;
     font-size:14px;
 }
 
-/* DASHBOARD */
-
-.dashboard{
-    margin-top:50px;
+.clickable{
+    cursor:pointer;
 }
 
-.dashboard-grid{
+/* ABOUT */
+
+.about-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:.7fr 1.3fr;
+    gap:25px;
+}
+
+.about-profile{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:#0c0c0c;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:20px;
+    padding:35px;
+}
+
+.big-avatar{
+    width:150px;
+    height:150px;
+    border-radius:35px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:65px;
+    font-weight:900;
+    background:linear-gradient(145deg,#170006,#070707);
+    border:1px solid var(--border);
+    color:var(--red);
+    box-shadow:0 0 50px rgba(255,23,68,.1);
+    margin-bottom:20px;
+}
+
+.about-profile h3{
+    font-size:25px;
+}
+
+.about-profile p{
+    color:#777;
+    margin-top:5px;
+}
+
+.about-content{
+    display:grid;
     gap:15px;
 }
 
-.dashboard-box{
-    border:1px solid var(--border);
-    background:#0d0d0d;
-    border-radius:20px;
-    padding:20px;
+.info-box{
+    padding:22px;
+    border:1px solid rgba(255,255,255,.06);
+    background:#0c0c0c;
+    border-radius:17px;
 }
 
-.dashboard-box h3{
-    margin-bottom:18px;
+.info-box h3{
+    margin-bottom:8px;
 }
 
-.status-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:13px 0;
-    border-bottom:1px solid rgba(255,255,255,.05);
-}
-
-.status-row:last-child{
-    border-bottom:0;
-}
-
-.status-row span{
-    color:#888;
-}
-
-.progress{
-    height:7px;
-    background:#1a1a1a;
-    border-radius:999px;
-    overflow:hidden;
-    margin-top:8px;
-}
-
-.progress span{
-    display:block;
-    height:100%;
-    background:linear-gradient(90deg,var(--red),#ff758c);
-    border-radius:999px;
-}
-
-/* DISCORD DEMO */
-
-.discord-demo{
-    background:#090909;
-    border:1px solid var(--border);
-    border-radius:22px;
-    overflow:hidden;
-    margin-top:30px;
-}
-
-.discord-top{
-    padding:15px 18px;
-    border-bottom:1px solid var(--border);
-    display:flex;
-    justify-content:space-between;
-}
-
-.discord-body{
-    display:grid;
-    grid-template-columns:210px 1fr;
-    min-height:300px;
-}
-
-.discord-side{
-    border-right:1px solid var(--border);
-    padding:15px;
-}
-
-.channel{
-    padding:9px;
-    border-radius:8px;
-    color:#777;
-    margin-bottom:3px;
-}
-
-.channel.active{
-    background:rgba(255,255,255,.06);
-    color:#fff;
-}
-
-.discord-chat{
-    padding:20px;
-}
-
-.message{
-    margin-bottom:17px;
-}
-
-.message strong{
-    color:var(--red);
-}
-
-.message p{
-    color:#aaa;
-    margin-top:4px;
-    line-height:1.5;
+.info-box p{
+    color:#999;
+    line-height:1.7;
 }
 
 /* SERVER */
 
 .server-card{
+    background:linear-gradient(145deg,#111,#080808);
     border:1px solid var(--border);
     border-radius:22px;
-    padding:25px;
-    background:linear-gradient(145deg,#111,#090909);
+    padding:30px;
 }
 
-.server-head{
+.server-header{
     display:flex;
     justify-content:space-between;
-    gap:20px;
     align-items:flex-start;
+    gap:20px;
 }
 
-.server-logo{
-    width:65px;
-    height:65px;
-    display:grid;
-    place-items:center;
-    background:#151515;
-    border:1px solid var(--border);
-    border-radius:18px;
-    font-size:28px;
+.server-title h3{
+    font-size:30px;
+}
+
+.server-title p{
+    color:#777;
+    margin-top:6px;
+}
+
+.server-status{
+    color:var(--green);
+    font-size:12px;
 }
 
 .server-buttons{
     display:flex;
-    gap:8px;
-    margin-top:20px;
+    gap:10px;
+    margin:25px 0;
 }
 
 .server-info{
-    margin-top:20px;
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:10px;
+    gap:12px;
 }
 
-.server-value{
-    border:1px solid var(--border);
-    padding:14px;
+.server-info div{
+    background:#090909;
+    padding:18px;
     border-radius:12px;
+    border:1px solid rgba(255,255,255,.05);
 }
 
-.server-value small{
+.server-info small{
     display:block;
     color:#666;
-    margin-bottom:5px;
+    margin-bottom:6px;
+}
+
+.copy-line{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
 }
 
 /* SKILLS */
 
-.skill{
-    margin-bottom:22px;
+.skill-card{
+    padding:22px;
+    background:#0c0c0c;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:17px;
 }
 
 .skill-top{
     display:flex;
     justify-content:space-between;
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
 .skill-top span{
+    color:#777;
+    font-size:12px;
+}
+
+/* TECHNOLOGIES */
+
+.techs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:25px;
+}
+
+.tech{
+    padding:10px 14px;
+    background:#0d0d0d;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:10px;
     color:#aaa;
-    font-size:14px;
 }
 
-.skill-top strong{
-    color:var(--red);
-    font-size:13px;
+/* PROJECTS */
+
+.project-card{
+    min-height:190px;
 }
 
-.skill-bar{
-    height:8px;
-    background:#191919;
-    border-radius:999px;
+.project-card .project-status{
+    display:inline-block;
+    margin-top:15px;
+    font-size:11px;
+    color:var(--green);
+}
+
+.project-explorer{
+    margin-top:25px;
+    background:#080808;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:18px;
     overflow:hidden;
 }
 
-.skill-bar span{
-    display:block;
-    height:100%;
-    background:var(--red);
+.explorer-head{
+    padding:14px 17px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    color:#777;
+    font-size:12px;
 }
 
-.skill-click{
-    cursor:pointer;
-}
-
-/* PROJECT EXPLORER */
-
-.explorer{
+.explorer-body{
     display:grid;
     grid-template-columns:230px 1fr;
-    border:1px solid var(--border);
-    background:#090909;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.file-sidebar{
-    padding:15px;
-    border-right:1px solid var(--border);
-}
-
-.file{
-    padding:11px;
-    color:#888;
-    border-radius:9px;
-    cursor:pointer;
-}
-
-.file:hover,
-.file.active{
-    color:#fff;
-    background:#151515;
-}
-
-.file-content{
-    padding:25px;
     min-height:300px;
 }
 
-.file-content code{
-    display:block;
-    color:#aaa;
-    line-height:1.8;
+.file-list{
+    padding:15px;
+    border-right:1px solid rgba(255,255,255,.06);
+}
+
+.file{
+    padding:10px;
+    border-radius:7px;
+    color:#999;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.file:hover{
+    color:white;
+    background:#111;
+}
+
+.file-content{
+    padding:20px;
+    color:#999;
     white-space:pre-wrap;
+    font-family:monospace;
+    line-height:1.7;
 }
 
 /* TERMINAL */
 
 .terminal{
-    background:#050505;
-    border:1px solid var(--border);
-    border-radius:20px;
-    overflow:hidden;
     margin-top:25px;
+    background:#030303;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:17px;
+    overflow:hidden;
+    font-family:monospace;
 }
 
 .terminal-head{
-    padding:12px 15px;
-    background:#101010;
-    border-bottom:1px solid var(--border);
     display:flex;
     align-items:center;
-    gap:7px;
+    gap:6px;
+    padding:12px;
+    border-bottom:1px solid rgba(255,255,255,.05);
 }
 
-.terminal-dot{
-    width:10px;
-    height:10px;
+.term-dot{
+    width:9px;
+    height:9px;
     border-radius:50%;
     background:#333;
 }
 
 .terminal-body{
-    padding:20px;
-    min-height:260px;
-    max-height:400px;
+    min-height:300px;
+    max-height:450px;
     overflow:auto;
-    font-family:monospace;
+    padding:18px;
     color:#aaa;
+    font-size:13px;
+    line-height:1.7;
 }
 
-.terminal-line{
-    color:#ff607b;
+.term-line{
+    color:#777;
 }
 
-.terminal-input-row{
+.term-green{
+    color:var(--green);
+}
+
+.term-red{
+    color:var(--red);
+}
+
+.term-input-row{
     display:flex;
     gap:8px;
-    margin-top:10px;
+    padding:15px 18px;
+    border-top:1px solid rgba(255,255,255,.05);
 }
 
-.terminal-input{
+.term-prompt{
+    color:var(--green);
+}
+
+#terminalInput{
     flex:1;
-    background:transparent;
     border:0;
     outline:0;
-    color:#fff;
+    background:transparent;
+    color:white;
     font-family:monospace;
 }
 
-/* EXPERIENCE */
+/* TIMELINE */
 
 .timeline{
     position:relative;
-    margin-left:15px;
-    padding-left:30px;
-    border-left:1px solid #292929;
+    max-width:800px;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:10px;
+    top:0;
+    bottom:0;
+    width:1px;
+    background:var(--border);
 }
 
 .timeline-item{
     position:relative;
-    margin-bottom:30px;
+    padding-left:45px;
+    margin-bottom:35px;
 }
 
 .timeline-item::before{
     content:"";
     position:absolute;
-    left:-36px;
+    left:5px;
     top:4px;
     width:11px;
     height:11px;
-    border-radius:50%;
     background:var(--red);
-    box-shadow:0 0 15px rgba(255,23,68,.5);
+    border-radius:50%;
+    box-shadow:0 0 15px var(--red);
 }
 
-.timeline-item span{
+.timeline-item small{
     color:var(--red);
-    font-size:12px;
-    font-weight:800;
 }
 
 .timeline-item h3{
-    margin:7px 0;
+    margin:6px 0;
 }
 
 .timeline-item p{
     color:#888;
-    line-height:1.7;
+    line-height:1.6;
 }
 
 /* GOALS */
 
-.goal{
+.goal-card{
     position:relative;
     overflow:hidden;
 }
 
 .goal-status{
-    display:inline-block;
-    margin-top:15px;
-    padding:6px 9px;
-    border-radius:8px;
+    margin-top:20px;
     font-size:11px;
-    background:rgba(255,23,68,.08);
-    color:#ff7189;
+    color:#777;
+}
+
+.goal-status span{
+    color:var(--red);
 }
 
 /* CONTACT */
@@ -874,48 +1014,123 @@ button{
     gap:20px;
 }
 
-.contact-card{
-    border:1px solid var(--border);
-    background:#0e0e0e;
-    padding:24px;
-    border-radius:20px;
+.contact-box{
+    background:#0c0c0c;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:18px;
+    padding:25px;
 }
 
-.discord-contact{
-    font-size:20px;
-    margin:12px 0 20px;
-    color:var(--red);
-    word-break:break-word;
+.contact-value{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:15px;
+    background:#080808;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+.contact-value span{
+    color:#aaa;
 }
 
 .form-group{
-    margin-bottom:14px;
+    margin-bottom:15px;
 }
 
 .form-group label{
     display:block;
-    color:#888;
-    font-size:13px;
+    color:#aaa;
+    font-size:12px;
     margin-bottom:7px;
 }
 
-.form-control{
+.form-group input,
+.form-group textarea,
+.form-group select{
     width:100%;
-    border:1px solid var(--border);
     background:#080808;
-    color:#fff;
-    padding:12px 13px;
+    border:1px solid rgba(255,255,255,.08);
     border-radius:10px;
+    padding:13px;
+    color:white;
     outline:none;
 }
 
-.form-control:focus{
-    border-color:rgba(255,23,68,.5);
-}
-
-textarea.form-control{
+.form-group textarea{
     min-height:130px;
     resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:var(--red);
+}
+
+/* SEARCH */
+
+.search-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9000;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(15px);
+    display:none;
+    align-items:flex-start;
+    justify-content:center;
+    padding:100px 20px;
+}
+
+.search-overlay.active{
+    display:flex;
+}
+
+.search-box{
+    width:min(700px,100%);
+    background:#0d0d0d;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:var(--shadow);
+}
+
+.search-box input{
+    width:100%;
+    padding:17px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;
+    background:#080808;
+    color:white;
+    outline:0;
+    font-size:16px;
+}
+
+.search-results{
+    margin-top:15px;
+    max-height:400px;
+    overflow:auto;
+}
+
+.search-result{
+    padding:14px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    cursor:pointer;
+}
+
+.search-result:hover{
+    background:#111;
+}
+
+.search-result strong{
+    display:block;
+}
+
+.search-result span{
+    color:#777;
+    font-size:12px;
 }
 
 /* MODAL */
@@ -923,82 +1138,56 @@ textarea.form-control{
 .modal{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.75);
-    backdrop-filter:blur(12px);
+    z-index:8000;
     display:none;
     align-items:center;
     justify-content:center;
     padding:20px;
-    z-index:3000;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(12px);
 }
 
-.modal.show{
+.modal.active{
     display:flex;
 }
 
-.modal-box{
+.modal-content{
     width:min(650px,100%);
     max-height:85vh;
     overflow:auto;
-    background:#101010;
+    background:#0d0d0d;
     border:1px solid var(--border);
-    border-radius:22px;
+    border-radius:20px;
     padding:25px;
-    box-shadow:0 30px 100px #000;
+    box-shadow:var(--shadow);
 }
 
-.modal-head{
+.modal-top{
     display:flex;
     justify-content:space-between;
-    gap:20px;
     align-items:center;
     margin-bottom:20px;
 }
 
 .close{
-    width:38px;
-    height:38px;
-    border:1px solid var(--border);
-    background:#151515;
-    color:#fff;
-    border-radius:10px;
+    width:35px;
+    height:35px;
+    border:0;
+    border-radius:8px;
+    background:#181818;
+    color:#aaa;
+    cursor:pointer;
 }
 
-.modal-content{
+.modal-content p{
     color:#999;
-    line-height:1.8;
+    line-height:1.7;
 }
 
-.modal-list{
-    margin:20px 0;
-    padding-left:20px;
-}
-
-.modal-list li{
-    margin:8px 0;
-}
-
-/* TOAST */
-
-.toast{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    background:#151515;
-    border:1px solid var(--border);
-    color:#fff;
-    padding:13px 17px;
-    border-radius:12px;
-    transform:translateY(100px);
-    opacity:0;
-    pointer-events:none;
-    transition:.3s;
-    z-index:5000;
-}
-
-.toast.show{
-    transform:translateY(0);
-    opacity:1;
+.modal-content ul{
+    margin:18px 0 20px 20px;
+    color:#aaa;
+    line-height:2;
 }
 
 /* DEV MODE */
@@ -1006,49 +1195,208 @@ textarea.form-control{
 .dev-mode{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.96);
-    z-index:4000;
+    z-index:10000;
     display:none;
-    padding:30px;
-    overflow:auto;
+    background:#020202;
+    color:#aaa;
+    font-family:monospace;
 }
 
-.dev-mode.show{
+.dev-mode.active{
     display:block;
 }
 
 .dev-terminal{
-    width:min(900px,100%);
-    margin:60px auto;
-    font-family:monospace;
-    color:#bbb;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    padding:25px;
 }
 
-.dev-terminal h2{
-    color:#ff1744;
-    margin-bottom:20px;
+.dev-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:15px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.dev-header strong{
+    color:var(--red);
+    letter-spacing:2px;
+}
+
+.dev-header button{
+    background:#111;
+    color:#aaa;
+    border:1px solid rgba(255,255,255,.08);
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.dev-output{
+    flex:1;
+    overflow:auto;
+    padding:25px 0;
+    white-space:pre-wrap;
+    line-height:1.8;
 }
 
 .dev-line{
-    margin:10px 0;
+    margin-bottom:4px;
 }
 
 .dev-green{
-    color:#22c55e;
+    color:var(--green);
 }
 
 .dev-red{
-    color:#ff1744;
+    color:var(--red);
 }
 
-/* FOOTER */
+.dev-yellow{
+    color:var(--yellow);
+}
 
-footer{
-    border-top:1px solid var(--border);
-    padding:30px 20px;
-    text-align:center;
+.dev-blue{
+    color:var(--blue);
+}
+
+.dev-input-row{
+    display:flex;
+    gap:10px;
+    border-top:1px solid rgba(255,255,255,.08);
+    padding-top:15px;
+}
+
+.dev-prompt{
+    color:var(--green);
+}
+
+#devInput{
+    flex:1;
+    background:transparent;
+    border:0;
+    outline:0;
+    color:white;
+    font-family:monospace;
+    font-size:14px;
+}
+
+/* SYSTEM MONITOR */
+
+.monitor-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.monitor{
+    background:#0a0a0a;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:15px;
+    padding:20px;
+}
+
+.monitor small{
     color:#666;
-    font-size:13px;
+}
+
+.monitor strong{
+    display:block;
+    font-size:25px;
+    margin:8px 0;
+}
+
+.monitor-bar{
+    height:5px;
+    background:#191919;
+    border-radius:99px;
+    overflow:hidden;
+}
+
+.monitor-bar i{
+    display:block;
+    height:100%;
+    background:var(--red);
+    width:50%;
+}
+
+/* ACHIEVEMENTS */
+
+.achievement{
+    position:relative;
+}
+
+.locked{
+    opacity:.45;
+}
+
+.achievement-icon{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+/* CHANGELOG */
+
+.change{
+    border-left:2px solid var(--red);
+    padding:0 0 20px 20px;
+    margin-bottom:20px;
+}
+
+.change h3{
+    margin-bottom:5px;
+}
+
+.change small{
+    color:var(--red);
+}
+
+.change p{
+    color:#888;
+    margin-top:8px;
+}
+
+/* TOAST */
+
+#toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translate(-50%,20px);
+    opacity:0;
+    z-index:11000;
+    background:#111;
+    border:1px solid var(--border);
+    padding:12px 17px;
+    border-radius:10px;
+    color:white;
+    transition:.25s;
+    pointer-events:none;
+}
+
+#toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* TOP BUTTON */
+
+#topButton{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:42px;
+    height:42px;
+    border:1px solid var(--border);
+    background:#0d0d0d;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+    display:none;
+    z-index:4000;
 }
 
 /* REVEAL */
@@ -1056,7 +1404,7 @@ footer{
 .reveal{
     opacity:0;
     transform:translateY(25px);
-    transition:.7s ease;
+    transition:.7s;
 }
 
 .reveal.visible{
@@ -1064,51 +1412,42 @@ footer{
     transform:translateY(0);
 }
 
-/* TOP */
+/* FOOTER */
 
-#topButton{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:43px;
-    height:43px;
-    border:1px solid var(--border);
-    background:#111;
-    color:#fff;
-    border-radius:13px;
-    opacity:0;
-    pointer-events:none;
-    transition:.25s;
-    z-index:900;
-}
-
-#topButton.show{
-    opacity:1;
-    pointer-events:auto;
+footer{
+    padding:30px 7%;
+    border-top:1px solid rgba(255,255,255,.05);
+    color:#666;
+    text-align:center;
+    font-size:12px;
 }
 
 /* MOBILE */
 
-@media(max-width:950px){
-    .nav-links{
-        display:none;
-        position:absolute;
-        top:76px;
-        left:0;
-        right:0;
-        padding:10px;
-        background:#0c0c0c;
-        border:1px solid var(--border);
-        border-radius:16px;
-        flex-direction:column;
-        align-items:stretch;
+@media(max-width:900px){
+
+    nav{
+        padding:0 4%;
     }
 
-    .nav-links.show{
+    .nav-links{
+        position:absolute;
+        top:72px;
+        left:0;
+        right:0;
+        background:#080808;
+        display:none;
+        flex-direction:column;
+        padding:12px;
+        border-bottom:1px solid rgba(255,255,255,.07);
+    }
+
+    .nav-links.active{
         display:flex;
     }
 
     .nav-link{
+        width:100%;
         text-align:left;
     }
 
@@ -1118,69 +1457,82 @@ footer{
 
     .hero{
         grid-template-columns:1fr;
-    }
-
-    .grid{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:700px){
-    .navbar{
-        width:calc(100% - 20px);
-        top:10px;
-    }
-
-    .page{
-        padding:105px 15px 60px;
+        padding-top:120px;
     }
 
     .hero h1{
-        letter-spacing:-2px;
+        letter-spacing:-3px;
     }
 
     .stats{
         grid-template-columns:1fr 1fr;
     }
 
-    .grid,
-    .dashboard-grid,
+    .dashboard,
+    .about-grid,
     .contact-grid{
         grid-template-columns:1fr;
     }
 
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .monitor-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .page{
+        padding:105px 5% 60px;
+    }
+
+    .hero{
+        min-height:auto;
+        padding-top:110px;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .hero-description{
+        font-size:15px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .server-info{
+        grid-template-columns:1fr;
+    }
+
     .discord-body{
+        grid-template-columns:100px 1fr;
+    }
+
+    .explorer-body{
         grid-template-columns:1fr;
     }
 
-    .discord-side{
-        display:none;
-    }
-
-    .explorer{
-        grid-template-columns:1fr;
-    }
-
-    .file-sidebar{
+    .file-list{
         border-right:0;
-        border-bottom:1px solid var(--border);
+        border-bottom:1px solid rgba(255,255,255,.06);
     }
 
-    .server-info,
-    .command-info{
-        grid-template-columns:1fr;
+    .monitor-grid{
+        grid-template-columns:1fr 1fr;
     }
 
-    .hero-buttons{
-        flex-direction:column;
-    }
-
-    .hero-buttons .btn{
-        width:100%;
-    }
-
-    .server-head{
-        flex-direction:column;
+    #cursorGlow{
+        display:none;
     }
 }
 </style>
@@ -1188,86 +1540,59 @@ footer{
 
 <body>
 
-<div class="background"></div>
-<div class="grid-bg"></div>
-<div class="glow"></div>
-<div class="orb one"></div>
-<div class="orb two"></div>
-<div id="cursorGlow"></div>
-
 <div id="scrollProgress"></div>
 
+<div class="background">
+    <div class="grid-bg"></div>
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+</div>
+
+<div id="cursorGlow"></div>
+
 <!-- NAVBAR -->
-<nav class="navbar">
 
-    <div class="brand">
+<nav>
+
+    <div class="logo">
         <div class="profile-img">?</div>
-
-        <div class="brand-text">
-            RYAN<span>.M</span>
-        </div>
+        <span>RYAN.M</span>
     </div>
 
     <div class="nav-links" id="navLinks">
 
-        <button class="nav-link active" onclick="abrir('inicio',this)">
-            Inicio
-        </button>
-
-        <button class="nav-link" onclick="abrir('sobre',this)">
-            Sobre mí
-        </button>
-
-        <button class="nav-link" onclick="abrir('servidores',this)">
-            Servidores
-        </button>
-
-        <button class="nav-link" onclick="abrir('servicios',this)">
-            Servicios
-        </button>
-
-        <button class="nav-link" onclick="abrir('habilidades',this)">
-            Habilidades
-        </button>
-
-        <button class="nav-link" onclick="abrir('proyectos',this)">
-            Proyectos
-        </button>
-
-        <button class="nav-link" onclick="abrir('experiencia',this)">
-            Experiencia
-        </button>
-
-        <button class="nav-link" onclick="abrir('metas',this)">
-            Metas
-        </button>
-
-        <button class="nav-link" onclick="abrir('contacto',this)">
-            Contacto
-        </button>
+        <button class="nav-link active" onclick="abrir('inicio',this)">Inicio</button>
+        <button class="nav-link" onclick="abrir('sobre',this)">Sobre mí</button>
+        <button class="nav-link" onclick="abrir('servidores',this)">Servidores</button>
+        <button class="nav-link" onclick="abrir('servicios',this)">Servicios</button>
+        <button class="nav-link" onclick="abrir('habilidades',this)">Habilidades</button>
+        <button class="nav-link" onclick="abrir('proyectos',this)">Proyectos</button>
+        <button class="nav-link" onclick="abrir('experiencia',this)">Experiencia</button>
+        <button class="nav-link" onclick="abrir('metas',this)">Metas</button>
+        <button class="nav-link" onclick="abrir('contacto',this)">Contacto</button>
 
     </div>
 
     <div class="nav-actions">
 
-        <button class="icon-btn" onclick="cambiarTema()" title="Cambiar tema">
-            ◐
-        </button>
+        <button class="icon-btn" onclick="abrirBusqueda()" title="Buscar">⌕</button>
+
+        <button class="icon-btn" onclick="cambiarTema()" title="Cambiar tema">◐</button>
 
         <button class="icon-btn" onclick="activarDevMode()" title="Developer Mode">
             &lt;/&gt;
         </button>
 
-        <button class="icon-btn menu-btn" onclick="toggleMenu()">
-            ☰
-        </button>
+        <button class="icon-btn menu-btn" onclick="toggleMenu()">☰</button>
 
     </div>
 
 </nav>
 
 
-<!-- ================= INICIO ================= -->
+<!-- INICIO -->
 
 <section class="page active" id="inicio">
 
@@ -1278,205 +1603,167 @@ footer{
 <div class="reveal">
 
 <div class="hero-tag">
-    PORTAFOLIO PERSONAL • 2026
+PORTAFOLIO PERSONAL • 2026
 </div>
 
 <h1>
-    Construyendo<br>
-    <span>ideas digitales.</span>
+Construyendo<br>
+<span>ideas digitales.</span>
 </h1>
 
 <p class="hero-description">
-    Soy Ryan Méndez, me interesa el desarrollo de bots de Discord,
-    comunidades, Minecraft y proyectos web. Actualmente estoy
-    aprendiendo y construyendo nuevos proyectos digitales.
+Soy Ryan Méndez. Me interesa la programación, las comunidades,
+Minecraft, Discord y el desarrollo de proyectos digitales.
+Actualmente sigo aprendiendo y construyendo nuevos sistemas.
 </p>
-
-<div class="hero-badges">
-
-<span class="badge">🤖 Bots de Discord</span>
-<span class="badge">⛏️ Minecraft</span>
-<span class="badge">🌐 Desarrollo web</span>
-<span class="badge">⚙️ Configuración</span>
-
-</div>
 
 <div class="hero-buttons">
 
-<button class="btn primary"
-onclick="abrir('proyectos')">
-    Ver proyectos →
+<button class="btn btn-primary" onclick="abrir('proyectos')">
+Ver proyectos →
 </button>
 
-<button class="btn"
-onclick="abrir('contacto')">
-    Contactar
+<button class="btn btn-secondary" onclick="abrir('contacto')">
+Contactar
 </button>
 
 </div>
 
-<div class="availability">
-    <span class="dot"></span>
-    Disponible para nuevos proyectos
-</div>
+<div class="badges">
 
-</div>
-
-
-<div class="command-card reveal">
-
-<div class="command-header">
-
-<div>
-    <strong>COMMAND CENTER</strong>
-    <small style="display:block;margin-top:4px;">
-        Developer dashboard
-    </small>
-</div>
-
-<span class="online">
-    ● ONLINE
-</span>
-
-</div>
-
-<div class="command-main">
-
-<div class="command-avatar">
-    ?
-</div>
-
-<h3>
-    Ryan Méndez
-</h3>
-
-<p>
-    Developer / Community Manager
-</p>
-
-<div class="command-info">
-
-<div class="info-box">
-    <small>ROLE</small>
-    <strong>Developer</strong>
-</div>
-
-<div class="info-box">
-    <small>FOCUS</small>
-    <strong>Discord / Web</strong>
-</div>
-
-<div class="info-box">
-    <small>COUNTRY</small>
-    <strong>🇦🇷 Argentina</strong>
-</div>
-
-<div class="info-box">
-    <small>VERSION</small>
-    <strong>2026.1</strong>
-</div>
-
-</div>
-
-</div>
+<div class="badge">Discord</div>
+<div class="badge">Minecraft</div>
+<div class="badge">Desarrollo web</div>
+<div class="badge">Configuración</div>
 
 </div>
 
 </div>
 
 
-<div class="stats reveal">
+<div class="command-center reveal">
+
+<div class="command-head">
+
+<strong>COMMAND CENTER</strong>
+
+<div class="status">
+<div class="status-dot"></div>
+ONLINE
+</div>
+
+</div>
+
+<div class="command-grid">
+
+<div class="command-item">
+<small>Role</small>
+<strong>Developer</strong>
+</div>
+
+<div class="command-item">
+<small>Focus</small>
+<strong>Digital Projects</strong>
+</div>
+
+<div class="command-item">
+<small>Country</small>
+<strong>Argentina 🇦🇷</strong>
+</div>
+
+<div class="command-item">
+<small>Version</small>
+<strong>RYAN.DEV 2026</strong>
+</div>
+
+</div>
+
+<div class="stats">
 
 <div class="stat">
-    <strong data-target="5">0+</strong>
-    <span>Proyectos</span>
+<strong data-target="5">0+</strong>
+<span>Proyectos</span>
 </div>
 
 <div class="stat">
-    <strong data-target="3">0+</strong>
-    <span>Bots</span>
+<strong data-target="3">0+</strong>
+<span>Sistemas</span>
 </div>
 
 <div class="stat">
-    <strong data-target="5">0+</strong>
-    <span>Sistemas</span>
+<strong data-target="5">0+</strong>
+<span>Servicios</span>
 </div>
 
 <div class="stat">
-    <strong data-target="2">0+</strong>
-    <span>Áreas</span>
+<strong data-target="2">0+</strong>
+<span>Metas</span>
+</div>
+
+</div>
+
 </div>
 
 </div>
 
 
-<!-- ESTADO -->
+<div class="dashboard reveal">
 
-<div class="dashboard">
+<div class="panel">
 
-<div class="section-title reveal">
-    <div class="small">SYSTEM</div>
-    <h2>Estado actual</h2>
+<h3>Estado actual</h3>
+
+<ul class="activity-list">
+
+<li>🟢 Aprendiendo programación</li>
+<li>🔴 Mejorando desarrollo web</li>
+<li>🟢 Trabajando en nuevos proyectos</li>
+<li>🟡 Explorando nuevas tecnologías</li>
+
+</ul>
+
 </div>
 
-<div class="dashboard-grid">
 
-<div class="dashboard-box reveal">
+<div class="panel">
 
-<h3>Actualmente trabajando en</h3>
+<h3>Currently Working On</h3>
 
-<div class="status-row">
-    <span>🤖 Bots de Discord</span>
-    <strong>90%</strong>
+<div class="progress-row">
+
+<div class="progress-label">
+<span>Desarrollo web</span>
+<span>75%</span>
 </div>
 
 <div class="progress">
-    <span style="width:90%"></span>
+<i style="width:75%"></i>
 </div>
 
-<div class="status-row">
-    <span>🌐 Desarrollo web</span>
-    <strong>65%</strong>
 </div>
 
-<div class="progress">
-    <span style="width:65%"></span>
-</div>
+<div class="progress-row">
 
-<div class="status-row">
-    <span>⛏️ Minecraft</span>
-    <strong>75%</strong>
+<div class="progress-label">
+<span>Programación</span>
+<span>60%</span>
 </div>
 
 <div class="progress">
-    <span style="width:75%"></span>
+<i style="width:60%"></i>
 </div>
 
 </div>
 
+<div class="progress-row">
 
-<div class="dashboard-box reveal">
-
-<h3>Developer status</h3>
-
-<div class="status-row">
-    <span>Sistema</span>
-    <strong style="color:#22c55e">ONLINE</strong>
+<div class="progress-label">
+<span>Nuevos proyectos</span>
+<span>45%</span>
 </div>
 
-<div class="status-row">
-    <span>Aprendizaje</span>
-    <strong>ACTIVO</strong>
-</div>
-
-<div class="status-row">
-    <span>Proyectos</span>
-    <strong>EN PROGRESO</strong>
-</div>
-
-<div class="status-row">
-    <span>Disponibilidad</span>
-    <strong style="color:#22c55e">ABIERTA</strong>
+<div class="progress">
+<i style="width:45%"></i>
 </div>
 
 </div>
@@ -1486,38 +1773,106 @@ onclick="abrir('contacto')">
 </div>
 
 
-<!-- DISCORD DEMO -->
+<!-- SYSTEM MONITOR -->
+
+<div class="panel reveal" style="margin-top:20px">
+
+<h3>System Monitor</h3>
+
+<div class="monitor-grid">
+
+<div class="monitor">
+
+<small>CPU</small>
+<strong id="cpuValue">72%</strong>
+
+<div class="monitor-bar">
+<i id="cpuBar" style="width:72%"></i>
+</div>
+
+</div>
+
+<div class="monitor">
+
+<small>MEMORY</small>
+<strong id="memoryValue">48%</strong>
+
+<div class="monitor-bar">
+<i id="memoryBar" style="width:48%"></i>
+</div>
+
+</div>
+
+<div class="monitor">
+
+<small>PROJECTS</small>
+<strong>5+</strong>
+
+<div class="monitor-bar">
+<i style="width:90%"></i>
+</div>
+
+</div>
+
+<div class="monitor">
+
+<small>STATUS</small>
+<strong class="term-green">ONLINE</strong>
+
+<div class="monitor-bar">
+<i style="width:100%"></i>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ACTIVITY -->
+
+<div class="panel reveal" style="margin-top:20px">
+
+<h3>Activity Feed</h3>
+
+<ul class="activity-list">
+
+<li>🟢 Portfolio initialized successfully</li>
+<li>⚙️ Developer Mode available</li>
+<li>🌐 Web development in progress</li>
+<li>📱 Mobile interface optimized</li>
+<li>🚀 New projects planned</li>
+
+</ul>
+
+</div>
+
+
+<!-- DISCORD VISUAL -->
 
 <div class="discord-demo reveal">
 
 <div class="discord-top">
-
-<strong>💬 Discord Preview</strong>
-
-<span style="color:#22c55e">
-    ● online
-</span>
-
+# portfolio-community
 </div>
 
 <div class="discord-body">
 
-<div class="discord-side">
+<div class="discord-sidebar">
 
-<div class="channel active">
-    # general
+<p>GENERAL</p>
+
+<div class="discord-channel active">
+# general
 </div>
 
-<div class="channel">
-    # anuncios
+<div class="discord-channel">
+# proyectos
 </div>
 
-<div class="channel">
-    # soporte
-</div>
-
-<div class="channel">
-    # proyectos
+<div class="discord-channel">
+# ideas
 </div>
 
 </div>
@@ -1525,24 +1880,13 @@ onclick="abrir('contacto')">
 <div class="discord-chat">
 
 <div class="message">
-<strong>Ryan</strong>
-<p>
-    ¡Bienvenido al servidor! 👋
-</p>
+<b>Ryan</b> <span>Hoy</span>
+<p>Construyendo nuevos proyectos.</p>
 </div>
 
 <div class="message">
-<strong>Bot</strong>
-<p>
-    Sistema iniciado correctamente.
-</p>
-</div>
-
-<div class="message">
-<strong>Ryan</strong>
-<p>
-    Actualmente trabajando en nuevos sistemas para Discord.
-</p>
+<b>System</b> <span>Hoy</span>
+<p>Portfolio status: ONLINE</p>
 </div>
 
 </div>
@@ -1556,84 +1900,68 @@ onclick="abrir('contacto')">
 </section>
 
 
-<!-- ================= SOBRE ================= -->
+<!-- SOBRE -->
 
 <section class="page" id="sobre">
 
 <div class="container">
 
 <div class="section-title reveal">
-    <div class="small">PROFILE</div>
-    <h2>Sobre mí</h2>
-    <p>
-        Un poco sobre quién soy y qué me interesa construir.
-    </p>
+
+<span>01 / PROFILE</span>
+
+<h2>Sobre mí</h2>
+
+<p>Una pequeña introducción.</p>
+
 </div>
 
-<div class="grid">
+<div class="about-grid">
 
-<div class="card reveal">
+<div class="about-profile reveal">
 
-<div class="card-icon">👤</div>
+<div class="big-avatar">?</div>
 
 <h3>Ryan Méndez</h3>
 
-<p>
-16 años<br>
-🇦🇷 Argentina
-</p>
+<p>16 años • Argentina 🇦🇷</p>
 
 </div>
 
-<div class="card reveal">
+<div class="about-content">
 
-<div class="card-icon">💻</div>
+<div class="info-box reveal">
 
 <h3>Programación</h3>
 
 <p>
-Estoy aprendiendo JavaScript y desarrollo web mientras
-construyo proyectos propios.
+Me interesa aprender programación y utilizarla para
+crear proyectos útiles, sistemas digitales y herramientas.
 </p>
 
 </div>
 
-<div class="card reveal">
+<div class="info-box reveal">
 
-<div class="card-icon">🤖</div>
-
-<h3>Bots</h3>
+<h3>Comunidades</h3>
 
 <p>
-Me interesa crear bots de Discord con sistemas de moderación,
-tickets, economía, logs y automatizaciones.
+También tengo interés en la administración y configuración
+de comunidades digitales.
 </p>
 
 </div>
 
-</div>
+<div class="info-box reveal">
 
-<div class="dashboard-grid" style="margin-top:20px">
-
-<div class="card reveal">
-
-<h3>Mi enfoque</h3>
+<h3>Objetivo</h3>
 
 <p>
-Aprender haciendo proyectos reales, experimentar con nuevas
-tecnologías y mejorar cada sistema que construyo.
+Seguir aprendiendo, mejorar mis conocimientos y construir
+proyectos cada vez más completos.
 </p>
 
 </div>
-
-<div class="card reveal">
-
-<h3>Mi objetivo</h3>
-
-<p>
-Convertir mis conocimientos actuales en proyectos cada vez
-más completos, profesionales y útiles.
-</p>
 
 </div>
 
@@ -1644,7 +1972,7 @@ más completos, profesionales y útiles.
 </section>
 
 
-<!-- ================= SERVIDORES ================= -->
+<!-- SERVIDORES -->
 
 <section class="page" id="servidores">
 
@@ -1652,116 +1980,77 @@ más completos, profesionales y útiles.
 
 <div class="section-title reveal">
 
-<div class="small">SERVERS</div>
+<span>02 / SERVERS</span>
 
 <h2>Servidores</h2>
 
-<p>
-Información de los proyectos de Minecraft en los que participo.
-</p>
+<p>Información del servidor.</p>
 
 </div>
 
-
 <div class="server-card reveal">
 
-<div class="server-head">
+<div class="server-header">
 
-<div style="display:flex;gap:15px;align-items:center">
+<div class="server-title">
 
-<div class="server-logo">
-    ⛏️
+<h3>SylenMC</h3>
+
+<p>Head.Manager</p>
+
+</div>
+
+<div class="server-status">
+● ONLINE
+</div>
+
+</div>
+
+<div class="server-buttons">
+
+<button class="btn btn-primary" onclick="mostrarServer('bedrock')">
+Bedrock
+</button>
+
+<button class="btn btn-secondary" onclick="mostrarServer('java')">
+Java
+</button>
+
+</div>
+
+<div class="server-info" id="serverInfo">
+
+<div>
+
+<small>IP</small>
+
+<div class="copy-line">
+
+<strong>sylenmc.diavlohosting.com</strong>
+
+<button class="icon-btn"
+onclick="copiar('sylenmc.diavlohosting.com')">
+⧉
+</button>
+
+</div>
+
 </div>
 
 <div>
 
-<h2>SylenMC</h2>
-
-<p style="color:#777;margin-top:5px">
-    Head.Manager
-</p>
-
-</div>
-
-</div>
-
-<div style="color:#22c55e">
-    ● ONLINE
-</div>
-
-</div>
-
-
-<div class="server-buttons">
-
-<button class="btn primary"
-onclick="mostrarServer('bedrock')">
-    Bedrock
-</button>
-
-<button class="btn"
-onclick="mostrarServer('java')">
-    Java
-</button>
-
-</div>
-
-
-<div id="serverBedrock">
-
-<div class="server-info">
-
-<div class="server-value">
-<small>IP</small>
-<strong>sylenmc.diavlohosting.com</strong>
-</div>
-
-<div class="server-value">
 <small>PORT</small>
+
+<div class="copy-line">
+
 <strong>19016</strong>
-</div>
 
-</div>
-
-<div style="margin-top:15px">
-
-<button class="btn"
-onclick="copiar('sylenmc.diavlohosting.com')">
-    Copiar IP
-</button>
-
-<button class="btn"
+<button class="icon-btn"
 onclick="copiar('19016')">
-    Copiar puerto
+⧉
 </button>
 
 </div>
-
-</div>
-
-
-<div id="serverJava" style="display:none">
-
-<div class="server-info">
-
-<div class="server-value">
-<small>IP</small>
-<strong>sylenmc.diavlohosting.com</strong>
-</div>
-
-<div class="server-value">
-<small>EDICIÓN</small>
-<strong>Java Edition</strong>
-</div>
-
-</div>
-
-<div style="margin-top:15px">
-
-<button class="btn"
-onclick="copiar('sylenmc.diavlohosting.com')">
-    Copiar IP
-</button>
 
 </div>
 
@@ -1774,7 +2063,7 @@ onclick="copiar('sylenmc.diavlohosting.com')">
 </section>
 
 
-<!-- ================= SERVICIOS ================= -->
+<!-- SERVICIOS -->
 
 <section class="page" id="servicios">
 
@@ -1782,124 +2071,68 @@ onclick="copiar('sylenmc.diavlohosting.com')">
 
 <div class="section-title reveal">
 
-<div class="small">SERVICES</div>
+<span>03 / SERVICES</span>
 
 <h2>Servicios</h2>
 
-<p>
-Sistemas y configuraciones que puedo desarrollar o preparar.
-</p>
+<p>Áreas en las que trabajo.</p>
 
 </div>
 
+<div class="cards">
 
-<div class="grid">
-
-<div class="card reveal skill-click"
-onclick="abrirServicio('bots')">
-
-<div class="card-icon">🤖</div>
+<div class="card clickable reveal" onclick="abrirServicio('discord')">
+<div class="card-icon">01</div>
 <h3>Bots de Discord</h3>
-<p>
-Bots personalizados para comunidades y proyectos.
-</p>
-
+<p>Desarrollo y configuración de sistemas personalizados.</p>
 </div>
 
-
-<div class="card reveal skill-click"
-onclick="abrirServicio('configuracion')">
-
-<div class="card-icon">⚙️</div>
+<div class="card clickable reveal" onclick="abrirServicio('config')">
+<div class="card-icon">02</div>
 <h3>Configuración completa</h3>
-<p>
-Configuración y organización de servidores.
-</p>
-
+<p>Configuración de comunidades y sistemas.</p>
 </div>
 
-
-<div class="card reveal skill-click"
-onclick="abrirServicio('tickets')">
-
-<div class="card-icon">🎫</div>
+<div class="card clickable reveal" onclick="abrirServicio('tickets')">
+<div class="card-icon">03</div>
 <h3>Tickets</h3>
-<p>
-Sistemas de soporte mediante tickets.
-</p>
-
+<p>Sistemas de atención y soporte.</p>
 </div>
 
-
-<div class="card reveal skill-click"
-onclick="abrirServicio('moderacion')">
-
-<div class="card-icon">🛡️</div>
+<div class="card clickable reveal" onclick="abrirServicio('moderacion')">
+<div class="card-icon">04</div>
 <h3>Moderación</h3>
-<p>
-Herramientas para administrar comunidades.
-</p>
-
+<p>Organización y herramientas para comunidades.</p>
 </div>
 
-
-<div class="card reveal skill-click"
-onclick="abrirServicio('roles')">
-
-<div class="card-icon">🏷️</div>
+<div class="card clickable reveal" onclick="abrirServicio('roles')">
+<div class="card-icon">05</div>
 <h3>Roles y permisos</h3>
-<p>
-Organización avanzada de roles.
-</p>
-
+<p>Estructuración de permisos y jerarquías.</p>
 </div>
 
-
-<div class="card reveal skill-click"
-onclick="abrirServicio('logs')">
-
-<div class="card-icon">📋</div>
+<div class="card clickable reveal" onclick="abrirServicio('logs')">
+<div class="card-icon">06</div>
 <h3>Logs y registros</h3>
-<p>
-Registros para mantener control del servidor.
-</p>
-
+<p>Sistemas de seguimiento y registros.</p>
 </div>
 
-
-<div class="card reveal skill-click"
-onclick="abrirServicio('economia')">
-
-<div class="card-icon">💰</div>
+<div class="card clickable reveal" onclick="abrirServicio('economia')">
+<div class="card-icon">07</div>
 <h3>Economía virtual</h3>
-<p>
-Sistemas de monedas y recompensas.
-</p>
-
+<p>Sistemas económicos para comunidades.</p>
 </div>
 
-
-<div class="card reveal skill-click"
-onclick="abrirServicio('personalizacion')">
-
-<div class="card-icon">🎨</div>
+<div class="card clickable reveal" onclick="abrirServicio('personalizacion')">
+<div class="card-icon">08</div>
 <h3>Personalización</h3>
-<p>
-Diseño de sistemas adaptados al servidor.
-</p>
-
+<p>Adaptación de sistemas a necesidades concretas.</p>
 </div>
 
-
-<div class="card reveal skill-click"
-onclick="abrirServicio('web')">
-
-<div class="card-icon">🌐</div>
+<div class="card clickable reveal" onclick="abrirServicio('web')">
+<div class="card-icon">09</div>
 <h3>Desarrollo web</h3>
-<p>
-Páginas web modernas y responsive.
-</p>
-
+<p>Creación de páginas y proyectos web.</p>
 </div>
 
 </div>
@@ -1909,7 +2142,7 @@ Páginas web modernas y responsive.
 </section>
 
 
-<!-- ================= HABILIDADES ================= -->
+<!-- HABILIDADES -->
 
 <section class="page" id="habilidades">
 
@@ -1917,152 +2150,109 @@ Páginas web modernas y responsive.
 
 <div class="section-title reveal">
 
-<div class="small">SKILLS</div>
+<span>04 / SKILLS</span>
 
 <h2>Habilidades</h2>
 
-<p>
-Tecnologías y áreas que estoy aprendiendo o desarrollando.
-</p>
+<p>Mi progreso actual.</p>
 
 </div>
 
+<div class="cards">
 
-<div class="dashboard-grid">
-
-<div class="card reveal">
-
-<div class="skill">
+<div class="skill-card reveal">
 
 <div class="skill-top">
-<span>Configuración de Discord</span>
-<strong>AVANZANDO</strong>
+<strong>Configuración de Discord</strong>
+<span>Avanzando</span>
 </div>
 
-<div class="skill-bar">
-<span style="width:82%"></span>
+<div class="progress">
+<i style="width:80%"></i>
 </div>
 
 </div>
 
-
-<div class="skill">
+<div class="skill-card reveal">
 
 <div class="skill-top">
-<span>Bots de Discord</span>
-<strong>INTERMEDIO</strong>
+<strong>Bots de Discord</strong>
+<span>Intermedio</span>
 </div>
 
-<div class="skill-bar">
-<span style="width:65%"></span>
+<div class="progress">
+<i style="width:65%"></i>
 </div>
 
 </div>
 
-
-<div class="skill">
+<div class="skill-card reveal">
 
 <div class="skill-top">
-<span>Comunidades</span>
-<strong>AVANZANDO</strong>
+<strong>Comunidades</strong>
+<span>Avanzando</span>
 </div>
 
-<div class="skill-bar">
-<span style="width:80%"></span>
+<div class="progress">
+<i style="width:78%"></i>
 </div>
 
 </div>
 
-</div>
-
-
-<div class="card reveal">
-
-<div class="skill">
+<div class="skill-card reveal">
 
 <div class="skill-top">
-<span>JavaScript</span>
-<strong>APRENDIENDO</strong>
+<strong>JavaScript</strong>
+<span>Aprendiendo</span>
 </div>
 
-<div class="skill-bar">
-<span style="width:45%"></span>
+<div class="progress">
+<i style="width:50%"></i>
 </div>
 
 </div>
 
-
-<div class="skill">
+<div class="skill-card reveal">
 
 <div class="skill-top">
-<span>Desarrollo web</span>
-<strong>APRENDIENDO</strong>
+<strong>Desarrollo web</strong>
+<span>Aprendiendo</span>
 </div>
 
-<div class="skill-bar">
-<span style="width:48%"></span>
+<div class="progress">
+<i style="width:55%"></i>
 </div>
 
 </div>
 
-
-<div class="skill">
+<div class="skill-card reveal">
 
 <div class="skill-top">
-<span>Resolución de problemas</span>
-<strong>EN DESARROLLO</strong>
+<strong>Resolución de problemas</strong>
+<span>En desarrollo</span>
 </div>
 
-<div class="skill-bar">
-<span style="width:70%"></span>
-</div>
-
-</div>
-
+<div class="progress">
+<i style="width:60%"></i>
 </div>
 
 </div>
 
-
-<div class="section-title reveal" style="margin-top:60px">
-
-<div class="small">TECH STACK</div>
-
-<h2>Tecnologías</h2>
-
 </div>
 
 
-<div class="grid">
+<div class="panel reveal" style="margin-top:20px">
 
-<div class="card reveal">
-<div class="card-icon">JS</div>
-<h3>JavaScript</h3>
-<p>Lenguaje principal para mis proyectos.</p>
-</div>
+<h3>Technologies</h3>
 
-<div class="card reveal">
-<div class="card-icon">N</div>
-<h3>Node.js</h3>
-<p>Entorno utilizado para bots y aplicaciones.</p>
-</div>
+<div class="techs">
 
-<div class="card reveal">
-<div class="card-icon">D</div>
-<h3>Discord.js</h3>
-<p>Desarrollo de bots para Discord.</p>
-</div>
+<div class="tech">JavaScript</div>
+<div class="tech">Node.js</div>
+<div class="tech">Discord.js</div>
+<div class="tech">HTML / CSS</div>
+<div class="tech">Netlify</div>
 
-<div class="card reveal">
-<div class="card-icon">H</div>
-<h3>HTML / CSS</h3>
-<p>Construcción de interfaces web.</p>
-</div>
-
-<div class="card reveal">
-<div class="card-icon">N</div>
-<h3>Netlify</h3>
-<p>Publicación de proyectos web.</p>
 </div>
 
 </div>
@@ -2072,7 +2262,7 @@ Tecnologías y áreas que estoy aprendiendo o desarrollando.
 </section>
 
 
-<!-- ================= PROYECTOS ================= -->
+<!-- PROYECTOS -->
 
 <section class="page" id="proyectos">
 
@@ -2080,142 +2270,99 @@ Tecnologías y áreas que estoy aprendiendo o desarrollando.
 
 <div class="section-title reveal">
 
-<div class="small">PROJECTS</div>
+<span>05 / PROJECTS</span>
 
 <h2>Proyectos</h2>
 
-<p>
-Proyectos personales y sistemas que estoy desarrollando.
-</p>
+<p>Proyectos actuales y experimentales.</p>
 
 </div>
 
+<div class="cards">
 
-<div class="grid">
-
-<div class="card reveal skill-click"
+<div class="card project-card clickable reveal"
 onclick="abrirProyecto('bots')">
 
-<div class="card-icon">🤖</div>
+<div class="card-icon">01</div>
 
-<h3>Bots personalizados</h3>
+<h3>Proyectos personalizados</h3>
 
 <p>
-Bots con tickets, moderación, economía, logs y otros sistemas.
+Sistemas y proyectos digitales en desarrollo.
 </p>
 
-<div style="margin-top:15px;color:#ff5c75;font-size:13px">
-    EN DESARROLLO →
-</div>
+<span class="project-status">● EN DESARROLLO</span>
 
 </div>
 
 
-<div class="card reveal skill-click"
+<div class="card project-card clickable reveal"
 onclick="abrirProyecto('portfolio')">
 
-<div class="card-icon">🌐</div>
+<div class="card-icon">02</div>
 
 <h3>Portafolio personal</h3>
 
 <p>
-Esta página web interactiva.
+Este sitio web y sus sistemas interactivos.
 </p>
 
-<div style="margin-top:15px;color:#22c55e;font-size:13px">
-    ACTIVO →
-</div>
+<span class="project-status">● ACTIVO</span>
 
 </div>
 
 
-<div class="card reveal skill-click"
+<div class="card project-card clickable reveal"
 onclick="abrirProyecto('config')">
 
-<div class="card-icon">⚙️</div>
+<div class="card-icon">03</div>
 
 <h3>Configuraciones</h3>
 
 <p>
-Plantillas y sistemas para comunidades de Discord.
+Sistemas y configuraciones para comunidades.
 </p>
 
-<div style="margin-top:15px;color:#22c55e;font-size:13px">
-    ACTIVO →
-</div>
+<span class="project-status">● ACTIVO</span>
 
 </div>
 
 </div>
 
 
-<!-- EXPLORADOR -->
+<div class="project-explorer reveal">
 
-<div class="section-title reveal" style="margin-top:60px">
-
-<div class="small">FILE SYSTEM</div>
-
-<h2>Project Explorer</h2>
-
+<div class="explorer-head">
+PROJECT EXPLORER
 </div>
 
+<div class="explorer-body">
 
-<div class="explorer reveal">
+<div class="file-list">
 
-<div class="file-sidebar">
-
-<div class="file active"
-onclick="abrirArchivo('discord')">
-📁 discord-bots
+<div class="file" onclick="abrirArchivo('discord')">
+📁 /discord-bots
 </div>
 
-<div class="file"
-onclick="abrirArchivo('web')">
-📁 web
+<div class="file" onclick="abrirArchivo('web')">
+📁 /web
 </div>
 
-<div class="file"
-onclick="abrirArchivo('minecraft')">
-📁 minecraft
+<div class="file" onclick="abrirArchivo('minecraft')">
+📁 /minecraft
 </div>
 
-<div class="file"
-onclick="abrirArchivo('config')">
-📁 configurations
+<div class="file" onclick="abrirArchivo('configurations')">
+📁 /configurations
 </div>
 
 </div>
 
-<div class="file-content">
-
-<h3 id="fileTitle">
-discord-bots/
-</h3>
-
-<code id="fileCode">
-/discord-bots
-
-├── moderation
-├── tickets
-├── economy
-├── logs
-└── custom-systems
-
-status: developing
-</code>
-
+<div class="file-content" id="fileContent">
+Selecciona una carpeta para explorar el proyecto.
 </div>
 
 </div>
-
-
-<!-- TERMINAL -->
-
-<div class="section-title reveal" style="margin-top:60px">
-
-<div class="small">TERMINAL</div>
-
-<h2>Developer Terminal</h2>
 
 </div>
 
@@ -2224,35 +2371,29 @@ status: developing
 
 <div class="terminal-head">
 
-<span class="terminal-dot"></span>
-<span class="terminal-dot"></span>
-<span class="terminal-dot"></span>
-
-<span style="margin-left:8px;color:#666">
-    ryan@portfolio
-</span>
+<div class="term-dot"></div>
+<div class="term-dot"></div>
+<div class="term-dot"></div>
 
 </div>
 
 <div class="terminal-body" id="terminalOutput">
 
-<div>
-Welcome to Ryan's Developer Terminal.
+<div class="term-line term-green">
+RYAN.DEV Terminal v2026.1
 </div>
 
-<div style="color:#666">
-Escribe <span style="color:#ff1744">help</span>
-para ver los comandos disponibles.
+<div class="term-line">
+Escribe <b>help</b> para ver los comandos disponibles.
 </div>
 
-<div class="terminal-input-row">
+</div>
 
-<span class="terminal-line">
-ryan@portfolio:~$
-</span>
+<div class="term-input-row">
+
+<span class="term-prompt">RYAN@DEV:~$</span>
 
 <input
-class="terminal-input"
 id="terminalInput"
 autocomplete="off"
 spellcheck="false"
@@ -2264,12 +2405,10 @@ spellcheck="false"
 
 </div>
 
-</div>
-
 </section>
 
 
-<!-- ================= EXPERIENCIA ================= -->
+<!-- EXPERIENCIA -->
 
 <section class="page" id="experiencia">
 
@@ -2277,67 +2416,63 @@ spellcheck="false"
 
 <div class="section-title reveal">
 
-<div class="small">EXPERIENCE</div>
+<span>06 / EXPERIENCE</span>
 
 <h2>Experiencia</h2>
 
-<p>
-Áreas en las que he trabajado y sigo desarrollándome.
-</p>
+<p>Áreas en las que he trabajado y aprendido.</p>
 
 </div>
-
 
 <div class="timeline">
 
 <div class="timeline-item reveal">
 
-<span>DISCORD</span>
+<small>01</small>
 
 <h3>Comunidades de Discord</h3>
 
 <p>
-Organización, configuración de canales, roles, permisos
-y sistemas para comunidades.
+Organización, configuración y administración
+de comunidades.
 </p>
 
 </div>
 
-
 <div class="timeline-item reveal">
 
-<span>AUTOMATION</span>
+<small>02</small>
 
-<h3>Bots y automatización</h3>
+<h3>Automatización</h3>
 
 <p>
-Desarrollo y configuración de bots con sistemas personalizados.
+Creación y configuración de sistemas digitales
+para automatizar tareas.
 </p>
 
 </div>
 
-
 <div class="timeline-item reveal">
 
-<span>ADMINISTRATION</span>
+<small>03</small>
 
 <h3>Administración</h3>
 
 <p>
-Gestión y organización de servidores y comunidades.
+Gestión de roles, permisos, canales y sistemas.
 </p>
 
 </div>
 
-
 <div class="timeline-item reveal">
 
-<span>DEVELOPMENT</span>
+<small>04</small>
 
 <h3>Programación y proyectos</h3>
 
 <p>
-Aprendizaje constante mediante proyectos prácticos.
+Aprendizaje continuo y desarrollo de proyectos
+personales.
 </p>
 
 </div>
@@ -2349,7 +2484,7 @@ Aprendizaje constante mediante proyectos prácticos.
 </section>
 
 
-<!-- ================= METAS ================= -->
+<!-- METAS -->
 
 <section class="page" id="metas">
 
@@ -2357,73 +2492,67 @@ Aprendizaje constante mediante proyectos prácticos.
 
 <div class="section-title reveal">
 
-<div class="small">ROADMAP</div>
+<span>07 / GOALS</span>
 
 <h2>Metas</h2>
 
-<p>
-Objetivos actuales y próximos pasos.
-</p>
+<p>Objetivos actuales.</p>
 
 </div>
 
+<div class="cards">
 
-<div class="grid">
+<div class="card goal-card reveal">
 
-<div class="card goal reveal">
-
-<div class="card-icon">🌐</div>
+<div class="card-icon">01</div>
 
 <h3>Dominio propio</h3>
 
 <p>
-Tener un dominio personalizado para mis proyectos.
+Conseguir un dominio propio para futuros proyectos.
 </p>
 
-<span class="goal-status">
-PENDIENTE
-</span>
+<div class="goal-status">
+Estado: <span>PENDIENTE</span>
+</div>
 
 </div>
 
+<div class="card goal-card reveal">
 
-<div class="card goal reveal">
-
-<div class="card-icon">🖥️</div>
+<div class="card-icon">02</div>
 
 <h3>VPS propio</h3>
 
 <p>
-Contar con infraestructura propia para proyectos.
+Aprender más sobre servidores y administración.
 </p>
 
-<span class="goal-status">
-PENDIENTE
-</span>
+<div class="goal-status">
+Estado: <span>PENDIENTE</span>
+</div>
 
 </div>
 
+<div class="card goal-card reveal">
 
-<div class="card goal reveal">
+<div class="card-icon">03</div>
 
-<div class="card-icon">🤖</div>
-
-<h3>Bots más avanzados</h3>
+<h3>Proyectos avanzados</h3>
 
 <p>
-Crear sistemas más completos y profesionales.
+Crear proyectos cada vez más completos.
 </p>
 
-<span class="goal-status">
-EN PROGRESO
-</span>
+<div class="goal-status">
+Estado: <span>EN PROGRESO</span>
+</div>
 
 </div>
 
+<div class="card goal-card reveal">
 
-<div class="card goal reveal">
-
-<div class="card-icon">📚</div>
+<div class="card-icon">04</div>
 
 <h3>Mejorar programación</h3>
 
@@ -2431,26 +2560,76 @@ EN PROGRESO
 Seguir aprendiendo JavaScript y nuevas tecnologías.
 </p>
 
-<span class="goal-status">
-EN PROGRESO
-</span>
+<div class="goal-status">
+Estado: <span>EN PROGRESO</span>
+</div>
 
 </div>
 
+<div class="card goal-card reveal">
 
-<div class="card goal reveal">
-
-<div class="card-icon">🌎</div>
+<div class="card-icon">05</div>
 
 <h3>Desarrollo web</h3>
 
 <p>
-Construir páginas más completas e interactivas.
+Mejorar mis conocimientos de frontend y backend.
 </p>
 
-<span class="goal-status">
-EN PROGRESO
-</span>
+<div class="goal-status">
+Estado: <span>EN PROGRESO</span>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CHANGELOG -->
+
+<div class="panel reveal" style="margin-top:30px">
+
+<h3>Changelog</h3>
+
+<div style="margin-top:25px">
+
+<div class="change">
+
+<small>v2026.2</small>
+
+<h3>Portfolio Expansion</h3>
+
+<p>
+Nuevo Developer Mode, monitor de sistema,
+buscador y nuevas funciones interactivas.
+</p>
+
+</div>
+
+<div class="change">
+
+<small>v2026.1</small>
+
+<h3>Command Center</h3>
+
+<p>
+Dashboard principal, estadísticas y
+Project Explorer.
+</p>
+
+</div>
+
+<div class="change">
+
+<small>v2026.0</small>
+
+<h3>Initial Release</h3>
+
+<p>
+Primera versión del portafolio personal.
+</p>
+
+</div>
 
 </div>
 
@@ -2461,7 +2640,7 @@ EN PROGRESO
 </section>
 
 
-<!-- ================= CONTACTO ================= -->
+<!-- CONTACTO -->
 
 <section class="page" id="contacto">
 
@@ -2469,108 +2648,98 @@ EN PROGRESO
 
 <div class="section-title reveal">
 
-<div class="small">CONTACT</div>
+<span>08 / CONTACT</span>
 
 <h2>Contacto</h2>
 
-<p>
-¿Tienes una idea o proyecto? Puedes contactarme mediante Discord.
-</p>
+<p>¿Tienes una idea? Podemos hablar.</p>
 
 </div>
-
 
 <div class="contact-grid">
 
-<div class="contact-card reveal">
-
-<div class="card-icon">💬</div>
+<div class="contact-box reveal">
 
 <h3>Discord</h3>
 
-<div class="discord-contact">
-    ryan_lamienyamal
-</div>
+<div class="contact-value">
 
-<button class="btn primary"
+<span>ryan_lamienyamal</span>
+
+<button class="btn btn-secondary"
 onclick="copiar('ryan_lamienyamal')">
-    Copiar usuario
+Copiar
 </button>
 
 </div>
 
+<div class="panel" style="margin-top:20px">
 
-<div class="contact-card reveal">
+<h3>Availability</h3>
 
-<h3 style="margin-bottom:20px">
-Solicitar proyecto
-</h3>
+<p style="color:#39ff88;margin-top:8px">
+● Disponible para nuevos proyectos
+</p>
+
+</div>
+
+</div>
+
+
+<div class="contact-box reveal">
+
+<h3>Solicitar servicio</h3>
+
+<div style="margin-top:20px">
+
+<div class="form-group">
+
+<label>Servicio</label>
+
+<select id="servicioForm">
+
+<option>Bots de Discord</option>
+<option>Configuración completa</option>
+<option>Tickets</option>
+<option>Moderación</option>
+<option>Roles y permisos</option>
+<option>Logs y registros</option>
+<option>Economía virtual</option>
+<option>Personalización</option>
+<option>Desarrollo web</option>
+
+</select>
+
+</div>
 
 <div class="form-group">
 
 <label>Nombre</label>
 
 <input
-class="form-control"
-id="nombre"
+id="nombreForm"
 placeholder="Tu nombre"
 >
 
 </div>
-
-
-<div class="form-group">
-
-<label>Servicio</label>
-
-<select class="form-control" id="servicio">
-
-<option value="Bot de Discord">
-Bot de Discord
-</option>
-
-<option value="Configuración">
-Configuración
-</option>
-
-<option value="Sistema de tickets">
-Sistema de tickets
-</option>
-
-<option value="Moderación">
-Moderación
-</option>
-
-<option value="Desarrollo web">
-Desarrollo web
-</option>
-
-<option value="Otro">
-Otro
-</option>
-
-</select>
-
-</div>
-
 
 <div class="form-group">
 
 <label>Mensaje</label>
 
 <textarea
-class="form-control"
-id="mensaje"
+id="mensajeForm"
 placeholder="Cuéntame sobre tu proyecto..."
 ></textarea>
 
 </div>
 
-
-<button class="btn primary"
+<button class="btn btn-primary"
 onclick="prepararMensaje()">
-    Preparar mensaje
+Preparar mensaje
 </button>
+
+</div>
 
 </div>
 
@@ -2581,35 +2750,121 @@ onclick="prepararMensaje()">
 </section>
 
 
-<footer>
-    © 2026 Ryan Méndez • Portafolio personal
-</footer>
+<!-- ACHIEVEMENTS -->
+
+<section class="page" id="achievements">
+
+<div class="container">
+
+<div class="section-title reveal">
+
+<span>09 / ACHIEVEMENTS</span>
+
+<h2>Achievements</h2>
+
+<p>Pequeños objetivos desbloqueables.</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card achievement reveal">
+
+<div class="achievement-icon">🏗️</div>
+
+<h3>Project Builder</h3>
+
+<p>Has creado varios proyectos personales.</p>
+
+<span class="project-status">● DESBLOQUEADO</span>
+
+</div>
+
+<div class="card achievement reveal">
+
+<div class="achievement-icon">🌐</div>
+
+<h3>Web Creator</h3>
+
+<p>Has creado tu propio portafolio web.</p>
+
+<span class="project-status">● DESBLOQUEADO</span>
+
+</div>
+
+<div class="card achievement reveal">
+
+<div class="achievement-icon">⚙️</div>
+
+<h3>System Builder</h3>
+
+<p>Experimentas creando sistemas digitales.</p>
+
+<span class="project-status">● DESBLOQUEADO</span>
+
+</div>
+
+<div class="card achievement locked reveal">
+
+<div class="achievement-icon">🚀</div>
+
+<h3>Advanced Developer</h3>
+
+<p>Achievement bloqueado.</p>
+
+<span class="project-status">● LOCKED</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search-overlay" id="searchOverlay">
+
+<div class="search-box">
+
+<div style="display:flex;justify-content:space-between;align-items:center">
+
+<strong>Buscar en el portafolio</strong>
+
+<button class="close" onclick="cerrarBusqueda()">×</button>
+
+</div>
+
+<input
+id="searchInput"
+placeholder="Buscar proyectos, servicios, habilidades..."
+style="margin-top:15px"
+>
+
+<div class="search-results" id="searchResults"></div>
+
+</div>
+
+</div>
 
 
 <!-- MODAL -->
 
-<div class="modal"
-id="modal"
-onclick="cerrarModalExterior(event)">
+<div class="modal" id="modal">
 
-<div class="modal-box">
+<div class="modal-content">
 
-<div class="modal-head">
+<div class="modal-top">
 
-<h2 id="modalTitle">
-Información
-</h2>
+<h2 id="modalTitle">Información</h2>
 
-<button class="close"
-onclick="cerrarModal()">
-    ×
-</button>
+<button class="close" onclick="cerrarModal()">×</button>
 
 </div>
 
-<div class="modal-content"
-id="modalContent">
-</div>
+<div id="modalBody"></div>
 
 </div>
 
@@ -2622,97 +2877,78 @@ id="modalContent">
 
 <div class="dev-terminal">
 
-<h2>
-RYAN.DEV // COMMAND CENTER
-</h2>
+<div class="dev-header">
 
-<div class="dev-line">
-<span class="dev-green">[SYSTEM]</span>
-Portfolio initialized successfully.
+<strong>RYAN.DEV // COMMAND CENTER</strong>
+
+<button onclick="cerrarDevMode()">EXIT</button>
+
+</div>
+
+<div class="dev-output" id="devOutput">
+
+<div class="dev-line dev-green">
+[SYSTEM] Portfolio initialized successfully.
 </div>
 
 <div class="dev-line">
-<span class="dev-green">[STATUS]</span>
-ONLINE
+[STATUS] <span class="dev-green">ONLINE</span>
 </div>
 
 <div class="dev-line">
-<span class="dev-red">[PROJECTS]</span>
-5+
+[VERSION] RYAN.DEV v2026.1
 </div>
 
 <div class="dev-line">
-<span class="dev-red">[BOTS]</span>
-3+
+[SECURITY] <span class="dev-green">NORMAL</span>
 </div>
 
-<div class="dev-line">
-<span class="dev-red">[SYSTEMS]</span>
-5+
+<div class="dev-line" style="margin-top:15px">
+Escribe <span class="dev-yellow">help</span> para ver los comandos.
 </div>
 
-<div class="dev-line">
-<span class="dev-green">[SECURITY]</span>
-NORMAL
 </div>
 
-<br>
+<div class="dev-input-row">
 
-<div class="dev-line">
-Available commands:
+<span class="dev-prompt">RYAN@DEV:~$</span>
+
+<input
+id="devInput"
+autocomplete="off"
+spellcheck="false"
+>
+
 </div>
 
-<div class="dev-line">
-&gt; about
 </div>
 
-<div class="dev-line">
-&gt; projects
 </div>
 
-<div class="dev-line">
-&gt; skills
-</div>
 
-<div class="dev-line">
-&gt; system
-</div>
+<!-- TOAST -->
 
-<div class="dev-line">
-&gt; close
-</div>
+<div id="toast"></div>
 
-<br>
-
-<button class="btn primary"
-onclick="cerrarDevMode()">
-    Exit Developer Mode
+<button id="topButton" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+↑
 </button>
 
-</div>
 
-</div>
-
-
-<div class="toast" id="toast">
-    Copiado correctamente
-</div>
-
-
-<button id="topButton"
-onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    ↑
-</button>
+<footer>
+© 2026 Ryan Méndez • Portafolio personal
+</footer>
 
 
 <script>
 
-/* ================= NAVIGATION ================= */
+/* NAVIGATION */
 
 function abrir(id,element){
 
-    document.querySelectorAll('.page')
-        .forEach(page => page.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(page=>{
+        page.classList.remove('active');
+    });
 
     const target=document.getElementById(id);
 
@@ -2720,15 +2956,15 @@ function abrir(id,element){
         target.classList.add('active');
     }
 
-    document.querySelectorAll('.nav-link')
-        .forEach(link => link.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(link=>{
+        link.classList.remove('active');
+    });
 
     if(element){
         element.classList.add('active');
     }
 
-    document.getElementById('navLinks')
-        .classList.remove('show');
+    document.getElementById('navLinks').classList.remove('active');
 
     window.scrollTo({
         top:0,
@@ -2743,60 +2979,124 @@ function abrir(id,element){
 }
 
 
-/* ================= MENU ================= */
+/* MOBILE MENU */
 
 function toggleMenu(){
 
-    document.getElementById('navLinks')
-        .classList.toggle('show');
+    document
+    .getElementById('navLinks')
+    .classList
+    .toggle('active');
 
 }
 
 
-/* ================= SERVER ================= */
+/* SERVER */
 
 function mostrarServer(tipo){
 
-    const bedrock=document.getElementById('serverBedrock');
-    const java=document.getElementById('serverJava');
+    const box=document.getElementById('serverInfo');
 
-    if(tipo==='bedrock'){
+    if(tipo==='java'){
 
-        bedrock.style.display='block';
-        java.style.display='none';
+        box.innerHTML=`
+
+        <div>
+
+            <small>IP JAVA</small>
+
+            <div class="copy-line">
+
+                <strong>sylenmc.diavlohosting.com</strong>
+
+                <button class="icon-btn"
+                onclick="copiar('sylenmc.diavlohosting.com')">
+                ⧉
+                </button>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <small>PUERTO</small>
+
+            <strong>25565</strong>
+
+        </div>
+
+        `;
 
     }else{
 
-        bedrock.style.display='none';
-        java.style.display='block';
+        box.innerHTML=`
+
+        <div>
+
+            <small>IP BEDROCK</small>
+
+            <div class="copy-line">
+
+                <strong>sylenmc.diavlohosting.com</strong>
+
+                <button class="icon-btn"
+                onclick="copiar('sylenmc.diavlohosting.com')">
+                ⧉
+                </button>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <small>PORT</small>
+
+            <div class="copy-line">
+
+                <strong>19016</strong>
+
+                <button class="icon-btn"
+                onclick="copiar('19016')">
+                ⧉
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
 
     }
 
 }
 
 
-/* ================= COPY ================= */
+/* COPY */
 
 function copiar(texto){
 
     if(navigator.clipboard){
 
         navigator.clipboard.writeText(texto)
-        .then(mostrarCopiado);
+        .then(()=>{
+            mostrarCopiado();
+        });
 
     }else{
 
-        const temp=document.createElement('textarea');
+        const area=document.createElement('textarea');
 
-        temp.value=texto;
+        area.value=texto;
 
-        document.body.appendChild(temp);
+        document.body.appendChild(area);
 
-        temp.select();
+        area.select();
 
         document.execCommand('copy');
 
-        temp.remove();
+        area.remove();
 
         mostrarCopiado();
 
@@ -2812,7 +3112,7 @@ function mostrarCopiado(){
 }
 
 
-/* ================= TOAST ================= */
+/* TOAST */
 
 let toastTimer;
 
@@ -2828,25 +3128,32 @@ function mostrarToast(texto){
 
     toastTimer=setTimeout(()=>{
         toast.classList.remove('show');
-    },2500);
+    },2200);
 
 }
 
 
-/* ================= COUNTERS ================= */
+/* CURSOR */
 
-let countersStarted=false;
+document.addEventListener('mousemove',e=>{
+
+    const cursor=document.getElementById('cursorGlow');
+
+    cursor.style.left=e.clientX+'px';
+    cursor.style.top=e.clientY+'px';
+
+});
+
+
+/* COUNTERS */
 
 function iniciarContadores(){
 
-    if(countersStarted)return;
+    document.querySelectorAll('[data-target]').forEach(el=>{
 
-    countersStarted=true;
+        if(el.dataset.done==='true') return;
 
-    document.querySelectorAll('[data-target]')
-    .forEach(counter=>{
-
-        const target=Number(counter.dataset.target);
+        const target=parseInt(el.dataset.target);
 
         let current=0;
 
@@ -2854,244 +3161,39 @@ function iniciarContadores(){
 
             current++;
 
-            counter.textContent=current + '+';
+            el.textContent=current+'+';
 
             if(current>=target){
+
                 clearInterval(interval);
+
+                el.dataset.done='true';
+
             }
 
-        },100);
+        },120);
 
     });
 
 }
 
 
-/* ================= SERVICES ================= */
+/* MODAL */
 
-const servicios={
+function abrirModal(title,html){
 
-bots:{
-title:'🤖 Bots de Discord',
-text:'Desarrollo de bots personalizados para comunidades y proyectos.',
-list:[
-'Sistemas de moderación',
-'Tickets',
-'Economía',
-'Logs',
-'Comandos personalizados'
-]
-},
+    document.getElementById('modalTitle').textContent=title;
 
-configuracion:{
-title:'⚙️ Configuración completa',
-text:'Organización y configuración general de servidores.',
-list:[
-'Canales',
-'Categorías',
-'Roles',
-'Permisos',
-'Organización'
-]
-},
+    document.getElementById('modalBody').innerHTML=html;
 
-tickets:{
-title:'🎫 Sistemas de tickets',
-text:'Sistemas de soporte mediante botones y canales privados.',
-list:[
-'Panel de tickets',
-'Categorías',
-'Permisos',
-'Logs',
-'Cierre de tickets'
-]
-},
-
-moderacion:{
-title:'🛡️ Moderación',
-text:'Herramientas para ayudar a mantener organizada una comunidad.',
-list:[
-'Warns',
-'Ban',
-'Kick',
-'Timeout',
-'Logs'
-]
-},
-
-roles:{
-title:'🏷️ Roles y permisos',
-text:'Diseño de estructuras de roles adaptadas a cada comunidad.',
-list:[
-'Jerarquías',
-'Permisos',
-'Roles automáticos',
-'Organización'
-]
-},
-
-logs:{
-title:'📋 Logs y registros',
-text:'Registro de acciones importantes del servidor.',
-list:[
-'Mensajes',
-'Moderación',
-'Miembros',
-'Tickets',
-'Transacciones'
-]
-},
-
-economia:{
-title:'💰 Economía virtual',
-text:'Sistemas de monedas y recompensas para comunidades.',
-list:[
-'Coins',
-'Balance',
-'Recompensas',
-'Tienda',
-'Transacciones'
-]
-},
-
-personalizacion:{
-title:'🎨 Personalización',
-text:'Sistemas diseñados según las necesidades de cada proyecto.',
-list:[
-'Embeds',
-'Colores',
-'Comandos',
-'Interfaces',
-'Configuración'
-]
-},
-
-web:{
-title:'🌐 Desarrollo web',
-text:'Creación de páginas web modernas y responsive.',
-list:[
-'HTML',
-'CSS',
-'JavaScript',
-'Animaciones',
-'Responsive'
-]
-}
-
-};
-
-
-function abrirServicio(id){
-
-    const data=servicios[id];
-
-    if(!data)return;
-
-    document.getElementById('modalTitle')
-        .textContent=data.title;
-
-    document.getElementById('modalContent')
-        .innerHTML=`
-
-        <p>${data.text}</p>
-
-        <ul class="modal-list">
-
-        ${data.list.map(item=>`
-            <li>✓ ${item}</li>
-        `).join('')}
-
-        </ul>
-
-        <button class="btn primary"
-        onclick="cerrarModal();abrir('contacto')">
-            Solicitar este servicio
-        </button>
-        `;
-
-    document.getElementById('modal')
-        .classList.add('show');
-
-}
-
-
-/* ================= PROJECTS ================= */
-
-const proyectos={
-
-bots:{
-title:'🤖 Bots personalizados',
-text:'Proyecto enfocado en crear bots de Discord completos y personalizables.',
-list:[
-'Moderación',
-'Tickets',
-'Economía',
-'Logs',
-'Sistemas personalizados'
-]
-},
-
-portfolio:{
-title:'🌐 Portafolio personal',
-text:'Este portafolio funciona como una presentación interactiva de mis proyectos y conocimientos.',
-list:[
-'Dashboard',
-'Command Center',
-'Terminal',
-'Animaciones',
-'Responsive'
-]
-},
-
-config:{
-title:'⚙️ Configuraciones',
-text:'Colección de configuraciones y sistemas para comunidades de Discord.',
-list:[
-'Roles',
-'Canales',
-'Permisos',
-'Tickets',
-'Moderación'
-]
-}
-
-};
-
-
-function abrirProyecto(id){
-
-    const data=proyectos[id];
-
-    if(!data)return;
-
-    document.getElementById('modalTitle')
-        .textContent=data.title;
-
-    document.getElementById('modalContent')
-        .innerHTML=`
-
-        <p>${data.text}</p>
-
-        <ul class="modal-list">
-
-        ${data.list.map(item=>`
-            <li>✓ ${item}</li>
-        `).join('')}
-
-        </ul>
-
-        `;
-
-    document.getElementById('modal')
-        .classList.add('show');
+    document.getElementById('modal').classList.add('active');
 
 }
 
 
 function cerrarModal(){
 
-    document.getElementById('modal')
-        .classList.remove('show');
+    document.getElementById('modal').classList.remove('active');
 
 }
 
@@ -3104,253 +3206,247 @@ function cerrarModalExterior(event){
 
 }
 
+document.getElementById('modal')
+.addEventListener('click',cerrarModalExterior);
 
-/* ================= PROJECT EXPLORER ================= */
+
+/* SERVICES */
+
+function abrirServicio(id){
+
+    const servicios={
+
+        discord:{
+            title:'Bots de Discord',
+            body:`
+            <p>Desarrollo y configuración de sistemas personalizados para comunidades.</p>
+            <ul>
+            <li>Comandos</li>
+            <li>Sistemas personalizados</li>
+            <li>Automatización</li>
+            <li>Configuración</li>
+            </ul>
+            `
+        },
+
+        config:{
+            title:'Configuración completa',
+            body:`
+            <p>Organización y configuración general de comunidades.</p>
+            <ul>
+            <li>Canales</li>
+            <li>Roles</li>
+            <li>Permisos</li>
+            <li>Estructura</li>
+            </ul>
+            `
+        },
+
+        tickets:{
+            title:'Tickets',
+            body:`
+            <p>Sistemas de soporte para gestionar solicitudes.</p>
+            <ul>
+            <li>Categorías</li>
+            <li>Botones</li>
+            <li>Logs</li>
+            <li>Gestión</li>
+            </ul>
+            `
+        },
+
+        moderacion:{
+            title:'Moderación',
+            body:`
+            <p>Herramientas para mejorar la organización de comunidades.</p>
+            `
+        },
+
+        roles:{
+            title:'Roles y permisos',
+            body:`
+            <p>Diseño de estructuras de roles y permisos.</p>
+            `
+        },
+
+        logs:{
+            title:'Logs y registros',
+            body:`
+            <p>Sistemas de seguimiento y registro de actividades.</p>
+            `
+        },
+
+        economia:{
+            title:'Economía virtual',
+            body:`
+            <p>Sistemas económicos y monedas virtuales.</p>
+            `
+        },
+
+        personalizacion:{
+            title:'Personalización',
+            body:`
+            <p>Adaptación de sistemas según las necesidades del proyecto.</p>
+            `
+        },
+
+        web:{
+            title:'Desarrollo web',
+            body:`
+            <p>Creación de sitios web modernos, responsivos e interactivos.</p>
+            `
+        }
+
+    };
+
+    const servicio=servicios[id];
+
+    if(!servicio) return;
+
+    abrirModal(servicio.title,servicio.body);
+
+}
+
+
+/* PROJECTS */
+
+function abrirProyecto(id){
+
+    const proyectos={
+
+        bots:{
+            title:'Proyectos personalizados',
+            body:`
+            <p>
+            Proyectos digitales actualmente en desarrollo.
+            </p>
+
+            <ul>
+            <li>Sistemas personalizados</li>
+            <li>Automatización</li>
+            <li>Experimentación</li>
+            </ul>
+            `
+        },
+
+        portfolio:{
+            title:'Portafolio personal',
+            body:`
+            <p>
+            Este portafolio está construido con HTML,
+            CSS y JavaScript.
+            </p>
+
+            <ul>
+            <li>Diseño responsive</li>
+            <li>Animaciones</li>
+            <li>Terminal interactiva</li>
+            <li>Developer Mode</li>
+            </ul>
+            `
+        },
+
+        config:{
+            title:'Configuraciones',
+            body:`
+            <p>
+            Proyectos relacionados con organización,
+            configuración y sistemas digitales.
+            </p>
+            `
+        }
+
+    };
+
+    const proyecto=proyectos[id];
+
+    if(proyecto){
+        abrirModal(proyecto.title,proyecto.body);
+    }
+
+}
+
+
+/* PROJECT EXPLORER */
 
 const archivos={
 
-discord:{
-title:'discord-bots/',
-code:`/discord-bots
+    discord:`
+/discord-bots
 
-├── moderation
-├── tickets
-├── economy
-├── logs
-└── custom-systems
+├── systems
+├── commands
+├── configuration
+└── documentation
 
-status: developing`
-},
+Status: DEVELOPMENT
+`,
 
-web:{
-title:'web/',
-code:`/web
+    web:`
+/web
 
-├── portfolio
-├── landing-pages
-└── interfaces
+├── index.html
+├── styles
+├── scripts
+└── assets
 
-status: learning`
-},
+Status: ACTIVE
+`,
 
-minecraft:{
-title:'minecraft/',
-code:`/minecraft
+    minecraft:`
+/minecraft
 
-├── server-management
-├── community
-└── configurations
+├── configuration
+├── systems
+└── management
 
-status: active`
-},
+Status: ACTIVE
+`,
 
-config:{
-title:'configurations/',
-code:`/configurations
+    configurations:`
+/configurations
 
-├── discord
 ├── permissions
 ├── channels
-└── templates
+├── roles
+└── systems
 
-status: active`
-}
+Status: ACTIVE
+`
 
 };
 
 
 function abrirArchivo(id){
 
-    const data=archivos[id];
-
-    if(!data)return;
-
-    document.getElementById('fileTitle')
-        .textContent=data.title;
-
-    document.getElementById('fileCode')
-        .textContent=data.code;
-
-    document.querySelectorAll('.file')
-        .forEach(file=>file.classList.remove('active'));
-
-    event.currentTarget.classList.add('active');
+    document.getElementById('fileContent')
+    .textContent=archivos[id]||'Archivo no encontrado.';
 
 }
 
 
-/* ================= TERMINAL ================= */
+/* TERMINAL */
 
 const terminalInput=document.getElementById('terminalInput');
+
 const terminalOutput=document.getElementById('terminalOutput');
 
-if(terminalInput){
+let terminalHistory=[];
 
-terminalInput.addEventListener('keydown',function(e){
+let terminalHistoryIndex=-1;
 
-    if(e.key==='Enter'){
 
-        ejecutarTerminal(this.value.trim());
+function escribirTerminal(texto,className=''){
 
-        this.value='';
+    const line=document.createElement('div');
 
-    }
+    line.className='term-line '+className;
 
-});
+    line.innerHTML=texto;
 
-}
+    terminalOutput.appendChild(line);
 
-
-function ejecutarTerminal(command){
-
-    if(!command)return;
-
-    const old=document.createElement('div');
-
-    old.innerHTML=
-        `<span class="terminal-line">ryan@portfolio:~$</span> ${escapeHTML(command)}`;
-
-    terminalOutput.insertBefore(
-        old,
-        terminalOutput.querySelector('.terminal-input-row')
-    );
-
-
-    let response='';
-
-
-    switch(command.toLowerCase()){
-
-        case 'help':
-
-            response=`
-            <div>Available commands:</div>
-            <div>about</div>
-            <div>skills</div>
-            <div>projects</div>
-            <div>servers</div>
-            <div>status</div>
-            <div>contact</div>
-            <div>clear</div>
-            `;
-
-        break;
-
-
-        case 'about':
-
-            response=
-            'Ryan Méndez — 16 años — Argentina 🇦🇷';
-
-        break;
-
-
-        case 'skills':
-
-            response=
-            'JavaScript | Node.js | Discord.js | HTML | CSS | Netlify';
-
-        break;
-
-
-        case 'projects':
-
-            response=
-            'Bots personalizados | Portafolio | Configuraciones';
-
-        break;
-
-
-        case 'servers':
-
-            response=
-            'SylenMC — sylenmc.diavlohosting.com:19016';
-
-        break;
-
-
-        case 'status':
-
-            response=
-            'SYSTEM: ONLINE | PROJECTS: ACTIVE | LEARNING: YES';
-
-        break;
-
-
-        case 'contact':
-
-            response=
-            'Discord: ryan_lamienyamal';
-
-        break;
-
-
-        case 'clear':
-
-            terminalOutput.innerHTML=`
-            <div>
-                Terminal cleared.
-            </div>
-
-            <div class="terminal-input-row">
-
-            <span class="terminal-line">
-                ryan@portfolio:~$
-            </span>
-
-            <input
-            class="terminal-input"
-            id="terminalInput"
-            autocomplete="off"
-            spellcheck="false"
-            >
-
-            </div>
-            `;
-
-            const newInput=
-                document.getElementById('terminalInput');
-
-            newInput.addEventListener('keydown',function(e){
-
-                if(e.key==='Enter'){
-
-                    ejecutarTerminal(this.value.trim());
-
-                    this.value='';
-
-                }
-
-            });
-
-            newInput.focus();
-
-            return;
-
-
-        default:
-
-            response=
-            `Command not found: ${escapeHTML(command)}. Escribe "help".`;
-
-    }
-
-
-    const result=document.createElement('div');
-
-    result.style.marginBottom='10px';
-
-    result.style.color='#999';
-
-    result.innerHTML=response;
-
-    terminalOutput.insertBefore(
-        result,
-        terminalOutput.querySelector('.terminal-input-row')
-    );
-
-    terminalOutput.scrollTop=
-        terminalOutput.scrollHeight;
+    terminalOutput.scrollTop=terminalOutput.scrollHeight;
 
 }
 
@@ -3358,37 +3454,218 @@ function ejecutarTerminal(command){
 function escapeHTML(text){
 
     return text
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#039;');
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'","&#039;");
 
 }
 
 
-/* ================= CONTACT FORM ================= */
+function ejecutarTerminal(){
+
+    const raw=terminalInput.value.trim();
+
+    if(!raw) return;
+
+    const command=raw.toLowerCase();
+
+    terminalHistory.push(raw);
+
+    terminalHistoryIndex=terminalHistory.length;
+
+    escribirTerminal(
+        'RYAN@DEV:~$ '+escapeHTML(raw)
+    );
+
+    terminalInput.value='';
+
+    switch(command){
+
+        case 'help':
+
+            escribirTerminal(`
+Comandos disponibles:
+
+about
+skills
+projects
+servers
+status
+version
+contact
+clear
+
+Escribe un comando para continuar.
+`);
+
+        break;
+
+
+        case 'about':
+
+            escribirTerminal(`
+Ryan Méndez
+16 años
+Argentina 🇦🇷
+
+Intereses:
+- Programación
+- Desarrollo web
+- Comunidades
+- Minecraft
+`);
+
+        break;
+
+
+        case 'skills':
+
+            escribirTerminal(`
+JavaScript
+Node.js
+Discord.js
+HTML / CSS
+Netlify
+Configuración de comunidades
+`);
+
+        break;
+
+
+        case 'projects':
+
+            escribirTerminal(`
+[01] Proyectos personalizados
+[02] Portafolio personal
+[03] Configuraciones
+`);
+
+        break;
+
+
+        case 'servers':
+
+            escribirTerminal(`
+SylenMC
+IP: sylenmc.diavlohosting.com
+Bedrock Port: 19016
+`);
+
+        break;
+
+
+        case 'status':
+
+            escribirTerminal(
+                '[STATUS] ONLINE',
+                'term-green'
+            );
+
+        break;
+
+
+        case 'version':
+
+            escribirTerminal(
+                'RYAN.DEV v2026.1'
+            );
+
+        break;
+
+
+        case 'contact':
+
+            escribirTerminal(
+                'Discord: ryan_lamienyamal'
+            );
+
+        break;
+
+
+        case 'clear':
+
+            terminalOutput.innerHTML='';
+
+        break;
+
+
+        default:
+
+            escribirTerminal(
+                'Comando no encontrado. Escribe "help".',
+                'term-red'
+            );
+
+    }
+
+}
+
+
+terminalInput.addEventListener('keydown',e=>{
+
+    if(e.key==='Enter'){
+
+        ejecutarTerminal();
+
+    }
+
+    if(e.key==='ArrowUp'){
+
+        if(terminalHistory.length===0) return;
+
+        terminalHistoryIndex=Math.max(
+            0,
+            terminalHistoryIndex-1
+        );
+
+        terminalInput.value=
+            terminalHistory[terminalHistoryIndex]||'';
+
+        e.preventDefault();
+
+    }
+
+    if(e.key==='ArrowDown'){
+
+        if(terminalHistory.length===0) return;
+
+        terminalHistoryIndex=Math.min(
+            terminalHistory.length,
+            terminalHistoryIndex+1
+        );
+
+        terminalInput.value=
+            terminalHistory[terminalHistoryIndex]||'';
+
+        e.preventDefault();
+
+    }
+
+});
+
+
+/* FORM */
 
 function prepararMensaje(){
 
-    const nombre=
-        document.getElementById('nombre').value.trim();
-
     const servicio=
-        document.getElementById('servicio').value;
+        document.getElementById('servicioForm').value;
+
+    const nombre=
+        document.getElementById('nombreForm').value.trim();
 
     const mensaje=
-        document.getElementById('mensaje').value.trim();
+        document.getElementById('mensajeForm').value.trim();
 
+    if(!nombre||!mensaje){
 
-    if(!nombre || !mensaje){
-
-        mostrarToast('Completa todos los campos.');
+        mostrarToast('Completa nombre y mensaje.');
 
         return;
 
     }
-
 
     const texto=
 `Hola Ryan, soy ${nombre}.
@@ -3396,7 +3673,6 @@ function prepararMensaje(){
 Estoy interesado en: ${servicio}.
 
 ${mensaje}`;
-
 
     copiar(texto);
 
@@ -3407,137 +3683,506 @@ ${mensaje}`;
 }
 
 
-/* ================= THEME ================= */
-
-let darkRed=false;
+/* THEME */
 
 function cambiarTema(){
 
-    darkRed=!darkRed;
+    const root=document.documentElement;
 
-    if(darkRed){
+    const actual=
+        getComputedStyle(root)
+        .getPropertyValue('--red')
+        .trim();
 
-        document.documentElement.style.setProperty(
-            '--red',
-            '#ff3d5f'
-        );
+    if(actual==='#ff1744'){
 
-        document.documentElement.style.setProperty(
-            '--red2',
-            '#ff6b82'
-        );
+        root.style.setProperty('--red','#7c4dff');
+        root.style.setProperty('--red2','#b388ff');
 
-        mostrarToast('Tema rojo intenso activado');
+        mostrarToast('Tema púrpura activado');
 
     }else{
 
-        document.documentElement.style.setProperty(
-            '--red',
-            '#ff1744'
-        );
+        root.style.setProperty('--red','#ff1744');
+        root.style.setProperty('--red2','#ff4d6d');
 
-        document.documentElement.style.setProperty(
-            '--red2',
-            '#ff4569'
-        );
-
-        mostrarToast('Tema normal activado');
+        mostrarToast('Tema rojo activado');
 
     }
 
 }
 
 
-/* ================= DEV MODE ================= */
+/* SEARCH */
+
+const searchData=[
+
+    {
+        title:'Bots de Discord',
+        category:'Servicio',
+        target:'servicios'
+    },
+
+    {
+        title:'Desarrollo web',
+        category:'Servicio',
+        target:'servicios'
+    },
+
+    {
+        title:'Portafolio personal',
+        category:'Proyecto',
+        target:'proyectos'
+    },
+
+    {
+        title:'SylenMC',
+        category:'Servidor',
+        target:'servidores'
+    },
+
+    {
+        title:'JavaScript',
+        category:'Tecnología',
+        target:'habilidades'
+    },
+
+    {
+        title:'Node.js',
+        category:'Tecnología',
+        target:'habilidades'
+    },
+
+    {
+        title:'HTML / CSS',
+        category:'Tecnología',
+        target:'habilidades'
+    },
+
+    {
+        title:'Dominio propio',
+        category:'Meta',
+        target:'metas'
+    },
+
+    {
+        title:'VPS propio',
+        category:'Meta',
+        target:'metas'
+    }
+
+];
+
+
+function abrirBusqueda(){
+
+    document
+    .getElementById('searchOverlay')
+    .classList
+    .add('active');
+
+    const input=document.getElementById('searchInput');
+
+    input.value='';
+
+    mostrarResultados('');
+
+    setTimeout(()=>{
+        input.focus();
+    },100);
+
+}
+
+
+function cerrarBusqueda(){
+
+    document
+    .getElementById('searchOverlay')
+    .classList
+    .remove('active');
+
+}
+
+
+function mostrarResultados(query){
+
+    const container=
+        document.getElementById('searchResults');
+
+    const results=
+        searchData.filter(item=>
+            item.title
+            .toLowerCase()
+            .includes(query.toLowerCase())
+        );
+
+    container.innerHTML='';
+
+    if(results.length===0){
+
+        container.innerHTML=
+        '<div class="search-result">Sin resultados.</div>';
+
+        return;
+
+    }
+
+    results.forEach(item=>{
+
+        const div=document.createElement('div');
+
+        div.className='search-result';
+
+        div.innerHTML=`
+        <strong>${item.title}</strong>
+        <span>${item.category}</span>
+        `;
+
+        div.onclick=()=>{
+
+            cerrarBusqueda();
+
+            abrir(item.target);
+
+        };
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+document
+.getElementById('searchInput')
+.addEventListener('input',e=>{
+
+    mostrarResultados(e.target.value);
+
+});
+
+
+/* DEVELOPER MODE */
 
 function activarDevMode(){
 
-    document.getElementById('devMode')
-        .classList.add('show');
+    document
+    .getElementById('devMode')
+    .classList
+    .add('active');
+
+    setTimeout(()=>{
+
+        document
+        .getElementById('devInput')
+        .focus();
+
+    },100);
 
 }
 
 
 function cerrarDevMode(){
 
-    document.getElementById('devMode')
-        .classList.remove('show');
+    document
+    .getElementById('devMode')
+    .classList
+    .remove('active');
 
 }
 
 
-document.addEventListener('keydown',function(e){
+const devInput=document.getElementById('devInput');
 
-    if(e.key.toLowerCase()==='t' &&
-       document.activeElement.tagName!=='INPUT' &&
-       document.activeElement.tagName!=='TEXTAREA'){
+const devOutput=document.getElementById('devOutput');
+
+let devHistory=[];
+
+let devHistoryIndex=-1;
+
+
+function devPrint(text,className=''){
+
+    const line=document.createElement('div');
+
+    line.className='dev-line '+className;
+
+    line.innerHTML=text;
+
+    devOutput.appendChild(line);
+
+    devOutput.scrollTop=devOutput.scrollHeight;
+
+}
+
+
+function devCommand(){
+
+    const raw=devInput.value.trim();
+
+    if(!raw) return;
+
+    const command=raw.toLowerCase();
+
+    devHistory.push(raw);
+
+    devHistoryIndex=devHistory.length;
+
+    devPrint(
+        'RYAN@DEV:~$ '+escapeHTML(raw)
+    );
+
+    devInput.value='';
+
+    switch(command){
+
+        case 'help':
+
+            devPrint(`
+Available commands:
+
+help       Show commands
+about      About Ryan
+projects   Show projects
+skills     Show skills
+system     System information
+status     Current status
+version    Developer version
+clear      Clear terminal
+close      Exit Developer Mode
+`);
+
+        break;
+
+
+        case 'about':
+
+            devPrint(`
+Ryan Méndez
+16 años
+Argentina 🇦🇷
+
+Focus:
+Programming • Web • Digital Projects
+`);
+
+        break;
+
+
+        case 'projects':
+
+            devPrint(`
+PROJECTS
+
+[01] Proyectos personalizados
+[02] Portafolio personal
+[03] Configuraciones
+`);
+
+        break;
+
+
+        case 'skills':
+
+            devPrint(`
+SKILLS
+
+JavaScript
+Node.js
+Discord.js
+HTML / CSS
+Netlify
+Community Configuration
+`);
+
+        break;
+
+
+        case 'system':
+
+            devPrint(`
+SYSTEM INFORMATION
+
+Portfolio: ONLINE
+Version: RYAN.DEV v2026.1
+Projects: 5+
+Systems: 3+
+Services: 5+
+Security: NORMAL
+`);
+
+        break;
+
+
+        case 'status':
+
+            devPrint(
+                '[STATUS] ONLINE',
+                'dev-green'
+            );
+
+        break;
+
+
+        case 'version':
+
+            devPrint(
+                'RYAN.DEV v2026.1',
+                'dev-blue'
+            );
+
+        break;
+
+
+        case 'clear':
+
+            devOutput.innerHTML='';
+
+        break;
+
+
+        case 'close':
+
+            cerrarDevMode();
+
+        break;
+
+
+        case 'sudo':
+
+            devPrint(
+                'Nice try 😎',
+                'dev-yellow'
+            );
+
+        break;
+
+
+        case 'konami':
+
+            devPrint(
+                'Easter egg unlocked! 🚀',
+                'dev-green'
+            );
+
+            mostrarToast('Easter egg desbloqueado 🚀');
+
+        break;
+
+
+        default:
+
+            devPrint(
+                'Command not found. Type "help".',
+                'dev-red'
+            );
+
+    }
+
+}
+
+
+devInput.addEventListener('keydown',e=>{
+
+    if(e.key==='Enter'){
+
+        devCommand();
+
+    }
+
+    if(e.key==='ArrowUp'){
+
+        if(devHistory.length===0) return;
+
+        devHistoryIndex=Math.max(
+            0,
+            devHistoryIndex-1
+        );
+
+        devInput.value=
+            devHistory[devHistoryIndex]||'';
+
+        e.preventDefault();
+
+    }
+
+    if(e.key==='ArrowDown'){
+
+        if(devHistory.length===0) return;
+
+        devHistoryIndex=Math.min(
+            devHistory.length,
+            devHistoryIndex+1
+        );
+
+        devInput.value=
+            devHistory[devHistoryIndex]||'';
+
+        e.preventDefault();
+
+    }
+
+});
+
+
+/* KEYBOARD SHORTCUTS */
+
+document.addEventListener('keydown',e=>{
+
+    if(e.key==='Escape'){
+
+        cerrarModal();
+        cerrarBusqueda();
+        cerrarDevMode();
+
+    }
+
+    if(
+        e.key.toLowerCase()==='t' &&
+        document.activeElement.tagName!=='INPUT' &&
+        document.activeElement.tagName!=='TEXTAREA'
+    ){
 
         cambiarTema();
 
     }
 
-
-    if(e.key==='Escape'){
-
-        cerrarModal();
-        cerrarDevMode();
-
-    }
-
 });
 
 
-/* ================= CURSOR ================= */
+/* SCROLL */
 
-document.addEventListener('mousemove',function(e){
-
-    const glow=
-        document.getElementById('cursorGlow');
-
-    glow.style.left=e.clientX+'px';
-
-    glow.style.top=e.clientY+'px';
-
-});
-
-
-/* ================= SCROLL ================= */
-
-window.addEventListener('scroll',function(){
+window.addEventListener('scroll',()=>{
 
     const scrollTop=
         window.scrollY;
 
     const height=
-        document.documentElement.scrollHeight -
+        document.documentElement.scrollHeight-
         window.innerHeight;
 
-    const progress=
+    const percentage=
         height>0
-        ? (scrollTop/height)*100
-        : 0;
+        ?(scrollTop/height)*100
+        :0;
 
-    document.getElementById('scrollProgress')
-        .style.width=progress+'%';
+    document
+    .getElementById('scrollProgress')
+    .style.width=percentage+'%';
 
 
-    const topButton=
+    const top=
         document.getElementById('topButton');
 
-    if(scrollTop>500){
-
-        topButton.classList.add('show');
-
-    }else{
-
-        topButton.classList.remove('show');
-
-    }
+    top.style.display=
+        scrollTop>500
+        ?'block'
+        :'none';
 
 });
 
 
-/* ================= REVEAL ================= */
+/* REVEAL */
 
 function iniciarReveal(){
 
@@ -3552,7 +4197,9 @@ function iniciarReveal(){
 
                 if(entry.isIntersecting){
 
-                    entry.target.classList.add('visible');
+                    entry.target
+                    .classList
+                    .add('visible');
 
                 }
 
@@ -3560,42 +4207,79 @@ function iniciarReveal(){
 
         },
         {
-            threshold:.12
+            threshold:.08
         });
 
     elements.forEach(el=>{
-
-        if(!el.classList.contains('visible')){
-            observer.observe(el);
-        }
-
+        observer.observe(el);
     });
 
 }
 
 
-/* ================= VISITS ================= */
+/* RANDOM SYSTEM MONITOR */
+
+setInterval(()=>{
+
+    const cpu=
+        Math.floor(55+Math.random()*35);
+
+    const memory=
+        Math.floor(35+Math.random()*35);
+
+    const cpuValue=
+        document.getElementById('cpuValue');
+
+    const memoryValue=
+        document.getElementById('memoryValue');
+
+    const cpuBar=
+        document.getElementById('cpuBar');
+
+    const memoryBar=
+        document.getElementById('memoryBar');
+
+    if(cpuValue){
+
+        cpuValue.textContent=cpu+'%';
+        cpuBar.style.width=cpu+'%';
+
+    }
+
+    if(memoryValue){
+
+        memoryValue.textContent=memory+'%';
+        memoryBar.style.width=memory+'%';
+
+    }
+
+},3000);
+
+
+/* VISITS */
 
 function registrarVisita(){
 
+    const key='portfolio_visits';
+
     let visits=
-        Number(
-            localStorage.getItem('portfolio_visits') || 0
+        parseInt(
+            localStorage.getItem(key)||'0'
         );
 
     visits++;
 
     localStorage.setItem(
-        'portfolio_visits',
+        key,
         visits
     );
 
 }
 
 
-/* ================= CLOSE MENU ================= */
+/* DOCUMENT CLICK */
 
-document.addEventListener('click',function(e){
+document.addEventListener('click',e=>{
 
     const nav=
         document.getElementById('navLinks');
@@ -3604,21 +4288,21 @@ document.addEventListener('click',function(e){
         document.querySelector('.menu-btn');
 
     if(
-        nav.classList.contains('show') &&
+        nav.classList.contains('active') &&
         !nav.contains(e.target) &&
         e.target!==menu
     ){
 
-        nav.classList.remove('show');
+        nav.classList.remove('active');
 
     }
 
 });
 
 
-/* ================= INIT ================= */
+/* INITIALIZATION */
 
-document.addEventListener('DOMContentLoaded',function(){
+document.addEventListener('DOMContentLoaded',()=>{
 
     registrarVisita();
 
