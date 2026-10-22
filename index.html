@@ -94,6 +94,20 @@ body{
     transform:translate(-50%,-50%);
 }
 
+@keyframes redPulse{
+
+    0%,100%{
+        transform:translateX(-50%) scale(1);
+        opacity:.09;
+    }
+
+    50%{
+        transform:translateX(-50%) scale(1.15);
+        opacity:.15;
+    }
+
+}
+
 /* =========================
    NAVBAR
 ========================= */
@@ -210,25 +224,17 @@ body{
 }
 
 @keyframes pageEnter{
+
     from{
         opacity:0;
         transform:translateY(10px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
-}
 
-@keyframes redPulse{
-    0%,100%{
-        transform:translateX(-50%) scale(1);
-        opacity:.09;
-    }
-    50%{
-        transform:translateX(-50%) scale(1.15);
-        opacity:.15;
-    }
 }
 
 .container{
@@ -377,7 +383,7 @@ body{
 }
 
 /* =========================
-   CABECERAS
+   SECCIONES
 ========================= */
 
 .section-header{
@@ -407,10 +413,6 @@ body{
     line-height:1.7;
 }
 
-/* =========================
-   TARJETAS
-========================= */
-
 .card{
     background:linear-gradient(
         145deg,
@@ -428,10 +430,6 @@ body{
     transform:translateY(-6px);
     border-color:rgba(255,55,55,.35);
     box-shadow:0 18px 45px rgba(180,0,0,.14);
-}
-
-.card h2{
-    margin-bottom:13px;
 }
 
 .card h3{
@@ -456,7 +454,61 @@ body{
 }
 
 /* =========================
-   SOBRE MÍ
+   ESTADO ACTUAL
+========================= */
+
+.current-status{
+    max-width:850px;
+    margin:45px auto 0;
+}
+
+.current-status-title{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:9px;
+    margin-bottom:25px;
+}
+
+.live-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#42dc7a;
+    box-shadow:0 0 15px #42dc7a;
+    animation:livePulse 1.8s infinite;
+}
+
+@keyframes livePulse{
+
+    0%,100%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+    50%{
+        transform:scale(1.5);
+        opacity:.55;
+    }
+
+}
+
+.status-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.status-item{
+    padding:15px;
+    border-radius:12px;
+    background:#090909;
+    border:1px solid rgba(255,255,255,.06);
+    color:#ccc;
+}
+
+/* =========================
+   SOBRE MI
 ========================= */
 
 .profile-card{
@@ -481,7 +533,6 @@ body{
     border-radius:18px;
     overflow:hidden;
     background:linear-gradient(135deg,#e12727,#690000);
-    box-shadow:0 0 30px rgba(255,0,0,.15);
 }
 
 .avatar img{
@@ -584,7 +635,7 @@ body{
 }
 
 /* =========================
-   COPY
+   COPIAR
 ========================= */
 
 .copy-label{
@@ -668,19 +719,6 @@ body{
     font-weight:700;
 }
 
-.skill-card::after{
-    content:"";
-    position:absolute;
-    width:100px;
-    height:100px;
-    right:-50px;
-    bottom:-50px;
-    border-radius:50%;
-    background:#b90000;
-    filter:blur(50px);
-    opacity:.10;
-}
-
 /* =========================
    TECNOLOGÍAS
 ========================= */
@@ -747,18 +785,6 @@ body{
     font-weight:700;
 }
 
-.dot-green,
-.dot-blue,
-.dot-yellow{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-}
-
-.dot-green{background:#45da7c;}
-.dot-blue{background:#4b91ff;}
-.dot-yellow{background:#ffc54d;}
-
 /* =========================
    LOGROS
 ========================= */
@@ -783,7 +809,7 @@ body{
 }
 
 /* =========================
-   EXPERIENCIA
+   TIMELINE
 ========================= */
 
 .timeline{
@@ -843,9 +869,13 @@ body{
     font-weight:700;
 }
 
-.pending{color:#ffc55c;}
-.progress{color:#66a2ff;}
-.completed{color:#50dc83;}
+.pending{
+    color:#ffc55c;
+}
+
+.progress{
+    color:#66a2ff;
+}
 
 /* =========================
    CONTACTO
@@ -868,7 +898,6 @@ body{
     border-radius:18px;
     background:linear-gradient(135deg,#ef3030,#790000);
     font-size:28px;
-    box-shadow:0 0 35px rgba(255,0,0,.15);
 }
 
 .contact-name{
@@ -964,28 +993,50 @@ textarea.form-input{
 }
 
 /* =========================
-   TOAST
+   TEMA
 ========================= */
 
-.toast{
+.theme-button{
     position:fixed;
-    left:50%;
-    bottom:30px;
-    transform:translate(-50%,30px);
-    z-index:2000;
-    opacity:0;
-    pointer-events:none;
-    padding:12px 18px;
-    border-radius:10px;
+    right:20px;
+    bottom:20px;
+    z-index:900;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:1px solid rgba(255,60,60,.30);
     background:#111;
-    border:1px solid rgba(255,60,60,.25);
-    box-shadow:0 10px 40px rgba(0,0,0,.4);
+    color:white;
+    cursor:pointer;
+    font-size:19px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
     transition:.3s;
 }
 
-.toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
+.theme-button:hover{
+    transform:scale(1.08) rotate(10deg);
+}
+
+/* =========================
+   CONTADOR
+========================= */
+
+.visit-card{
+    max-width:500px;
+    margin:40px auto 0;
+    text-align:center;
+}
+
+.visit-number{
+    font-size:34px;
+    font-weight:900;
+    color:#ff4848;
+}
+
+.visit-label{
+    color:#888;
+    font-size:13px;
+    margin-top:5px;
 }
 
 /* =========================
@@ -1024,7 +1075,6 @@ textarea.form-input{
         border:1px solid rgba(255,255,255,.08);
         border-radius:14px;
         box-shadow:0 20px 50px rgba(0,0,0,.45);
-        backdrop-filter:blur(20px);
     }
 
     .nav-links.open{
@@ -1039,6 +1089,7 @@ textarea.form-input{
     .stats-grid{
         grid-template-columns:repeat(2,1fr);
     }
+
 }
 
 @media(max-width:600px){
@@ -1089,6 +1140,10 @@ textarea.form-input{
         flex-direction:column;
     }
 
+    .status-list{
+        grid-template-columns:1fr;
+    }
+
     .stats-grid{
         grid-template-columns:repeat(2,1fr);
     }
@@ -1101,6 +1156,7 @@ textarea.form-input{
         width:39px;
         height:39px;
     }
+
 }
 
 </style>
@@ -1131,51 +1187,74 @@ class="profile-img">
 
 </div>
 
+
 <div id="navLinks" class="nav-links">
 
-<button class="nav-link active" data-page="inicio" onclick="abrir('inicio')">
+<button class="nav-link active"
+data-page="inicio"
+onclick="abrir('inicio')">
 Inicio
 </button>
 
-<button class="nav-link" data-page="sobre" onclick="abrir('sobre')">
+<button class="nav-link"
+data-page="sobre"
+onclick="abrir('sobre')">
 Sobre mí
 </button>
 
-<button class="nav-link" data-page="servidores" onclick="abrir('servidores')">
+<button class="nav-link"
+data-page="servidores"
+onclick="abrir('servidores')">
 Servidores
 </button>
 
-<button class="nav-link" data-page="servicios" onclick="abrir('servicios')">
+<button class="nav-link"
+data-page="servicios"
+onclick="abrir('servicios')">
 Servicios
 </button>
 
-<button class="nav-link" data-page="habilidades" onclick="abrir('habilidades')">
+<button class="nav-link"
+data-page="habilidades"
+onclick="abrir('habilidades')">
 Habilidades
 </button>
 
-<button class="nav-link" data-page="proyectos" onclick="abrir('proyectos')">
+<button class="nav-link"
+data-page="proyectos"
+onclick="abrir('proyectos')">
 Proyectos
 </button>
 
-<button class="nav-link" data-page="experiencia" onclick="abrir('experiencia')">
+<button class="nav-link"
+data-page="experiencia"
+onclick="abrir('experiencia')">
 Experiencia
 </button>
 
-<button class="nav-link" data-page="metas" onclick="abrir('metas')">
+<button class="nav-link"
+data-page="metas"
+onclick="abrir('metas')">
 Metas
 </button>
 
-<button class="nav-link nav-contact" data-page="contacto" onclick="abrir('contacto')">
+<button class="nav-link nav-contact"
+data-page="contacto"
+onclick="abrir('contacto')">
 Contacto
 </button>
 
 </div>
 
-<button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú">
+
+<button
+class="menu-toggle"
+onclick="toggleMenu()">
 ☰
 </button>
 
 </div>
+
 </nav>
 
 
@@ -1188,14 +1267,22 @@ Contacto
 <div class="hero">
 
 <div class="hero-tag">
+
 <span class="hero-tag-dot"></span>
+
 PORTAFOLIO PERSONAL
+
 </div>
 
+
 <h1>
+
 Construyendo ideas
+
 <span>digitales.</span>
+
 </h1>
+
 
 <p class="hero-description">
 
@@ -1209,14 +1296,24 @@ alcanzar.
 
 </p>
 
+
 <div class="hero-buttons">
 
-<button class="primary-btn" onclick="abrir('sobre')">
+<button
+class="primary-btn"
+onclick="abrir('sobre')">
+
 Conocer más →
+
 </button>
 
-<button class="secondary-btn" onclick="abrir('proyectos')">
+
+<button
+class="secondary-btn"
+onclick="abrir('proyectos')">
+
 Ver proyectos
+
 </button>
 
 </div>
@@ -1227,23 +1324,62 @@ Ver proyectos
 <div class="stats-grid">
 
 <div class="card stat-card">
-<div class="stat-number">5+</div>
-<div class="stat-label">Servidores administrados</div>
+
+<div
+class="stat-number counter"
+data-target="5">
+0+
 </div>
 
-<div class="card stat-card">
-<div class="stat-number">3+</div>
-<div class="stat-label">Bots creados</div>
+<div class="stat-label">
+Servidores administrados
 </div>
 
-<div class="card stat-card">
-<div class="stat-number">5+</div>
-<div class="stat-label">Proyectos realizados</div>
 </div>
 
+
 <div class="card stat-card">
-<div class="stat-number">1+</div>
-<div class="stat-label">Años aprendiendo</div>
+
+<div
+class="stat-number counter"
+data-target="3">
+0+
+</div>
+
+<div class="stat-label">
+Bots creados
+</div>
+
+</div>
+
+
+<div class="card stat-card">
+
+<div
+class="stat-number counter"
+data-target="5">
+0+
+</div>
+
+<div class="stat-label">
+Proyectos realizados
+</div>
+
+</div>
+
+
+<div class="card stat-card">
+
+<div
+class="stat-number counter"
+data-target="1">
+0+
+</div>
+
+<div class="stat-label">
+Años aprendiendo
+</div>
+
 </div>
 
 </div>
@@ -1252,8 +1388,64 @@ Ver proyectos
 <div class="availability">
 
 <div class="status">
+
 <span class="status-dot"></span>
+
 Disponible para nuevos proyectos
+
+</div>
+
+</div>
+
+
+<!-- ESTADO ACTUAL -->
+
+<div class="current-status">
+
+<div class="current-status-title">
+
+<span class="live-dot"></span>
+
+<h2>
+Estado actual
+</h2>
+
+</div>
+
+
+<div class="status-list">
+
+<div class="status-item">
+🤖 Trabajando en bots
+</div>
+
+<div class="status-item">
+🌐 Mejorando mi portafolio
+</div>
+
+<div class="status-item">
+📚 Aprendiendo JavaScript
+</div>
+
+<div class="status-item">
+🎮 Administrando comunidades
+</div>
+
+</div>
+
+</div>
+
+
+<!-- VISITAS -->
+
+<div class="visit-card card">
+
+<div class="visit-number" id="visitCounter">
+—
+</div>
+
+<div class="visit-label">
+Visitas registradas
 </div>
 
 </div>
@@ -1264,7 +1456,7 @@ Disponible para nuevos proyectos
 
 
 <!-- =========================
-     SOBRE MÍ
+     SOBRE MI
 ========================= -->
 
 <section id="sobre" class="page">
@@ -1294,8 +1486,13 @@ en las que estoy desarrollando mi experiencia.
 <div class="profile-top">
 
 <div class="avatar">
-<img src="IMG_2080.JPG" alt="Lamine Yamal">
+
+<img
+src="IMG_2080.JPG"
+alt="Lamine Yamal">
+
 </div>
+
 
 <div>
 
@@ -1327,10 +1524,6 @@ desarrollar mis propios proyectos.
 Gran parte de lo que hago actualmente está
 relacionado con la configuración y administración
 de comunidades de Discord.
-Me gusta trabajar en la organización de canales,
-roles, permisos, sistemas de moderación y diferentes
-herramientas que permiten que una comunidad funcione
-de forma organizada.
 </p>
 
 
@@ -1338,25 +1531,24 @@ de forma organizada.
 También trabajo con bots de Discord y continúo
 aprendiendo programación para poder desarrollar
 sistemas cada vez más completos.
-Cada proyecto me sirve para experimentar,
-resolver nuevos problemas y mejorar mis conocimientos.
 </p>
 
 
 <p>
 Mi objetivo es continuar creciendo dentro del
 mundo tecnológico y convertir nuevas ideas en
-proyectos funcionales que puedan ser utilizados
-por otras personas y comunidades.
+proyectos funcionales.
 </p>
 
 </div>
+
 
 <div class="footer">
 Ryan Méndez • Portafolio
 </div>
 
 </div>
+
 </section>
 
 
@@ -1409,32 +1601,33 @@ Head.Manager
 Actualmente formo parte del equipo de
 <span class="red">SylenMC</span>,
 una comunidad de Minecraft disponible
-para jugadores de Java Edition y Bedrock Edition.
+para Java Edition y Bedrock Edition.
 </p>
+
 
 <p>
 Dentro de la comunidad desempeño el rol de
 <span class="red">Head.Manager</span>.
-Participo en diferentes áreas relacionadas
-con la organización, administración y funcionamiento
-general de la comunidad.
-</p>
-
-<p>
-También colaboro con el equipo, ayudo a gestionar
-situaciones dentro del servidor y participo en
-la organización de diferentes sistemas.
 </p>
 
 
 <div class="edition-buttons">
 
-<button class="edition-btn" onclick="mostrarServer('bedrock')">
+<button
+class="edition-btn"
+onclick="mostrarServer('bedrock')">
+
 🟩 Bedrock
+
 </button>
 
-<button class="edition-btn" onclick="mostrarServer('java')">
+
+<button
+class="edition-btn"
+onclick="mostrarServer('java')">
+
 ☕ Java
+
 </button>
 
 </div>
@@ -1444,9 +1637,11 @@ la organización de diferentes sistemas.
 
 <h3>Minecraft Bedrock</h3>
 
+
 <div class="copy-label">
 Dirección IP
 </div>
+
 
 <div class="copy-box">
 
@@ -1454,15 +1649,22 @@ Dirección IP
 sylenmc.diavlohosting.com
 </div>
 
-<button class="copy-btn" onclick="copiar('sylenmc.diavlohosting.com')">
+
+<button
+class="copy-btn"
+onclick="copiar('sylenmc.diavlohosting.com')">
+
 Copy
+
 </button>
 
 </div>
 
+
 <div class="copy-label">
 Puerto
 </div>
+
 
 <div class="copy-box">
 
@@ -1470,8 +1672,13 @@ Puerto
 19016
 </div>
 
-<button class="copy-btn" onclick="copiar('19016')">
+
+<button
+class="copy-btn"
+onclick="copiar('19016')">
+
 Copy
+
 </button>
 
 </div>
@@ -1483,9 +1690,11 @@ Copy
 
 <h3>Minecraft Java</h3>
 
+
 <div class="copy-label">
 Dirección IP
 </div>
+
 
 <div class="copy-box">
 
@@ -1493,8 +1702,13 @@ Dirección IP
 sylenmc.diavlohosting.com
 </div>
 
-<button class="copy-btn" onclick="copiar('sylenmc.diavlohosting.com')">
+
+<button
+class="copy-btn"
+onclick="copiar('sylenmc.diavlohosting.com')">
+
 Copy
+
 </button>
 
 </div>
@@ -1509,6 +1723,7 @@ Ryan Méndez • Servidores
 </div>
 
 </div>
+
 </section>
 
 
@@ -1544,10 +1759,11 @@ bots, configuración y diferentes sistemas digitales.
 <div class="icon">🤖</div>
 <h3>Bots de Discord</h3>
 <p>
-Desarrollo y configuro bots dependiendo de las
-necesidades de cada comunidad.
+Desarrollo y configuro bots dependiendo
+de las necesidades de cada comunidad.
 </p>
 </div>
+
 
 <div class="card service-card">
 <div class="icon">⚙️</div>
@@ -1558,58 +1774,66 @@ incluyendo categorías, canales y roles.
 </p>
 </div>
 
+
 <div class="card service-card">
 <div class="icon">🎫</div>
 <h3>Tickets</h3>
 <p>
-Sistemas para soporte, compras, reportes,
-postulaciones y alianzas.
+Sistemas para soporte, compras,
+reportes y postulaciones.
 </p>
 </div>
+
 
 <div class="card service-card">
 <div class="icon">🛡️</div>
 <h3>Moderación</h3>
 <p>
 Configuración de sistemas para facilitar
-la administración y moderación.
+la administración.
 </p>
 </div>
+
 
 <div class="card service-card">
 <div class="icon">👑</div>
 <h3>Roles y permisos</h3>
 <p>
-Diseño de jerarquías y configuración de permisos.
+Diseño de jerarquías y configuración
+de permisos.
 </p>
 </div>
+
 
 <div class="card service-card">
 <div class="icon">📊</div>
 <h3>Logs y registros</h3>
 <p>
-Configuración de registros para moderación,
-tickets y acciones importantes.
+Registros para moderación, tickets
+y acciones importantes.
 </p>
 </div>
+
 
 <div class="card service-card">
 <div class="icon">💰</div>
 <h3>Economía virtual</h3>
 <p>
-Sistemas de monedas virtuales, tiendas,
+Sistemas de monedas, tiendas,
 recompensas y mecánicas.
 </p>
 </div>
+
 
 <div class="card service-card">
 <div class="icon">🎨</div>
 <h3>Personalización</h3>
 <p>
-Adaptación de mensajes, embeds, nombres,
+Adaptación de mensajes, embeds,
 canales y sistemas.
 </p>
 </div>
+
 
 <div class="card service-card">
 <div class="icon">💻</div>
@@ -1628,6 +1852,7 @@ Ryan Méndez • Servicios
 </div>
 
 </div>
+
 </section>
 
 
@@ -1660,69 +1885,137 @@ en las que continúo aprendiendo.
 <div class="grid">
 
 <div class="card skill-card">
+
 <div class="icon">⚙️</div>
-<h3>Configuración de Discord</h3>
+
+<h3>
+Configuración de Discord
+</h3>
+
 <p>
 Organización, canales, categorías,
 roles, permisos y sistemas.
 </p>
-<span class="skill-level">AVANZANDO</span>
+
+<span class="skill-level">
+AVANZANDO
+</span>
+
 </div>
 
+
 <div class="card skill-card">
+
 <div class="icon">🤖</div>
-<h3>Bots de Discord</h3>
+
+<h3>
+Bots de Discord
+</h3>
+
 <p>
 Creación y configuración de bots
 para diferentes comunidades.
 </p>
-<span class="skill-level">INTERMEDIO</span>
+
+<span class="skill-level">
+INTERMEDIO
+</span>
+
 </div>
 
+
 <div class="card skill-card">
+
 <div class="icon">👥</div>
-<h3>Comunidades</h3>
+
+<h3>
+Comunidades
+</h3>
+
 <p>
-Organización y administración de
-comunidades y equipos.
+Organización y administración
+de comunidades.
 </p>
-<span class="skill-level">AVANZANDO</span>
+
+<span class="skill-level">
+AVANZANDO
+</span>
+
 </div>
+
 
 <div class="card skill-card">
-<div class="icon">JS</div>
-<h3>JavaScript</h3>
-<p>
-Lenguaje utilizado principalmente
-para bots y proyectos.
-</p>
-<span class="skill-level">APRENDIENDO</span>
+
+<div class="icon">
+JS
 </div>
+
+<h3>
+JavaScript
+</h3>
+
+<p>
+Lenguaje utilizado para bots
+y diferentes proyectos.
+</p>
+
+<span class="skill-level">
+APRENDIENDO
+</span>
+
+</div>
+
 
 <div class="card skill-card">
-<div class="icon">🌐</div>
-<h3>Desarrollo web</h3>
-<p>
-Creación y experimentación con
-páginas y proyectos web.
-</p>
-<span class="skill-level">APRENDIENDO</span>
+
+<div class="icon">
+🌐
 </div>
+
+<h3>
+Desarrollo web
+</h3>
+
+<p>
+Creación y experimentación
+con páginas web.
+</p>
+
+<span class="skill-level">
+APRENDIENDO
+</span>
+
+</div>
+
 
 <div class="card skill-card">
-<div class="icon">🧩</div>
-<h3>Resolución de problemas</h3>
+
+<div class="icon">
+🧩
+</div>
+
+<h3>
+Resolución de problemas
+</h3>
+
 <p>
-Búsqueda de soluciones y adaptación
-de sistemas.
+Búsqueda de soluciones y
+adaptación de sistemas.
 </p>
-<span class="skill-level">EN DESARROLLO</span>
-</div>
+
+<span class="skill-level">
+EN DESARROLLO
+</span>
 
 </div>
 
+</div>
 
-<div class="section-header" style="margin-top:70px;">
+
+<!-- TECNOLOGÍAS -->
+
+<div class="section-header"
+style="margin-top:70px;">
 
 <div class="section-tag">
 Tecnologías
@@ -1731,11 +2024,6 @@ Tecnologías
 <h2 class="section-title">
 Tecnologías que utilizo
 </h2>
-
-<p class="section-description">
-Herramientas y tecnologías con las que trabajo
-o estoy aprendiendo.
-</p>
 
 </div>
 
@@ -1747,25 +2035,24 @@ o estoy aprendiendo.
 <h3>JavaScript</h3>
 </div>
 
+
 <div class="card tech-card">
 <div class="tech-icon">🟢</div>
 <h3>Node.js</h3>
 </div>
+
 
 <div class="card tech-card">
 <div class="tech-icon">🤖</div>
 <h3>Discord.js</h3>
 </div>
 
+
 <div class="card tech-card">
 <div class="tech-icon">🌐</div>
 <h3>HTML / CSS</h3>
 </div>
 
-<div class="card tech-card">
-<div class="tech-icon">🐙</div>
-<h3>GitHub</h3>
-</div>
 
 <div class="card tech-card">
 <div class="tech-icon">▲</div>
@@ -1775,7 +2062,10 @@ o estoy aprendiendo.
 </div>
 
 
-<div class="section-header" style="margin-top:70px;">
+<!-- LOGROS -->
+
+<div class="section-header"
+style="margin-top:70px;">
 
 <div class="section-tag">
 Logros
@@ -1791,43 +2081,90 @@ Lo que he conseguido
 <div class="grid">
 
 <div class="card achievement">
-<div class="achievement-icon">🤖</div>
-<div>
-<h3>Creación de bots</h3>
-<p>
-Desarrollo y configuración de bots personalizados.
-</p>
-</div>
+
+<div class="achievement-icon">
+🤖
 </div>
 
-<div class="card achievement">
-<div class="achievement-icon">👥</div>
 <div>
-<h3>Administración de comunidades</h3>
+
+<h3>
+Creación de bots
+</h3>
+
 <p>
-Experiencia organizando comunidades de Discord.
+Desarrollo y configuración de bots
+personalizados.
 </p>
-</div>
+
 </div>
 
-<div class="card achievement">
-<div class="achievement-icon">⚙️</div>
-<div>
-<h3>Configuración de servidores</h3>
-<p>
-Creación de estructuras, roles, permisos y sistemas.
-</p>
-</div>
 </div>
 
+
 <div class="card achievement">
-<div class="achievement-icon">💻</div>
-<div>
-<h3>Sistemas personalizados</h3>
-<p>
-Creación de sistemas adaptados a cada proyecto.
-</p>
+
+<div class="achievement-icon">
+👥
 </div>
+
+<div>
+
+<h3>
+Administración de comunidades
+</h3>
+
+<p>
+Experiencia organizando comunidades
+de Discord.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card achievement">
+
+<div class="achievement-icon">
+⚙️
+</div>
+
+<div>
+
+<h3>
+Configuración de servidores
+</h3>
+
+<p>
+Creación de estructuras, roles,
+permisos y sistemas.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card achievement">
+
+<div class="achievement-icon">
+💻
+</div>
+
+<div>
+
+<h3>
+Sistemas personalizados
+</h3>
+
+<p>
+Creación de sistemas adaptados
+a cada proyecto.
+</p>
+
+</div>
+
 </div>
 
 </div>
@@ -1838,6 +2175,7 @@ Ryan Méndez • Habilidades
 </div>
 
 </div>
+
 </section>
 
 
@@ -1860,8 +2198,8 @@ Proyectos destacados
 </h1>
 
 <p class="section-description">
-Algunos proyectos y trabajos en los que estoy
-trabajando actualmente.
+Algunos proyectos y trabajos en los que
+estoy trabajando.
 </p>
 
 </div>
@@ -1869,28 +2207,34 @@ trabajando actualmente.
 
 <div class="grid">
 
+
 <div class="card project-card">
 
-<div class="icon">🤖</div>
+<div class="icon">
+🤖
+</div>
 
 <h3>
 Bots personalizados
 </h3>
 
 <p>
-Desarrollo de bots para Discord con sistemas
-adaptados a diferentes comunidades.
+Desarrollo de bots para Discord
+con sistemas personalizados.
 </p>
 
 <div class="project-tech">
+
 <span>JavaScript</span>
 <span>Node.js</span>
 <span>Discord.js</span>
+
 </div>
 
 <div class="project-status">
-<span class="dot-blue"></span>
-En desarrollo
+
+🔵 En desarrollo
+
 </div>
 
 </div>
@@ -1898,63 +2242,64 @@ En desarrollo
 
 <div class="card project-card">
 
-<div class="icon">🌐</div>
+<div class="icon">
+🌐
+</div>
 
 <h3>
 Portafolio personal
 </h3>
 
 <p>
-Esta página web creada para mostrar mi experiencia,
-proyectos, habilidades y objetivos.
+Esta página creada para mostrar
+mi experiencia y proyectos.
 </p>
 
 <div class="project-tech">
+
 <span>HTML</span>
 <span>CSS</span>
 <span>JavaScript</span>
 <span>Netlify</span>
+
 </div>
 
 <div class="project-status">
-<span class="dot-green"></span>
-Activo
+
+🟢 Activo
+
 </div>
-
-<br>
-
-<a
-class="project-link"
-href="https://lamineyamal-portafolio.netlify.app"
-target="_blank">
-Ver proyecto →
-</a>
 
 </div>
 
 
 <div class="card project-card">
 
-<div class="icon">⚙️</div>
+<div class="icon">
+⚙️
+</div>
 
 <h3>
 Configuraciones
 </h3>
 
 <p>
-Diseño y organización de comunidades con
-roles, canales, sistemas y herramientas.
+Diseño y organización de comunidades
+con diferentes sistemas.
 </p>
 
 <div class="project-tech">
+
 <span>Discord</span>
 <span>Moderación</span>
 <span>Administración</span>
+
 </div>
 
 <div class="project-status">
-<span class="dot-green"></span>
-Activo
+
+🟢 Activo
+
 </div>
 
 </div>
@@ -1967,6 +2312,7 @@ Ryan Méndez • Proyectos
 </div>
 
 </div>
+
 </section>
 
 
@@ -1988,51 +2334,76 @@ Trayectoria
 Mi experiencia
 </h1>
 
-<p class="section-description">
-El camino que estoy construyendo mientras
-aprendo y desarrollo nuevos proyectos.
-</p>
-
 </div>
 
 
 <div class="timeline">
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<h3>Comunidades de Discord</h3>
-<p>
-Aprendizaje sobre organización de comunidades,
-canales, roles, permisos y sistemas.
-</p>
-</div>
 
 <div class="timeline-item">
+
 <div class="timeline-dot"></div>
-<h3>Bots y automatización</h3>
+
+<h3>
+Comunidades de Discord
+</h3>
+
 <p>
-Trabajo con bots para tickets, moderación,
-economía y registros.
+Aprendizaje sobre organización
+de comunidades, canales,
+roles y permisos.
 </p>
+
 </div>
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<h3>Administración</h3>
-<p>
-Experiencia dentro de equipos y comunidades,
-incluyendo SylenMC como Head.Manager.
-</p>
-</div>
 
 <div class="timeline-item">
+
 <div class="timeline-dot"></div>
-<h3>Programación y proyectos</h3>
+
+<h3>
+Bots y automatización
+</h3>
+
 <p>
-Actualmente continúo aprendiendo programación,
-desarrollando bots y páginas web.
+Trabajo con bots para tickets,
+moderación, economía y registros.
 </p>
+
 </div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-dot"></div>
+
+<h3>
+Administración
+</h3>
+
+<p>
+Experiencia dentro de equipos
+y comunidades.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-dot"></div>
+
+<h3>
+Programación y proyectos
+</h3>
+
+<p>
+Actualmente continúo aprendiendo
+programación y desarrollo web.
+</p>
+
+</div>
+
 
 </div>
 
@@ -2042,6 +2413,7 @@ Ryan Méndez • Experiencia
 </div>
 
 </div>
+
 </section>
 
 
@@ -2063,79 +2435,141 @@ Futuro
 Mis metas
 </h1>
 
-<p class="section-description">
-Objetivos que quiero alcanzar mientras continúo
-mejorando mis conocimientos.
-</p>
-
 </div>
 
 
 <div class="card">
 
-<div class="goal">
-<div class="goal-icon">🌐</div>
-<div>
-<h3>Dominio propio</h3>
-<p>
-Tener mi propio dominio para presentar
-mis proyectos de forma profesional.
-</p>
-<div class="goal-status pending">○ PENDIENTE</div>
-</div>
-</div>
-
 
 <div class="goal">
-<div class="goal-icon">🖥️</div>
-<div>
-<h3>VPS propio</h3>
-<p>
-Disponer de un VPS para alojar bots,
-páginas y otros servicios.
-</p>
-<div class="goal-status pending">○ PENDIENTE</div>
-</div>
+
+<div class="goal-icon">
+🌐
 </div>
 
-
-<div class="goal">
-<div class="goal-icon">🤖</div>
 <div>
-<h3>Bots más avanzados</h3>
+
+<h3>
+Dominio propio
+</h3>
+
 <p>
-Desarrollar bots más completos, estables
-y personalizados.
+Tener mi propio dominio para
+presentar mis proyectos.
 </p>
-<div class="goal-status progress">◉ EN PROGRESO</div>
+
+<div class="goal-status pending">
+○ PENDIENTE
 </div>
+
+</div>
+
 </div>
 
 
 <div class="goal">
-<div class="goal-icon">💻</div>
-<div>
-<h3>Mejorar en programación</h3>
-<p>
-Continuar aprendiendo JavaScript y otras
-tecnologías.
-</p>
-<div class="goal-status progress">◉ EN PROGRESO</div>
+
+<div class="goal-icon">
+🖥️
 </div>
+
+<div>
+
+<h3>
+VPS propio
+</h3>
+
+<p>
+Disponer de un VPS para alojar
+bots y proyectos.
+</p>
+
+<div class="goal-status pending">
+○ PENDIENTE
+</div>
+
+</div>
+
 </div>
 
 
 <div class="goal">
-<div class="goal-icon">🌐</div>
+
+<div class="goal-icon">
+🤖
+</div>
+
 <div>
-<h3>Desarrollo web</h3>
+
+<h3>
+Bots más avanzados
+</h3>
+
 <p>
-Crear páginas más avanzadas para futuros
-proyectos.
+Desarrollar bots más completos,
+estables y personalizados.
 </p>
-<div class="goal-status progress">◉ EN PROGRESO</div>
+
+<div class="goal-status progress">
+◉ EN PROGRESO
 </div>
+
 </div>
+
+</div>
+
+
+<div class="goal">
+
+<div class="goal-icon">
+💻
+</div>
+
+<div>
+
+<h3>
+Mejorar programación
+</h3>
+
+<p>
+Continuar aprendiendo JavaScript
+y otras tecnologías.
+</p>
+
+<div class="goal-status progress">
+◉ EN PROGRESO
+</div>
+
+</div>
+
+</div>
+
+
+<div class="goal">
+
+<div class="goal-icon">
+🌐
+</div>
+
+<div>
+
+<h3>
+Desarrollo web
+</h3>
+
+<p>
+Crear páginas cada vez
+más avanzadas.
+</p>
+
+<div class="goal-status progress">
+◉ EN PROGRESO
+</div>
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -2145,6 +2579,7 @@ Ryan Méndez • Metas
 </div>
 
 </div>
+
 </section>
 
 
@@ -2177,17 +2612,21 @@ en Discord.
 
 <div class="card contact-card">
 
+
 <div class="contact-logo">
 💬
 </div>
+
 
 <h2>
 Discord
 </h2>
 
+
 <div class="contact-name">
 ryan_lamienyamal
 </div>
+
 
 <div class="contact-subtitle">
 Usuario de Discord
@@ -2200,10 +2639,13 @@ Usuario de Discord
 ryan_lamienyamal
 </div>
 
+
 <button
 class="copy-btn"
 onclick="copiar('ryan_lamienyamal')">
+
 Copy
+
 </button>
 
 </div>
@@ -2214,15 +2656,10 @@ Copy
 <button
 class="social-btn"
 onclick="copiar('ryan_lamienyamal')">
-💬 Discord
-</button>
 
-<a
-class="social-btn"
-href="https://github.com/Bots-Yamal/Portafolio"
-target="_blank">
-🐙 GitHub
-</a>
+💬 Copiar Discord
+
+</button>
 
 </div>
 
@@ -2235,9 +2672,12 @@ target="_blank">
 Envíame un mensaje
 </h3>
 
+
 <p style="color:#888;margin-bottom:20px;">
-Escribe tu nombre y mensaje para prepararlo
-y copiarlo.
+
+Escribe tu nombre y mensaje para
+prepararlo y copiarlo.
+
 </p>
 
 
@@ -2265,7 +2705,8 @@ Tu mensaje
 <textarea
 id="contactMessage"
 class="form-input"
-placeholder="Escribe tu mensaje..."></textarea>
+placeholder="Escribe tu mensaje...">
+</textarea>
 
 </div>
 
@@ -2281,17 +2722,6 @@ onclick="prepararMensaje()">
 </div>
 
 
-<p style="
-margin-top:25px;
-color:#888;
-line-height:1.7;
-">
-
-El botón de arriba prepara el mensaje y lo copia
-para que puedas enviarlo por Discord.
-
-</p>
-
 </div>
 
 
@@ -2300,7 +2730,22 @@ para que puedas enviarlo por Discord.
 </div>
 
 </div>
+
 </section>
+
+
+<!-- =========================
+     BOTÓN DE TEMA
+========================= -->
+
+<button
+class="theme-button"
+onclick="cambiarTema()"
+title="Cambiar tema">
+
+🎨
+
+</button>
 
 
 <!-- TOAST -->
@@ -2313,7 +2758,7 @@ para que puedas enviarlo por Discord.
 <script>
 
 /* =========================
-   CAMBIAR SECCIÓN
+   CAMBIAR PÁGINA
 ========================= */
 
 function abrir(id){
@@ -2325,12 +2770,15 @@ function abrir(id){
         page.classList.remove("active");
     });
 
+
     const destino =
     document.getElementById(id);
+
 
     if(destino){
         destino.classList.add("active");
     }
+
 
     document
     .querySelectorAll(".nav-link")
@@ -2338,25 +2786,34 @@ function abrir(id){
 
         link.classList.remove("active");
 
+
         if(link.dataset.page === id){
             link.classList.add("active");
         }
 
     });
 
+
     document
     .getElementById("navLinks")
     .classList.remove("open");
+
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
+
+
+    if(id === "inicio"){
+        iniciarContadores();
+    }
+
 }
 
 
 /* =========================
-   MENÚ MÓVIL
+   MENÚ
 ========================= */
 
 function toggleMenu(){
@@ -2369,7 +2826,7 @@ function toggleMenu(){
 
 
 /* =========================
-   BEDROCK / JAVA
+   SERVIDOR
 ========================= */
 
 function mostrarServer(tipo){
@@ -2380,8 +2837,10 @@ function mostrarServer(tipo){
     const java =
     document.getElementById("java");
 
+
     bedrock.classList.remove("active");
     java.classList.remove("active");
+
 
     document
     .getElementById(tipo)
@@ -2422,18 +2881,25 @@ function copiaAlternativa(texto){
     const textarea =
     document.createElement("textarea");
 
+
     textarea.value = texto;
+
 
     textarea.style.position = "fixed";
     textarea.style.opacity = "0";
 
+
     document.body.appendChild(textarea);
+
 
     textarea.select();
 
+
     document.execCommand("copy");
 
+
     textarea.remove();
+
 
     mostrarCopiado();
 
@@ -2445,21 +2911,26 @@ function mostrarCopiado(){
     const toast =
     document.getElementById("toast");
 
+
     toast.classList.add("show");
 
+
     setTimeout(()=>{
+
         toast.classList.remove("show");
+
     },1600);
 
 }
 
 
 /* =========================
-   CURSOR ROJO
+   CURSOR
 ========================= */
 
 const cursorGlow =
 document.getElementById("cursorGlow");
+
 
 document.addEventListener(
 "mousemove",
@@ -2468,10 +2939,73 @@ function(event){
     cursorGlow.style.left =
     event.clientX + "px";
 
+
     cursorGlow.style.top =
     event.clientY + "px";
 
 });
+
+
+/* =========================
+   CONTADORES
+========================= */
+
+let countersStarted = false;
+
+
+function iniciarContadores(){
+
+    if(countersStarted){
+        return;
+    }
+
+
+    countersStarted = true;
+
+
+    const counters =
+    document.querySelectorAll(".counter");
+
+
+    counters.forEach(counter=>{
+
+        const target =
+        Number(counter.dataset.target);
+
+
+        let current = 0;
+
+
+        const duration = 1000;
+
+        const stepTime =
+        Math.max(
+            Math.floor(duration / target),
+            40
+        );
+
+
+        const timer =
+        setInterval(()=>{
+
+            current++;
+
+
+            counter.textContent =
+            current + "+";
+
+
+            if(current >= target){
+
+                clearInterval(timer);
+
+            }
+
+        },stepTime);
+
+    });
+
+}
 
 
 /* =========================
@@ -2486,11 +3020,13 @@ function prepararMensaje(){
     .value
     .trim();
 
+
     const mensaje =
     document
     .getElementById("contactMessage")
     .value
     .trim();
+
 
     if(!nombre || !mensaje){
 
@@ -2502,11 +3038,13 @@ function prepararMensaje(){
 
     }
 
+
     const texto =
     "Hola Ryan, soy " +
     nombre +
     ".\n\n" +
     mensaje;
+
 
     copiar(texto);
 
@@ -2514,7 +3052,135 @@ function prepararMensaje(){
 
 
 /* =========================
-   CERRAR MENÚ AL TOCAR FUERA
+   CAMBIAR TEMA
+========================= */
+
+let temaRojo = false;
+
+
+function cambiarTema(){
+
+    temaRojo = !temaRojo;
+
+
+    if(temaRojo){
+
+        document.documentElement.style.setProperty(
+            "--bg",
+            "#080202"
+        );
+
+        document.documentElement.style.setProperty(
+            "--card",
+            "#160606"
+        );
+
+        document.documentElement.style.setProperty(
+            "--card2",
+            "#1c0808"
+        );
+
+        mostrarTemaToast("Tema rojo activado");
+
+    }else{
+
+        document.documentElement.style.setProperty(
+            "--bg",
+            "#050505"
+        );
+
+        document.documentElement.style.setProperty(
+            "--card",
+            "#0d0d0f"
+        );
+
+        document.documentElement.style.setProperty(
+            "--card2",
+            "#121214"
+        );
+
+        mostrarTemaToast("Tema normal activado");
+
+    }
+
+}
+
+
+function mostrarTemaToast(texto){
+
+    const toast =
+    document.getElementById("toast");
+
+
+    toast.textContent =
+    "✓ " + texto;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+        toast.textContent =
+        "✓ Copiado al portapapeles";
+
+    },1600);
+
+}
+
+
+/* =========================
+   VISITAS
+========================= */
+
+/*
+   Este contador usa almacenamiento local
+   para contar las visitas desde este navegador.
+
+   No representa las visitas globales de todas
+   las personas.
+*/
+
+function registrarVisita(){
+
+    let visitas =
+    Number(
+        localStorage.getItem("portfolio_visits")
+    );
+
+
+    if(!visitas){
+        visitas = 0;
+    }
+
+
+    visitas++;
+
+
+    localStorage.setItem(
+        "portfolio_visits",
+        visitas
+    );
+
+
+    const elemento =
+    document.getElementById("visitCounter");
+
+
+    if(elemento){
+
+        elemento.textContent =
+        visitas;
+
+    }
+
+}
+
+
+/* =========================
+   CERRAR MENÚ
 ========================= */
 
 document.addEventListener(
@@ -2524,8 +3190,10 @@ function(event){
     const nav =
     document.getElementById("navLinks");
 
+
     const toggle =
     document.querySelector(".menu-toggle");
+
 
     if(
         nav.classList.contains("open") &&
@@ -2536,6 +3204,21 @@ function(event){
         nav.classList.remove("open");
 
     }
+
+});
+
+
+/* =========================
+   INICIO
+========================= */
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+    registrarVisita();
+
+    iniciarContadores();
 
 });
 
