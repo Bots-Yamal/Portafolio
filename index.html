@@ -2,1538 +2,1857 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#ff1744">
 <meta name="description" content="Portafolio personal de Ryan Méndez">
-
 <title>Portafolio | Ryan Méndez</title>
 
 <style>
 :root{
-    --bg:#050505;
-    --bg2:#0a0a0a;
-    --card:#0d0d0d;
-    --card2:#111111;
-    --red:#ff1744;
-    --red2:#ff4d6d;
-    --text:#f5f5f5;
-    --muted:#999;
-    --border:rgba(255,23,68,.20);
-    --green:#39ff88;
-    --yellow:#ffd43b;
-    --blue:#4da6ff;
-    --shadow:0 20px 60px rgba(0,0,0,.45);
+ --bg:#050505;--bg2:#0a0a0a;--card:#0d0d0d;--card2:#111;
+ --red:#ff1744;--red2:#ff4d6d;--text:#f5f5f5;--muted:#999;
+ --border:rgba(255,23,68,.2);--green:#39ff88;--yellow:#ffd43b;
+ --blue:#4da6ff;--shadow:0 20px 60px rgba(0,0,0,.45)
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+ font-family:Arial,Helvetica,sans-serif
 }
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-    background:var(--bg);
-    color:var(--text);
-    overflow-x:hidden;
+ background:var(--bg);
+ color:var(--text);
+ overflow-x:hidden
 }
 
-/* BACKGROUND */
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
 
 .background{
-    position:fixed;
-    inset:0;
-    z-index:-5;
-    overflow:hidden;
-    pointer-events:none;
-    background:
-        radial-gradient(circle at 15% 20%,rgba(255,23,68,.08),transparent 28%),
-        radial-gradient(circle at 85% 70%,rgba(255,23,68,.06),transparent 30%),
-        var(--bg);
+ position:fixed;
+ inset:0;
+ z-index:-5;
+ overflow:hidden;
+ pointer-events:none;
+ background:
+ radial-gradient(circle at 15% 20%,rgba(255,23,68,.08),transparent 28%),
+ radial-gradient(circle at 85% 70%,rgba(255,23,68,.06),transparent 30%),
+ var(--bg)
 }
 
 .grid-bg{
-    position:absolute;
-    inset:0;
-    opacity:.16;
-    background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:45px 45px;
+ position:absolute;
+ inset:0;
+ opacity:.16;
+ background-image:
+ linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+ background-size:45px 45px
 }
 
 .glow{
-    position:absolute;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    filter:blur(100px);
-    background:rgba(255,23,68,.09);
+ position:absolute;
+ width:500px;
+ height:500px;
+ border-radius:50%;
+ filter:blur(100px);
+ background:rgba(255,23,68,.09)
 }
 
-.glow.one{
-    top:-250px;
-    left:-200px;
-}
-
-.glow.two{
-    right:-250px;
-    bottom:-250px;
-}
+.glow.one{top:-250px;left:-200px}
+.glow.two{right:-250px;bottom:-250px}
 
 .orb{
-    position:absolute;
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:var(--red);
-    box-shadow:0 0 20px var(--red);
-    animation:floatOrb 7s infinite ease-in-out;
-    opacity:.6;
+ position:absolute;
+ width:8px;
+ height:8px;
+ border-radius:50%;
+ background:var(--red);
+ box-shadow:0 0 20px var(--red);
+ animation:orb 7s infinite ease-in-out;
+ opacity:.6
 }
 
-.orb.one{
-    top:25%;
-    left:12%;
-}
+.orb.one{top:25%;left:12%}
+.orb.two{top:65%;right:15%;animation-delay:2s}
 
-.orb.two{
-    top:65%;
-    right:15%;
-    animation-delay:2s;
+@keyframes orb{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-30px)}
 }
-
-@keyframes floatOrb{
-    0%,100%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(-30px);
-    }
-}
-
-/* CURSOR */
 
 #cursorGlow{
-    position:fixed;
-    width:250px;
-    height:250px;
-    border-radius:50%;
-    pointer-events:none;
-    z-index:9998;
-    transform:translate(-50%,-50%);
-    background:radial-gradient(circle,rgba(255,23,68,.10),transparent 65%);
+ position:fixed;
+ width:250px;
+ height:250px;
+ border-radius:50%;
+ pointer-events:none;
+ z-index:9998;
+ transform:translate(-50%,-50%);
+ background:radial-gradient(circle,rgba(255,23,68,.1),transparent 65%)
 }
-
-/* SCROLL BAR */
 
 #scrollProgress{
-    position:fixed;
-    top:0;
-    left:0;
-    width:0%;
-    height:3px;
-    background:var(--red);
-    z-index:10000;
-    box-shadow:0 0 12px var(--red);
+ position:fixed;
+ top:0;
+ left:0;
+ width:0;
+ height:3px;
+ background:var(--red);
+ z-index:10000;
+ box-shadow:0 0 12px var(--red);
+ transition:width .08s linear
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 
 nav{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    z-index:5000;
-    height:72px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6%;
-    background:rgba(5,5,5,.72);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,.05);
+ position:fixed;
+ top:0;
+ left:0;
+ right:0;
+ z-index:5000;
+ height:72px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 6%;
+ background:rgba(5,5,5,.72);
+ backdrop-filter:blur(18px);
+ border-bottom:1px solid rgba(255,255,255,.05)
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-weight:900;
-    letter-spacing:2px;
+ display:flex;
+ align-items:center;
+ gap:10px;
+ font-weight:900;
+ letter-spacing:2px
 }
 
 .profile-img{
-    width:38px;
-    height:38px;
-    border-radius:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:linear-gradient(135deg,var(--red),#33000d);
-    color:white;
-    font-weight:900;
-    border:1px solid rgba(255,23,68,.5);
-    box-shadow:0 0 20px rgba(255,23,68,.2);
+ width:38px;
+ height:38px;
+ border-radius:12px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:linear-gradient(135deg,var(--red),#33000d);
+ font-weight:900;
+ border:1px solid rgba(255,23,68,.5);
+ box-shadow:0 0 20px rgba(255,23,68,.2);
+ transition:.3s
+}
+
+.profile-img:hover{
+ transform:rotate(-6deg) scale(1.05);
+ box-shadow:0 0 30px rgba(255,23,68,.4)
 }
 
 .nav-links{
-    display:flex;
-    align-items:center;
-    gap:5px;
+ display:flex;
+ align-items:center;
+ gap:5px
 }
 
 .nav-link{
-    border:0;
-    background:none;
-    color:#aaa;
-    padding:10px 12px;
-    cursor:pointer;
-    border-radius:9px;
-    transition:.2s;
+ border:0;
+ background:none;
+ color:#aaa;
+ padding:10px 12px;
+ border-radius:9px;
+ transition:.2s
 }
 
 .nav-link:hover,
 .nav-link.active{
-    color:white;
-    background:rgba(255,23,68,.09);
+ color:white;
+ background:rgba(255,23,68,.09)
 }
 
 .nav-actions{
-    display:flex;
-    align-items:center;
-    gap:8px;
+ display:flex;
+ align-items:center;
+ gap:8px
 }
 
 .icon-btn{
-    width:40px;
-    height:40px;
-    border:1px solid rgba(255,255,255,.08);
-    background:#0c0c0c;
-    color:white;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.2s;
+ width:40px;
+ height:40px;
+ border:1px solid rgba(255,255,255,.08);
+ background:#0c0c0c;
+ color:white;
+ border-radius:10px;
+ transition:.2s
 }
 
 .icon-btn:hover{
-    border-color:var(--red);
-    color:var(--red);
+ border-color:var(--red);
+ color:var(--red);
+ transform:translateY(-2px)
 }
 
-.menu-btn{
-    display:none;
-}
+.menu-btn{display:none}
 
-/* PAGES */
+/* =========================
+   PAGES
+========================= */
 
 .page{
-    display:none;
-    min-height:100vh;
-    padding:120px 7% 80px;
+ display:none;
+ min-height:100vh;
+ padding:120px 7% 80px
 }
 
-.page.active{
-    display:block;
-}
+.page.active{display:block}
 
 .container{
-    max-width:1200px;
-    margin:auto;
+ max-width:1200px;
+ margin:auto
 }
 
 .section-title{
-    margin-bottom:45px;
+ margin-bottom:45px
 }
 
 .section-title span{
-    color:var(--red);
-    font-size:12px;
-    font-weight:bold;
-    letter-spacing:3px;
-    text-transform:uppercase;
+ color:var(--red);
+ font-size:12px;
+ font-weight:bold;
+ letter-spacing:3px;
+ text-transform:uppercase
 }
 
 .section-title h2{
-    font-size:clamp(32px,5vw,55px);
-    margin-top:10px;
+ font-size:clamp(32px,5vw,55px);
+ margin-top:10px
 }
 
 .section-title p{
-    color:var(--muted);
-    margin-top:10px;
+ color:var(--muted);
+ margin-top:10px
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
-    min-height:100vh;
-    padding-top:150px;
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:50px;
-    align-items:center;
+ min-height:100vh;
+ padding-top:150px;
+ display:grid;
+ grid-template-columns:1.2fr .8fr;
+ gap:50px;
+ align-items:center;
+ position:relative
 }
 
 .hero-tag{
-    display:inline-flex;
-    padding:8px 13px;
-    border:1px solid var(--border);
-    background:rgba(255,23,68,.06);
-    color:#ff7b92;
-    border-radius:999px;
-    font-size:12px;
-    font-weight:bold;
-    letter-spacing:1px;
+ display:inline-flex;
+ padding:8px 13px;
+ border:1px solid var(--border);
+ background:rgba(255,23,68,.06);
+ color:#ff7b92;
+ border-radius:999px;
+ font-size:12px;
+ font-weight:bold;
+ letter-spacing:1px;
+ animation:tagPulse 3s infinite ease-in-out
+}
+
+@keyframes tagPulse{
+ 0%,100%{box-shadow:0 0 0 rgba(255,23,68,0)}
+ 50%{box-shadow:0 0 25px rgba(255,23,68,.12)}
 }
 
 .hero h1{
-    font-size:clamp(48px,8vw,95px);
-    line-height:.95;
-    margin:22px 0;
-    letter-spacing:-5px;
+ font-size:clamp(48px,8vw,95px);
+ line-height:.95;
+ margin:22px 0;
+ letter-spacing:-5px
 }
 
 .hero h1 span{
-    color:var(--red);
+ color:var(--red);
+ position:relative
+}
+
+.hero h1 span:after{
+ content:"";
+ position:absolute;
+ left:0;
+ bottom:-7px;
+ width:100%;
+ height:2px;
+ background:linear-gradient(90deg,var(--red),transparent);
+ opacity:.5
 }
 
 .hero-description{
-    max-width:650px;
-    color:#aaa;
-    font-size:18px;
-    line-height:1.7;
+ max-width:650px;
+ color:#aaa;
+ font-size:18px;
+ line-height:1.7
 }
 
 .hero-buttons{
-    display:flex;
-    gap:12px;
-    margin-top:30px;
-    flex-wrap:wrap;
+ display:flex;
+ gap:12px;
+ margin-top:30px;
+ flex-wrap:wrap
 }
 
 .btn{
-    border:0;
-    padding:13px 19px;
-    border-radius:11px;
-    cursor:pointer;
-    font-weight:bold;
-    transition:.2s;
+ border:0;
+ padding:13px 19px;
+ border-radius:11px;
+ font-weight:bold;
+ transition:.25s;
+ position:relative;
+ overflow:hidden
 }
 
+.btn:after{
+ content:"";
+ position:absolute;
+ top:0;
+ left:-120%;
+ width:80%;
+ height:100%;
+ background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+ transform:skewX(-20deg);
+ transition:.6s
+}
+
+.btn:hover:after{left:140%}
+
 .btn-primary{
-    background:var(--red);
-    color:white;
-    box-shadow:0 10px 35px rgba(255,23,68,.2);
+ background:var(--red);
+ color:white;
+ box-shadow:0 10px 35px rgba(255,23,68,.2)
 }
 
 .btn-primary:hover{
-    transform:translateY(-2px);
-    box-shadow:0 15px 40px rgba(255,23,68,.35);
+ transform:translateY(-3px);
+ box-shadow:0 15px 40px rgba(255,23,68,.35)
 }
 
 .btn-secondary{
-    color:white;
-    background:#111;
-    border:1px solid rgba(255,255,255,.08);
+ color:white;
+ background:#111;
+ border:1px solid rgba(255,255,255,.08)
 }
 
 .btn-secondary:hover{
-    border-color:var(--red);
+ border-color:var(--red);
+ transform:translateY(-2px)
 }
 
-.badges{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-top:25px;
+.badges,.techs{
+ display:flex;
+ gap:8px;
+ flex-wrap:wrap;
+ margin-top:25px
 }
 
-.badge{
-    padding:8px 11px;
-    border:1px solid rgba(255,255,255,.08);
-    background:#0d0d0d;
-    color:#aaa;
-    border-radius:8px;
-    font-size:12px;
+.badge,.tech{
+ padding:8px 11px;
+ border:1px solid rgba(255,255,255,.08);
+ background:#0d0d0d;
+ color:#aaa;
+ border-radius:8px;
+ font-size:12px;
+ transition:.25s
 }
 
-/* COMMAND CENTER */
+.badge:hover,.tech:hover{
+ color:white;
+ border-color:var(--border);
+ transform:translateY(-2px)
+}
+
+/* =========================
+   COMMAND CENTER
+========================= */
 
 .command-center{
-    background:linear-gradient(145deg,#111,#080808);
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:25px;
-    box-shadow:var(--shadow);
-    position:relative;
-    overflow:hidden;
+ background:linear-gradient(145deg,#111,#080808);
+ border:1px solid var(--border);
+ border-radius:22px;
+ padding:25px;
+ box-shadow:var(--shadow);
+ position:relative;
+ overflow:hidden
 }
 
-.command-center::before{
-    content:"";
-    position:absolute;
-    width:200px;
-    height:200px;
-    background:var(--red);
-    opacity:.08;
-    filter:blur(80px);
-    right:-80px;
-    top:-80px;
+.command-center:before{
+ content:"";
+ position:absolute;
+ width:200px;
+ height:200px;
+ background:var(--red);
+ opacity:.08;
+ filter:blur(80px);
+ right:-80px;
+ top:-80px
+}
+
+.command-center:after{
+ content:"";
+ position:absolute;
+ width:100%;
+ height:1px;
+ left:0;
+ bottom:0;
+ background:linear-gradient(90deg,transparent,var(--red),transparent);
+ opacity:.4
 }
 
 .command-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:25px
 }
 
 .status{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    color:var(--green);
-    font-size:12px;
-    font-weight:bold;
+ display:flex;
+ align-items:center;
+ gap:8px;
+ color:var(--green);
+ font-size:12px;
+ font-weight:bold
 }
 
 .status-dot{
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 12px var(--green);
+ width:8px;
+ height:8px;
+ border-radius:50%;
+ background:var(--green);
+ box-shadow:0 0 12px var(--green);
+ animation:statusPulse 1.8s infinite
+}
+
+@keyframes statusPulse{
+ 0%,100%{box-shadow:0 0 5px var(--green);transform:scale(1)}
+ 50%{box-shadow:0 0 18px var(--green);transform:scale(1.2)}
 }
 
 .command-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px
 }
 
 .command-item{
-    background:#090909;
-    border:1px solid rgba(255,255,255,.05);
-    padding:14px;
-    border-radius:12px;
+ background:#090909;
+ border:1px solid rgba(255,255,255,.05);
+ padding:14px;
+ border-radius:12px;
+ transition:.25s
+}
+
+.command-item:hover{
+ border-color:var(--border);
+ transform:translateY(-2px);
+ background:#0c0c0c
 }
 
 .command-item small{
-    display:block;
-    color:#666;
-    font-size:10px;
-    margin-bottom:6px;
-    text-transform:uppercase;
-    letter-spacing:1px;
+ display:block;
+ color:#666;
+ font-size:10px;
+ margin-bottom:6px;
+ text-transform:uppercase;
+ letter-spacing:1px
 }
 
-.command-item strong{
-    font-size:14px;
-}
-
-/* STATS */
+.command-item strong{font-size:14px}
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-top:20px;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:12px;
+ margin-top:20px
 }
 
 .stat{
-    padding:22px;
-    background:#0c0c0c;
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:15px;
+ padding:22px;
+ background:#0c0c0c;
+ border:1px solid rgba(255,255,255,.06);
+ border-radius:15px;
+ transition:.25s
+}
+
+.stat:hover{
+ transform:translateY(-3px);
+ border-color:var(--border)
 }
 
 .stat strong{
-    display:block;
-    font-size:32px;
-    color:var(--red);
+ display:block;
+ font-size:32px;
+ color:var(--red)
 }
 
 .stat span{
-    color:#777;
-    font-size:12px;
+ color:#777;
+ font-size:12px
 }
 
-/* DASHBOARD */
+/* =========================
+   DASHBOARD
+========================= */
 
 .dashboard{
-    margin-top:20px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+ margin-top:20px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:15px
 }
 
 .panel{
-    background:#0b0b0b;
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:18px;
-    padding:22px;
+ background:#0b0b0b;
+ border:1px solid rgba(255,255,255,.06);
+ border-radius:18px;
+ padding:22px;
+ transition:.25s
 }
 
-.panel h3{
-    margin-bottom:18px;
+.panel:hover{
+ border-color:rgba(255,23,68,.12)
 }
 
-.progress-row{
-    margin-bottom:16px;
+.panel h3{margin-bottom:18px}
+
+.activity-list{list-style:none}
+
+.activity-list li{
+ display:flex;
+ gap:10px;
+ padding:11px 0;
+ border-bottom:1px solid rgba(255,255,255,.05);
+ color:#aaa;
+ font-size:13px;
+ transition:.2s
 }
+
+.activity-list li:hover{
+ color:white;
+ padding-left:5px
+}
+
+.activity-list li:last-child{border-bottom:0}
+
+.progress-row{margin-bottom:16px}
 
 .progress-label{
-    display:flex;
-    justify-content:space-between;
-    color:#aaa;
-    font-size:12px;
-    margin-bottom:7px;
+ display:flex;
+ justify-content:space-between;
+ color:#aaa;
+ font-size:12px;
+ margin-bottom:7px
 }
 
 .progress{
-    height:7px;
-    border-radius:99px;
-    background:#191919;
-    overflow:hidden;
+ height:7px;
+ border-radius:99px;
+ background:#191919;
+ overflow:hidden
 }
 
 .progress i{
-    display:block;
-    height:100%;
-    background:var(--red);
-    border-radius:99px;
-    width:0;
-    transition:1.2s;
+ display:block;
+ height:100%;
+ background:linear-gradient(90deg,var(--red),var(--red2));
+ border-radius:99px;
+ transition:1.2s;
+ box-shadow:0 0 12px rgba(255,23,68,.25)
 }
 
-.activity-list{
-    list-style:none;
+/* =========================
+   MONITOR
+========================= */
+
+.monitor-grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:12px
 }
 
-.activity-list li{
-    display:flex;
-    gap:10px;
-    padding:11px 0;
-    border-bottom:1px solid rgba(255,255,255,.05);
-    color:#aaa;
-    font-size:13px;
+.monitor{
+ background:#0a0a0a;
+ border:1px solid rgba(255,255,255,.06);
+ border-radius:15px;
+ padding:20px;
+ transition:.25s
 }
 
-.activity-list li:last-child{
-    border-bottom:0;
+.monitor:hover{
+ transform:translateY(-3px);
+ border-color:var(--border)
 }
 
-/* DISCORD VISUAL */
+.monitor small{color:#666}
 
-.discord-demo{
-    margin-top:20px;
-    background:#090909;
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:18px;
-    overflow:hidden;
+.monitor strong{
+ display:block;
+ font-size:25px;
+ margin:8px 0
 }
 
-.discord-top{
-    padding:13px 16px;
-    border-bottom:1px solid rgba(255,255,255,.06);
-    color:#aaa;
-    font-size:13px;
+.monitor-bar{
+ height:5px;
+ background:#191919;
+ border-radius:99px;
+ overflow:hidden
 }
 
-.discord-body{
-    display:grid;
-    grid-template-columns:160px 1fr;
-    min-height:250px;
+.monitor-bar i{
+ display:block;
+ height:100%;
+ background:linear-gradient(90deg,var(--red),var(--red2));
+ width:50%;
+ transition:1s
 }
 
-.discord-sidebar{
-    padding:15px;
-    border-right:1px solid rgba(255,255,255,.05);
-    background:#070707;
-}
-
-.discord-sidebar p{
-    color:#777;
-    font-size:11px;
-    margin:10px 0;
-}
-
-.discord-channel{
-    color:#aaa;
-    padding:7px;
-    border-radius:6px;
-    font-size:12px;
-}
-
-.discord-channel.active{
-    background:rgba(255,23,68,.1);
-    color:white;
-}
-
-.discord-chat{
-    padding:18px;
-}
-
-.message{
-    margin-bottom:18px;
-}
-
-.message b{
-    color:#fff;
-    font-size:13px;
-}
-
-.message span{
-    color:#555;
-    font-size:10px;
-}
-
-.message p{
-    color:#aaa;
-    font-size:12px;
-    margin-top:5px;
-}
-
-/* CARDS */
+/* =========================
+   CARDS
+========================= */
 
 .cards{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px
 }
 
 .card{
-    background:linear-gradient(145deg,#101010,#090909);
-    border:1px solid rgba(255,255,255,.06);
-    padding:23px;
-    border-radius:18px;
-    transition:.25s;
+ background:linear-gradient(145deg,#101010,#090909);
+ border:1px solid rgba(255,255,255,.06);
+ padding:23px;
+ border-radius:18px;
+ transition:.3s;
+ position:relative;
+ overflow:hidden
 }
 
+.card:before{
+ content:"";
+ position:absolute;
+ top:0;
+ left:-100%;
+ width:100%;
+ height:1px;
+ background:linear-gradient(90deg,transparent,var(--red),transparent);
+ transition:.5s
+}
+
+.card:hover:before{left:100%}
+
 .card:hover{
-    transform:translateY(-5px);
-    border-color:var(--border);
-    box-shadow:0 15px 40px rgba(0,0,0,.3);
+ transform:translateY(-6px);
+ border-color:var(--border);
+ box-shadow:0 15px 40px rgba(0,0,0,.3)
 }
 
 .card-icon{
-    width:45px;
-    height:45px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:12px;
-    background:rgba(255,23,68,.1);
-    color:var(--red);
-    margin-bottom:16px;
-    font-weight:bold;
+ width:45px;
+ height:45px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ border-radius:12px;
+ background:rgba(255,23,68,.1);
+ color:var(--red);
+ margin-bottom:16px;
+ font-weight:bold;
+ transition:.3s
 }
 
-.card h3{
-    margin-bottom:8px;
+.card:hover .card-icon{
+ transform:rotate(-5deg) scale(1.05);
+ box-shadow:0 0 20px rgba(255,23,68,.12)
 }
+
+.card h3{margin-bottom:8px}
 
 .card p{
-    color:#888;
-    line-height:1.6;
-    font-size:14px;
+ color:#888;
+ line-height:1.6;
+ font-size:14px
 }
 
-.clickable{
-    cursor:pointer;
-}
+.clickable{cursor:pointer}
 
-/* ABOUT */
+/* =========================
+   ABOUT
+========================= */
 
 .about-grid{
-    display:grid;
-    grid-template-columns:.7fr 1.3fr;
-    gap:25px;
+ display:grid;
+ grid-template-columns:.7fr 1.3fr;
+ gap:25px
 }
 
 .about-profile{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    background:#0c0c0c;
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:20px;
-    padding:35px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ background:#0c0c0c;
+ border:1px solid rgba(255,255,255,.06);
+ border-radius:20px;
+ padding:35px
 }
 
 .big-avatar{
-    width:150px;
-    height:150px;
-    border-radius:35px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:65px;
-    font-weight:900;
-    background:linear-gradient(145deg,#170006,#070707);
-    border:1px solid var(--border);
-    color:var(--red);
-    box-shadow:0 0 50px rgba(255,23,68,.1);
-    margin-bottom:20px;
+ width:150px;
+ height:150px;
+ border-radius:35px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:65px;
+ font-weight:900;
+ background:linear-gradient(145deg,#170006,#070707);
+ border:1px solid var(--border);
+ color:var(--red);
+ box-shadow:0 0 50px rgba(255,23,68,.1);
+ margin-bottom:20px;
+ animation:avatarFloat 4s infinite ease-in-out
 }
 
-.about-profile h3{
-    font-size:25px;
+@keyframes avatarFloat{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-7px)}
 }
+
+.about-profile h3{font-size:25px}
 
 .about-profile p{
-    color:#777;
-    margin-top:5px;
+ color:#777;
+ margin-top:5px
 }
 
 .about-content{
-    display:grid;
-    gap:15px;
+ display:grid;
+ gap:15px
 }
 
 .info-box{
-    padding:22px;
-    border:1px solid rgba(255,255,255,.06);
-    background:#0c0c0c;
-    border-radius:17px;
+ padding:22px;
+ border:1px solid rgba(255,255,255,.06);
+ background:#0c0c0c;
+ border-radius:17px;
+ transition:.25s
 }
 
-.info-box h3{
-    margin-bottom:8px;
+.info-box:hover{
+ border-color:var(--border);
+ transform:translateX(4px)
 }
+
+.info-box h3{margin-bottom:8px}
 
 .info-box p{
-    color:#999;
-    line-height:1.7;
+ color:#999;
+ line-height:1.7
 }
 
-/* SERVER */
+/* =========================
+   SERVERS
+========================= */
 
 .server-card{
-    background:linear-gradient(145deg,#111,#080808);
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:30px;
+ background:linear-gradient(145deg,#111,#080808);
+ border:1px solid var(--border);
+ border-radius:22px;
+ padding:30px;
+ position:relative;
+ overflow:hidden
+}
+
+.server-card:after{
+ content:"";
+ position:absolute;
+ right:-80px;
+ bottom:-80px;
+ width:220px;
+ height:220px;
+ border-radius:50%;
+ background:var(--red);
+ opacity:.05;
+ filter:blur(50px)
 }
 
 .server-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:20px;
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-start;
+ gap:20px
 }
 
-.server-title h3{
-    font-size:30px;
-}
+.server-title h3{font-size:30px}
 
 .server-title p{
-    color:#777;
-    margin-top:6px;
+ color:#777;
+ margin-top:6px
 }
 
 .server-status{
-    color:var(--green);
-    font-size:12px;
+ color:var(--green);
+ font-size:12px;
+ animation:statusBlink 2s infinite
+}
+
+@keyframes statusBlink{
+ 0%,100%{opacity:1}
+ 50%{opacity:.55}
 }
 
 .server-buttons{
-    display:flex;
-    gap:10px;
-    margin:25px 0;
+ display:flex;
+ gap:10px;
+ margin:25px 0
 }
 
 .server-info{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px
 }
 
-.server-info div{
-    background:#090909;
-    padding:18px;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,.05);
+.server-info>div{
+ background:#090909;
+ padding:18px;
+ border-radius:12px;
+ border:1px solid rgba(255,255,255,.05)
 }
 
 .server-info small{
-    display:block;
-    color:#666;
-    margin-bottom:6px;
+ display:block;
+ color:#666;
+ margin-bottom:6px
 }
 
 .copy-line{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px
 }
 
-/* SKILLS */
+/* =========================
+   SKILLS
+========================= */
 
 .skill-card{
-    padding:22px;
-    background:#0c0c0c;
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:17px;
+ padding:22px;
+ background:#0c0c0c;
+ border:1px solid rgba(255,255,255,.06);
+ border-radius:17px;
+ transition:.25s
+}
+
+.skill-card:hover{
+ transform:translateY(-4px);
+ border-color:var(--border)
 }
 
 .skill-top{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:10px;
+ display:flex;
+ justify-content:space-between;
+ margin-bottom:10px
 }
 
 .skill-top span{
-    color:#777;
-    font-size:12px;
+ color:#777;
+ font-size:12px
 }
 
-/* TECHNOLOGIES */
+/* =========================
+   PROJECTS
+========================= */
 
-.techs{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:25px;
-}
-
-.tech{
-    padding:10px 14px;
-    background:#0d0d0d;
-    border:1px solid rgba(255,255,255,.07);
-    border-radius:10px;
-    color:#aaa;
-}
-
-/* PROJECTS */
-
-.project-card{
-    min-height:190px;
-}
+.project-card{min-height:190px}
 
 .project-card .project-status{
-    display:inline-block;
-    margin-top:15px;
-    font-size:11px;
-    color:var(--green);
+ display:inline-block;
+ margin-top:15px;
+ font-size:11px;
+ color:var(--green)
 }
 
 .project-explorer{
-    margin-top:25px;
-    background:#080808;
-    border:1px solid rgba(255,255,255,.07);
-    border-radius:18px;
-    overflow:hidden;
+ margin-top:25px;
+ background:#080808;
+ border:1px solid rgba(255,255,255,.07);
+ border-radius:18px;
+ overflow:hidden
 }
 
 .explorer-head{
-    padding:14px 17px;
-    border-bottom:1px solid rgba(255,255,255,.06);
-    color:#777;
-    font-size:12px;
+ padding:14px 17px;
+ border-bottom:1px solid rgba(255,255,255,.06);
+ color:#777;
+ font-size:12px
 }
 
 .explorer-body{
-    display:grid;
-    grid-template-columns:230px 1fr;
-    min-height:300px;
+ display:grid;
+ grid-template-columns:230px 1fr;
+ min-height:300px
 }
 
 .file-list{
-    padding:15px;
-    border-right:1px solid rgba(255,255,255,.06);
+ padding:15px;
+ border-right:1px solid rgba(255,255,255,.06)
 }
 
 .file{
-    padding:10px;
-    border-radius:7px;
-    color:#999;
-    cursor:pointer;
-    font-size:13px;
+ padding:10px;
+ border-radius:7px;
+ color:#999;
+ cursor:pointer;
+ font-size:13px;
+ transition:.2s
 }
 
 .file:hover{
-    color:white;
-    background:#111;
+ color:white;
+ background:#111;
+ transform:translateX(3px)
 }
 
 .file-content{
-    padding:20px;
-    color:#999;
-    white-space:pre-wrap;
-    font-family:monospace;
-    line-height:1.7;
+ padding:20px;
+ color:#999;
+ white-space:pre-wrap;
+ font-family:monospace;
+ line-height:1.7
 }
 
-/* TERMINAL */
+/* =========================
+   TERMINAL
+========================= */
 
 .terminal{
-    margin-top:25px;
-    background:#030303;
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:17px;
-    overflow:hidden;
-    font-family:monospace;
+ margin-top:25px;
+ background:#030303;
+ border:1px solid rgba(255,255,255,.08);
+ border-radius:17px;
+ overflow:hidden;
+ font-family:monospace
 }
 
 .terminal-head{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    padding:12px;
-    border-bottom:1px solid rgba(255,255,255,.05);
+ display:flex;
+ gap:6px;
+ padding:12px;
+ border-bottom:1px solid rgba(255,255,255,.05)
 }
 
 .term-dot{
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:#333;
+ width:9px;
+ height:9px;
+ border-radius:50%;
+ background:#333
 }
+
+.term-dot:first-child{background:#ff5f57}
+.term-dot:nth-child(2){background:#ffbd2e}
+.term-dot:nth-child(3){background:#28c840}
 
 .terminal-body{
-    min-height:300px;
-    max-height:450px;
-    overflow:auto;
-    padding:18px;
-    color:#aaa;
-    font-size:13px;
-    line-height:1.7;
+ min-height:300px;
+ max-height:450px;
+ overflow:auto;
+ padding:18px;
+ color:#aaa;
+ font-size:13px;
+ line-height:1.7
 }
 
-.term-line{
-    color:#777;
-}
-
-.term-green{
-    color:var(--green);
-}
-
-.term-red{
-    color:var(--red);
-}
+.term-line{color:#777}
+.term-green{color:var(--green)}
+.term-red{color:var(--red)}
 
 .term-input-row{
-    display:flex;
-    gap:8px;
-    padding:15px 18px;
-    border-top:1px solid rgba(255,255,255,.05);
+ display:flex;
+ gap:8px;
+ padding:15px 18px;
+ border-top:1px solid rgba(255,255,255,.05)
 }
 
-.term-prompt{
-    color:var(--green);
-}
+.term-prompt{color:var(--green)}
 
 #terminalInput{
-    flex:1;
-    border:0;
-    outline:0;
-    background:transparent;
-    color:white;
-    font-family:monospace;
+ flex:1;
+ border:0;
+ outline:0;
+ background:transparent;
+ color:white;
+ font-family:monospace
 }
 
-/* TIMELINE */
+/* =========================
+   TIMELINE
+========================= */
 
 .timeline{
-    position:relative;
-    max-width:800px;
+ position:relative;
+ max-width:800px
 }
 
-.timeline::before{
-    content:"";
-    position:absolute;
-    left:10px;
-    top:0;
-    bottom:0;
-    width:1px;
-    background:var(--border);
+.timeline:before{
+ content:"";
+ position:absolute;
+ left:10px;
+ top:0;
+ bottom:0;
+ width:1px;
+ background:var(--border)
 }
 
 .timeline-item{
-    position:relative;
-    padding-left:45px;
-    margin-bottom:35px;
+ position:relative;
+ padding-left:45px;
+ margin-bottom:35px
 }
 
-.timeline-item::before{
-    content:"";
-    position:absolute;
-    left:5px;
-    top:4px;
-    width:11px;
-    height:11px;
-    background:var(--red);
-    border-radius:50%;
-    box-shadow:0 0 15px var(--red);
+.timeline-item:before{
+ content:"";
+ position:absolute;
+ left:5px;
+ top:4px;
+ width:11px;
+ height:11px;
+ background:var(--red);
+ border-radius:50%;
+ box-shadow:0 0 15px var(--red);
+ animation:timelinePulse 2s infinite
 }
 
-.timeline-item small{
-    color:var(--red);
+@keyframes timelinePulse{
+ 0%,100%{box-shadow:0 0 8px var(--red)}
+ 50%{box-shadow:0 0 20px var(--red)}
 }
 
-.timeline-item h3{
-    margin:6px 0;
-}
+.timeline-item small{color:var(--red)}
+
+.timeline-item h3{margin:6px 0}
 
 .timeline-item p{
-    color:#888;
-    line-height:1.6;
+ color:#888;
+ line-height:1.6
 }
 
-/* GOALS */
-
-.goal-card{
-    position:relative;
-    overflow:hidden;
-}
+/* =========================
+   GOALS
+========================= */
 
 .goal-status{
-    margin-top:20px;
-    font-size:11px;
-    color:#777;
+ margin-top:20px;
+ font-size:11px;
+ color:#777
 }
 
-.goal-status span{
-    color:var(--red);
+.goal-status span{color:var(--red)}
+
+.change{
+ border-left:2px solid var(--red);
+ padding:0 0 20px 20px;
+ margin-bottom:20px
 }
 
-/* CONTACT */
+.change h3{margin:5px 0}
+
+.change small{color:var(--red)}
+
+.change p{
+ color:#888;
+ margin-top:8px
+}
+
+/* =========================
+   CONTACT
+========================= */
 
 .contact-grid{
-    display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    gap:20px;
+ display:grid;
+ grid-template-columns:.8fr 1.2fr;
+ gap:20px
 }
 
 .contact-box{
-    background:#0c0c0c;
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:18px;
-    padding:25px;
+ background:#0c0c0c;
+ border:1px solid rgba(255,255,255,.06);
+ border-radius:18px;
+ padding:25px
 }
 
 .contact-value{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    padding:15px;
-    background:#080808;
-    border-radius:10px;
-    margin-top:10px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ padding:15px;
+ background:#080808;
+ border-radius:10px;
+ margin-top:10px
 }
 
-.contact-value span{
-    color:#aaa;
-}
+.contact-value span{color:#aaa}
 
-.form-group{
-    margin-bottom:15px;
-}
+.form-group{margin-bottom:15px}
 
 .form-group label{
-    display:block;
-    color:#aaa;
-    font-size:12px;
-    margin-bottom:7px;
+ display:block;
+ color:#aaa;
+ font-size:12px;
+ margin-bottom:7px
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select{
-    width:100%;
-    background:#080808;
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:10px;
-    padding:13px;
-    color:white;
-    outline:none;
+ width:100%;
+ background:#080808;
+ border:1px solid rgba(255,255,255,.08);
+ border-radius:10px;
+ padding:13px;
+ color:white;
+ outline:none;
+ transition:.2s
 }
 
 .form-group textarea{
-    min-height:130px;
-    resize:vertical;
+ min-height:130px;
+ resize:vertical
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus{
-    border-color:var(--red);
+ border-color:var(--red);
+ box-shadow:0 0 0 3px rgba(255,23,68,.05)
 }
 
-/* SEARCH */
+/* =========================
+   MODALS / SEARCH
+========================= */
 
-.search-overlay{
-    position:fixed;
-    inset:0;
-    z-index:9000;
-    background:rgba(0,0,0,.75);
-    backdrop-filter:blur(15px);
-    display:none;
-    align-items:flex-start;
-    justify-content:center;
-    padding:100px 20px;
+.search-overlay,
+.palette-overlay,
+.modal{
+ position:fixed;
+ inset:0;
+ z-index:9000;
+ background:rgba(0,0,0,.75);
+ backdrop-filter:blur(15px);
+ display:none;
+ align-items:flex-start;
+ justify-content:center;
+ padding:100px 20px
 }
 
-.search-overlay.active{
-    display:flex;
+.search-overlay.active,
+.palette-overlay.active,
+.modal.active{
+ display:flex
 }
 
-.search-box{
-    width:min(700px,100%);
-    background:#0d0d0d;
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:20px;
-    box-shadow:var(--shadow);
+.search-box,
+.palette-box,
+.modal-content{
+ width:min(700px,100%);
+ background:#0d0d0d;
+ border:1px solid var(--border);
+ border-radius:20px;
+ padding:20px;
+ box-shadow:var(--shadow);
+ animation:modalIn .25s ease
 }
 
-.search-box input{
-    width:100%;
-    padding:17px;
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:12px;
-    background:#080808;
-    color:white;
-    outline:0;
-    font-size:16px;
+@keyframes modalIn{
+ from{opacity:0;transform:translateY(15px) scale(.98)}
+ to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.search-box input,
+.palette-box input{
+ width:100%;
+ padding:17px;
+ border:1px solid rgba(255,255,255,.08);
+ border-radius:12px;
+ background:#080808;
+ color:white;
+ outline:0;
+ font-size:16px;
+ margin-top:15px
 }
 
 .search-results{
-    margin-top:15px;
-    max-height:400px;
-    overflow:auto;
+ margin-top:15px;
+ max-height:400px;
+ overflow:auto
 }
 
-.search-result{
-    padding:14px;
-    border-bottom:1px solid rgba(255,255,255,.05);
-    cursor:pointer;
+.search-result,
+.palette-item{
+ padding:14px;
+ border-bottom:1px solid rgba(255,255,255,.05);
+ cursor:pointer;
+ transition:.2s
 }
 
-.search-result:hover{
-    background:#111;
+.search-result:hover,
+.palette-item:hover{
+ background:#111;
+ padding-left:18px
 }
 
-.search-result strong{
-    display:block;
-}
+.search-result strong{display:block}
 
 .search-result span{
-    color:#777;
-    font-size:12px;
+ color:#777;
+ font-size:12px
 }
 
-/* MODAL */
+.palette-item{
+ display:flex;
+ justify-content:space-between
+}
+
+.palette-item span{
+ color:#666;
+ font-size:12px
+}
 
 .modal{
-    position:fixed;
-    inset:0;
-    z-index:8000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:rgba(0,0,0,.75);
-    backdrop-filter:blur(12px);
-}
-
-.modal.active{
-    display:flex;
+ align-items:center;
+ padding:20px
 }
 
 .modal-content{
-    width:min(650px,100%);
-    max-height:85vh;
-    overflow:auto;
-    background:#0d0d0d;
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:25px;
-    box-shadow:var(--shadow);
+ max-height:85vh;
+ overflow:auto;
+ padding:25px
 }
 
 .modal-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:20px
 }
 
 .close{
-    width:35px;
-    height:35px;
-    border:0;
-    border-radius:8px;
-    background:#181818;
-    color:#aaa;
-    cursor:pointer;
+ width:35px;
+ height:35px;
+ border:0;
+ border-radius:8px;
+ background:#181818;
+ color:#aaa;
+ transition:.2s
+}
+
+.close:hover{
+ color:white;
+ background:#222;
+ transform:rotate(90deg)
 }
 
 .modal-content p{
-    color:#999;
-    line-height:1.7;
+ color:#999;
+ line-height:1.7
 }
 
 .modal-content ul{
-    margin:18px 0 20px 20px;
-    color:#aaa;
-    line-height:2;
+ margin:18px 0 20px 20px;
+ color:#aaa;
+ line-height:2
 }
 
-/* DEV MODE */
+/* =========================
+   THEMES
+========================= */
 
-.dev-mode{
-    position:fixed;
-    inset:0;
-    z-index:10000;
-    display:none;
-    background:#020202;
-    color:#aaa;
-    font-family:monospace;
+.theme-grid{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:10px;
+ margin-top:20px
 }
 
-.dev-mode.active{
-    display:block;
+.theme-choice{
+ padding:16px;
+ border:1px solid rgba(255,255,255,.08);
+ border-radius:12px;
+ background:#090909;
+ color:white;
+ transition:.25s
 }
 
-.dev-terminal{
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    padding:25px;
+.theme-choice:hover{
+ border-color:var(--red);
+ transform:translateY(-3px)
 }
 
-.dev-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding-bottom:15px;
-    border-bottom:1px solid rgba(255,255,255,.08);
+.theme-dot{
+ width:25px;
+ height:25px;
+ border-radius:50%;
+ margin:auto auto 8px
 }
 
-.dev-header strong{
-    color:var(--red);
-    letter-spacing:2px;
+/* =========================
+   NEW: LIVE MESSAGE PANEL
+========================= */
+
+.live-message-panel{
+ margin-top:20px;
+ position:relative;
+ overflow:hidden;
+ background:
+ linear-gradient(145deg,rgba(255,23,68,.06),#0b0b0b 55%);
+ border:1px solid rgba(255,23,68,.18);
+ border-radius:18px;
+ padding:20px;
+ box-shadow:0 15px 45px rgba(0,0,0,.2)
 }
 
-.dev-header button{
-    background:#111;
-    color:#aaa;
-    border:1px solid rgba(255,255,255,.08);
-    padding:8px 12px;
-    border-radius:8px;
-    cursor:pointer;
+.live-message-panel:before{
+ content:"";
+ position:absolute;
+ width:180px;
+ height:180px;
+ border-radius:50%;
+ background:var(--red);
+ filter:blur(80px);
+ opacity:.05;
+ right:-60px;
+ top:-70px
 }
 
-.dev-output{
-    flex:1;
-    overflow:auto;
-    padding:25px 0;
-    white-space:pre-wrap;
-    line-height:1.8;
+.live-message-header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px;
+ margin-bottom:15px
 }
 
-.dev-line{
-    margin-bottom:4px;
+.live-label{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ font-size:11px;
+ font-weight:bold;
+ color:#777;
+ letter-spacing:1.5px
 }
 
-.dev-green{
-    color:var(--green);
+.live-dot{
+ width:7px;
+ height:7px;
+ border-radius:50%;
+ background:var(--red);
+ box-shadow:0 0 12px var(--red);
+ animation:statusPulse 1.5s infinite
 }
 
-.dev-red{
-    color:var(--red);
+.live-clock{
+ font-family:monospace;
+ color:#555;
+ font-size:11px
 }
 
-.dev-yellow{
-    color:var(--yellow);
+.live-message-box{
+ min-height:54px;
+ display:flex;
+ align-items:center;
+ gap:13px;
+ background:#080808;
+ border:1px solid rgba(255,255,255,.05);
+ border-radius:13px;
+ padding:15px;
+ transition:.3s
 }
 
-.dev-blue{
-    color:var(--blue);
+.live-message-icon{
+ width:38px;
+ height:38px;
+ flex:0 0 38px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ border-radius:10px;
+ background:rgba(255,23,68,.08);
+ font-size:18px
 }
 
-.dev-input-row{
-    display:flex;
-    gap:10px;
-    border-top:1px solid rgba(255,255,255,.08);
-    padding-top:15px;
+.live-message-text{
+ color:#ddd;
+ font-size:13px;
+ line-height:1.5
 }
 
-.dev-prompt{
-    color:var(--green);
+.live-message-text.typing{
+ animation:messageEnter .35s ease
 }
 
-#devInput{
-    flex:1;
-    background:transparent;
-    border:0;
-    outline:0;
-    color:white;
-    font-family:monospace;
-    font-size:14px;
+@keyframes messageEnter{
+ from{opacity:0;transform:translateY(7px)}
+ to{opacity:1;transform:translateY(0)}
 }
 
-/* SYSTEM MONITOR */
+/* =========================
+   NEW: ACTIVITY PULSE
+========================= */
 
-.monitor-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
+.activity-pulse{
+ margin-top:20px;
+ display:grid;
+ grid-template-columns:1.2fr .8fr;
+ gap:15px
 }
 
-.monitor{
-    background:#0a0a0a;
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:15px;
-    padding:20px;
+.pulse-card{
+ background:#0b0b0b;
+ border:1px solid rgba(255,255,255,.06);
+ border-radius:18px;
+ padding:22px;
+ position:relative;
+ overflow:hidden
 }
 
-.monitor small{
-    color:#666;
+.pulse-card h3{
+ margin-bottom:16px
 }
 
-.monitor strong{
-    display:block;
-    font-size:25px;
-    margin:8px 0;
+.pulse-bars{
+ height:75px;
+ display:flex;
+ align-items:flex-end;
+ gap:5px
 }
 
-.monitor-bar{
-    height:5px;
-    background:#191919;
-    border-radius:99px;
-    overflow:hidden;
+.pulse-bars i{
+ flex:1;
+ min-width:5px;
+ height:30%;
+ background:linear-gradient(to top,var(--red),var(--red2));
+ border-radius:4px 4px 1px 1px;
+ opacity:.7;
+ animation:pulseBar 1.8s infinite ease-in-out
 }
 
-.monitor-bar i{
-    display:block;
-    height:100%;
-    background:var(--red);
-    width:50%;
+.pulse-bars i:nth-child(2){animation-delay:.1s}
+.pulse-bars i:nth-child(3){animation-delay:.2s}
+.pulse-bars i:nth-child(4){animation-delay:.3s}
+.pulse-bars i:nth-child(5){animation-delay:.4s}
+.pulse-bars i:nth-child(6){animation-delay:.5s}
+.pulse-bars i:nth-child(7){animation-delay:.6s}
+.pulse-bars i:nth-child(8){animation-delay:.7s}
+.pulse-bars i:nth-child(9){animation-delay:.8s}
+.pulse-bars i:nth-child(10){animation-delay:.9s}
+.pulse-bars i:nth-child(11){animation-delay:1s}
+.pulse-bars i:nth-child(12){animation-delay:1.1s}
+
+@keyframes pulseBar{
+ 0%,100%{height:25%;opacity:.5}
+ 50%{height:85%;opacity:1}
 }
 
-/* ACHIEVEMENTS */
-
-.achievement{
-    position:relative;
+.pulse-status{
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ gap:10px
 }
 
-.locked{
-    opacity:.45;
+.pulse-status-row{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ color:#888;
+ font-size:12px
 }
 
-.achievement-icon{
-    font-size:30px;
-    margin-bottom:15px;
+.pulse-status-row strong{
+ color:white
 }
 
-/* CHANGELOG */
+/* =========================
+   NEW: FLOATING ELEMENTS
+========================= */
 
-.change{
-    border-left:2px solid var(--red);
-    padding:0 0 20px 20px;
-    margin-bottom:20px;
+.animated-floating-layer{
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ z-index:1;
+ overflow:hidden
 }
 
-.change h3{
-    margin-bottom:5px;
+.floating-emoji{
+ position:absolute;
+ bottom:-40px;
+ opacity:0;
+ font-size:15px;
+ filter:drop-shadow(0 0 8px rgba(255,23,68,.2));
+ animation:floatEmoji linear forwards
 }
 
-.change small{
-    color:var(--red);
+@keyframes floatEmoji{
+ 0%{
+  transform:translate3d(0,0,0) rotate(0deg) scale(.7);
+  opacity:0
+ }
+ 12%{opacity:.45}
+ 80%{opacity:.2}
+ 100%{
+  transform:translate3d(var(--moveX),-110vh,0) rotate(180deg) scale(1.15);
+  opacity:0
+ }
 }
 
-.change p{
-    color:#888;
-    margin-top:8px;
+.hero-stickers{
+ position:absolute;
+ inset:0;
+ pointer-events:none;
+ z-index:0
 }
 
-/* TOAST */
+.hero-sticker{
+ position:absolute;
+ padding:8px 10px;
+ border:1px solid rgba(255,23,68,.12);
+ background:rgba(10,10,10,.65);
+ backdrop-filter:blur(8px);
+ border-radius:10px;
+ font-size:13px;
+ opacity:.5;
+ animation:stickerFloat 5s infinite ease-in-out
+}
+
+.hero-sticker.one{
+ top:12%;
+ left:0;
+ animation-delay:.2s
+}
+
+.hero-sticker.two{
+ right:0;
+ top:35%;
+ animation-delay:1s
+}
+
+.hero-sticker.three{
+ right:8%;
+ bottom:5%;
+ animation-delay:2s
+}
+
+@keyframes stickerFloat{
+ 0%,100%{transform:translateY(0) rotate(0deg)}
+ 50%{transform:translateY(-9px) rotate(2deg)}
+}
+
+/* =========================
+   NEW: WELCOME POPUP
+========================= */
+
+.welcome-popup{
+ position:fixed;
+ left:50%;
+ bottom:30px;
+ transform:translate(-50%,30px);
+ z-index:12000;
+ width:min(440px,calc(100% - 30px));
+ background:rgba(12,12,12,.94);
+ border:1px solid var(--border);
+ border-radius:16px;
+ padding:16px;
+ box-shadow:0 20px 60px rgba(0,0,0,.45);
+ backdrop-filter:blur(20px);
+ opacity:0;
+ pointer-events:none;
+ transition:.5s
+}
+
+.welcome-popup.show{
+ opacity:1;
+ transform:translate(-50%,0)
+}
+
+.welcome-inner{
+ display:flex;
+ align-items:center;
+ gap:13px
+}
+
+.welcome-icon{
+ width:42px;
+ height:42px;
+ border-radius:12px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:rgba(255,23,68,.1);
+ font-size:20px
+}
+
+.welcome-text strong{
+ display:block;
+ margin-bottom:3px
+}
+
+.welcome-text span{
+ color:#777;
+ font-size:12px
+}
+
+/* =========================
+   NEW: MICRO STATUS
+========================= */
+
+.micro-status{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ margin-top:15px;
+ color:#666;
+ font-size:11px
+}
+
+.micro-status .micro-dot{
+ width:6px;
+ height:6px;
+ border-radius:50%;
+ background:var(--green);
+ box-shadow:0 0 10px var(--green)
+}
+
+/* =========================
+   TOAST
+========================= */
 
 #toast{
-    position:fixed;
-    bottom:25px;
-    left:50%;
-    transform:translate(-50%,20px);
-    opacity:0;
-    z-index:11000;
-    background:#111;
-    border:1px solid var(--border);
-    padding:12px 17px;
-    border-radius:10px;
-    color:white;
-    transition:.25s;
-    pointer-events:none;
+ position:fixed;
+ bottom:25px;
+ left:50%;
+ transform:translate(-50%,20px);
+ opacity:0;
+ z-index:11000;
+ background:#111;
+ border:1px solid var(--border);
+ padding:12px 17px;
+ border-radius:10px;
+ color:white;
+ transition:.25s;
+ pointer-events:none
 }
 
 #toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
+ opacity:1;
+ transform:translate(-50%,0)
 }
-
-/* TOP BUTTON */
 
 #topButton{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    width:42px;
-    height:42px;
-    border:1px solid var(--border);
-    background:#0d0d0d;
-    color:white;
-    border-radius:10px;
-    cursor:pointer;
-    display:none;
-    z-index:4000;
+ position:fixed;
+ right:25px;
+ bottom:25px;
+ width:42px;
+ height:42px;
+ border:1px solid var(--border);
+ background:#0d0d0d;
+ color:white;
+ border-radius:10px;
+ display:none;
+ z-index:4000;
+ transition:.25s
 }
 
-/* REVEAL */
+#topButton:hover{
+ transform:translateY(-4px);
+ background:#151515
+}
 
 .reveal{
-    opacity:0;
-    transform:translateY(25px);
-    transition:.7s;
+ opacity:0;
+ transform:translateY(25px);
+ transition:.7s
 }
 
 .reveal.visible{
-    opacity:1;
-    transform:translateY(0);
+ opacity:1;
+ transform:translateY(0)
 }
-
-/* FOOTER */
 
 footer{
-    padding:30px 7%;
-    border-top:1px solid rgba(255,255,255,.05);
-    color:#666;
-    text-align:center;
-    font-size:12px;
+ padding:30px 7%;
+ border-top:1px solid rgba(255,255,255,.05);
+ color:#666;
+ text-align:center;
+ font-size:12px
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:900px){
+ nav{padding:0 4%}
 
-    nav{
-        padding:0 4%;
-    }
+ .nav-links{
+  position:absolute;
+  top:72px;
+  left:0;
+  right:0;
+  background:#080808;
+  display:none;
+  flex-direction:column;
+  padding:12px;
+  border-bottom:1px solid rgba(255,255,255,.07)
+ }
 
-    .nav-links{
-        position:absolute;
-        top:72px;
-        left:0;
-        right:0;
-        background:#080808;
-        display:none;
-        flex-direction:column;
-        padding:12px;
-        border-bottom:1px solid rgba(255,255,255,.07);
-    }
+ .nav-links.active{display:flex}
 
-    .nav-links.active{
-        display:flex;
-    }
+ .nav-link{
+  width:100%;
+  text-align:left
+ }
 
-    .nav-link{
-        width:100%;
-        text-align:left;
-    }
+ .menu-btn{display:block}
 
-    .menu-btn{
-        display:block;
-    }
+ .hero{
+  grid-template-columns:1fr;
+  padding-top:120px
+ }
 
-    .hero{
-        grid-template-columns:1fr;
-        padding-top:120px;
-    }
+ .stats{
+  grid-template-columns:1fr 1fr
+ }
 
-    .hero h1{
-        letter-spacing:-3px;
-    }
+ .dashboard,
+ ..about-grid,
+ .contact-grid{
+  grid-template-columns:1fr
+ }
 
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
+ .cards{
+  grid-template-columns:1fr 1fr
+ }
 
-    .dashboard,
-    .about-grid,
-    .contact-grid{
-        grid-template-columns:1fr;
-    }
+ .monitor-grid{
+  grid-template-columns:1fr 1fr
+ }
 
-    .cards{
-        grid-template-columns:1fr 1fr;
-    }
+ .activity-pulse{
+  grid-template-columns:1fr
+ }
 
-    .monitor-grid{
-        grid-template-columns:1fr 1fr;
-    }
+ .hero-stickers{
+  display:none
+ }
 }
 
 @media(max-width:600px){
+ .page{
+  padding:105px 5% 60px
+ }
 
-    .page{
-        padding:105px 5% 60px;
-    }
+ .hero{
+  min-height:auto;
+  padding-top:110px
+ }
 
-    .hero{
-        min-height:auto;
-        padding-top:110px;
-    }
+ .hero h1{
+  font-size:52px;
+  letter-spacing:-3px
+ }
 
-    .hero h1{
-        font-size:52px;
-    }
+ .hero-description{
+  font-size:15px
+ }
 
-    .hero-description{
-        font-size:15px;
-    }
+ .cards{
+  grid-template-columns:1fr
+ }
 
-    .cards{
-        grid-template-columns:1fr;
-    }
+ .server-info{
+  grid-template-columns:1fr
+ }
 
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
+ .explorer-body{
+  grid-template-columns:1fr
+ }
 
-    .server-info{
-        grid-template-columns:1fr;
-    }
+ .file-list{
+  border-right:0;
+  border-bottom:1px solid rgba(255,255,255,.06)
+ }
 
-    .discord-body{
-        grid-template-columns:100px 1fr;
-    }
+ #cursorGlow{
+  display:none
+ }
 
-    .explorer-body{
-        grid-template-columns:1fr;
-    }
+ .theme-grid{
+  grid-template-columns:1fr 1fr
+ }
 
-    .file-list{
-        border-right:0;
-        border-bottom:1px solid rgba(255,255,255,.06);
-    }
+ .live-message-header{
+  align-items:flex-start;
+  flex-direction:column;
+  gap:7px
+ }
 
-    .monitor-grid{
-        grid-template-columns:1fr 1fr;
-    }
+ .live-message-box{
+  align-items:flex-start
+ }
 
-    #cursorGlow{
-        display:none;
-    }
+ .live-message-icon{
+  width:34px;
+  height:34px;
+  flex-basis:34px
+ }
+
+ .pulse-bars{
+  height:60px
+ }
+
+ .welcome-popup{
+  bottom:18px
+ }
+
+ #topButton{
+  right:15px;
+  bottom:15px
+ }
+}
+
+@media(prefers-reduced-motion:reduce){
+ *,
+ *:before,
+ *:after{
+  animation-duration:.01ms!important;
+  animation-iteration-count:1!important;
+  scroll-behavior:auto!important;
+  transition-duration:.01ms!important
+ }
+
+ .animated-floating-layer{
+  display:none
+ }
 }
 </style>
 </head>
@@ -1543,2774 +1862,2713 @@ footer{
 <div id="scrollProgress"></div>
 
 <div class="background">
-    <div class="grid-bg"></div>
-    <div class="glow one"></div>
-    <div class="glow two"></div>
-    <div class="orb one"></div>
-    <div class="orb two"></div>
+ <div class="grid-bg"></div>
+ <div class="glow one"></div>
+ <div class="glow two"></div>
+ <div class="orb one"></div>
+ <div class="orb two"></div>
 </div>
 
 <div id="cursorGlow"></div>
 
-<!-- NAVBAR -->
+<div class="animated-floating-layer" id="floatingLayer"></div>
 
 <nav>
+ <div class="logo">
+  <div class="profile-img">?</div>
+  <span>RYAN.M</span>
+ </div>
 
-    <div class="logo">
-        <div class="profile-img">?</div>
-        <span>RYAN.M</span>
-    </div>
+ <div class="nav-links" id="navLinks">
+  <button class="nav-link active" onclick="abrir('inicio',this)">Inicio</button>
+  <button class="nav-link" onclick="abrir('sobre',this)">Sobre mí</button>
+  <button class="nav-link" onclick="abrir('servidores',this)">Servidores</button>
+  <button class="nav-link" onclick="abrir('servicios',this)">Servicios</button>
+  <button class="nav-link" onclick="abrir('habilidades',this)">Habilidades</button>
+  <button class="nav-link" onclick="abrir('proyectos',this)">Proyectos</button>
+  <button class="nav-link" onclick="abrir('experiencia',this)">Experiencia</button>
+  <button class="nav-link" onclick="abrir('metas',this)">Metas</button>
+  <button class="nav-link" onclick="abrir('contacto',this)">Contacto</button>
+ </div>
 
-    <div class="nav-links" id="navLinks">
-
-        <button class="nav-link active" onclick="abrir('inicio',this)">Inicio</button>
-        <button class="nav-link" onclick="abrir('sobre',this)">Sobre mí</button>
-        <button class="nav-link" onclick="abrir('servidores',this)">Servidores</button>
-        <button class="nav-link" onclick="abrir('servicios',this)">Servicios</button>
-        <button class="nav-link" onclick="abrir('habilidades',this)">Habilidades</button>
-        <button class="nav-link" onclick="abrir('proyectos',this)">Proyectos</button>
-        <button class="nav-link" onclick="abrir('experiencia',this)">Experiencia</button>
-        <button class="nav-link" onclick="abrir('metas',this)">Metas</button>
-        <button class="nav-link" onclick="abrir('contacto',this)">Contacto</button>
-
-    </div>
-
-    <div class="nav-actions">
-
-        <button class="icon-btn" onclick="abrirBusqueda()" title="Buscar">⌕</button>
-
-        <button class="icon-btn" onclick="cambiarTema()" title="Cambiar tema">◐</button>
-
-        <button class="icon-btn" onclick="activarDevMode()" title="Developer Mode">
-            &lt;/&gt;
-        </button>
-
-        <button class="icon-btn menu-btn" onclick="toggleMenu()">☰</button>
-
-    </div>
-
+ <div class="nav-actions">
+  <button class="icon-btn" onclick="abrirBusqueda()" title="Buscar">⌕</button>
+  <button class="icon-btn" onclick="abrirTemas()" title="Temas">◐</button>
+  <button class="icon-btn menu-btn" onclick="toggleMenu()">☰</button>
+ </div>
 </nav>
 
-
-<!-- INICIO -->
-
 <section class="page active" id="inicio">
-
 <div class="container">
 
-<div class="hero">
+ <div class="hero">
+
+  <div class="hero-stickers">
+   <div class="hero-sticker one">✨ ONLINE</div>
+   <div class="hero-sticker two">⚡ RYAN.DEV</div>
+   <div class="hero-sticker three">🚀 BUILDING</div>
+  </div>
+
+  <div class="reveal">
+   <div class="hero-tag">PORTAFOLIO PERSONAL • 2026</div>
+
+   <h1>
+    Construyendo<br>
+    <span>ideas digitales.</span>
+   </h1>
+
+   <p class="hero-description">
+    Soy Ryan Méndez. Me interesa la programación, las comunidades,
+    Minecraft, Discord y el desarrollo de proyectos digitales.
+    Actualmente sigo aprendiendo y construyendo nuevos sistemas.
+   </p>
+
+   <div class="hero-buttons">
+    <button class="btn btn-primary" onclick="abrir('proyectos')">Ver proyectos →</button>
+    <button class="btn btn-secondary" onclick="abrir('contacto')">Contactar</button>
+    <button class="btn btn-secondary" onclick="compartir()">Compartir</button>
+   </div>
+
+   <div class="badges">
+    <div class="badge">Discord</div>
+    <div class="badge">Minecraft</div>
+    <div class="badge">Desarrollo web</div>
+    <div class="badge">Configuración</div>
+   </div>
+
+   <div class="micro-status">
+    <div class="micro-dot"></div>
+    Sistema operativo • RYAN.DEV
+   </div>
+  </div>
+
+  <div class="command-center reveal">
+
+   <div class="command-head">
+    <strong>COMMAND CENTER</strong>
+
+    <div class="status">
+     <div class="status-dot"></div>
+     <span id="estadoGlobal">ONLINE</span>
+    </div>
+   </div>
+
+   <div class="command-grid">
+    <div class="command-item">
+     <small>Role</small>
+     <strong>Developer</strong>
+    </div>
+
+    <div class="command-item">
+     <small>Focus</small>
+     <strong>Digital Projects</strong>
+    </div>
+
+    <div class="command-item">
+     <small>Country</small>
+     <strong>Argentina 🇦🇷</strong>
+    </div>
+
+    <div class="command-item">
+     <small>Version</small>
+     <strong>RYAN.DEV 2026</strong>
+    </div>
+   </div>
+
+   <div class="stats">
+    <div class="stat">
+     <strong data-target="5">0+</strong>
+     <span>Proyectos</span>
+    </div>
+
+    <div class="stat">
+     <strong data-target="3">0+</strong>
+     <span>Sistemas</span>
+    </div>
+
+    <div class="stat">
+     <strong data-target="5">0+</strong>
+     <span>Servicios</span>
+    </div>
+
+    <div class="stat">
+     <strong data-target="2">0+</strong>
+     <span>Metas</span>
+    </div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="dashboard reveal">
+
+  <div class="panel">
+   <h3>Estado actual</h3>
+
+   <ul class="activity-list">
+    <li>🟢 Aprendiendo programación</li>
+    <li>🔴 Mejorando desarrollo web</li>
+    <li>🟢 Trabajando en nuevos proyectos</li>
+    <li>🟡 Explorando nuevas tecnologías</li>
+   </ul>
+  </div>
 
-<div class="reveal">
+  <div class="panel">
+   <h3>Currently Working On</h3>
 
-<div class="hero-tag">
-PORTAFOLIO PERSONAL • 2026
-</div>
+   <div class="progress-row">
+    <div class="progress-label">
+     <span>Desarrollo web</span>
+     <span>75%</span>
+    </div>
 
-<h1>
-Construyendo<br>
-<span>ideas digitales.</span>
-</h1>
+    <div class="progress">
+     <i style="width:75%"></i>
+    </div>
+   </div>
 
-<p class="hero-description">
-Soy Ryan Méndez. Me interesa la programación, las comunidades,
-Minecraft, Discord y el desarrollo de proyectos digitales.
-Actualmente sigo aprendiendo y construyendo nuevos sistemas.
-</p>
+   <div class="progress-row">
+    <div class="progress-label">
+     <span>Programación</span>
+     <span>60%</span>
+    </div>
 
-<div class="hero-buttons">
+    <div class="progress">
+     <i style="width:60%"></i>
+    </div>
+   </div>
 
-<button class="btn btn-primary" onclick="abrir('proyectos')">
-Ver proyectos →
-</button>
+   <div class="progress-row">
+    <div class="progress-label">
+     <span>Nuevos proyectos</span>
+     <span>45%</span>
+    </div>
 
-<button class="btn btn-secondary" onclick="abrir('contacto')">
-Contactar
-</button>
+    <div class="progress">
+     <i style="width:45%"></i>
+    </div>
+   </div>
+  </div>
 
-</div>
+ </div>
 
-<div class="badges">
+ <div class="live-message-panel reveal">
 
-<div class="badge">Discord</div>
-<div class="badge">Minecraft</div>
-<div class="badge">Desarrollo web</div>
-<div class="badge">Configuración</div>
+  <div class="live-message-header">
+   <div class="live-label">
+    <div class="live-dot"></div>
+    LIVE MESSAGES
+   </div>
 
-</div>
+   <div class="live-clock" id="liveClock">00:00:00</div>
+  </div>
 
-</div>
+  <div class="live-message-box">
+   <div class="live-message-icon" id="liveMessageIcon">👋</div>
 
+   <div class="live-message-text typing" id="liveMessageText">
+    ¡Bienvenido a mi portafolio!
+   </div>
+  </div>
+
+ </div>
 
-<div class="command-center reveal">
+ <div class="activity-pulse reveal">
+
+  <div class="pulse-card">
+   <h3>Activity Pulse</h3>
 
-<div class="command-head">
-
-<strong>COMMAND CENTER</strong>
-
-<div class="status">
-<div class="status-dot"></div>
-ONLINE
-</div>
-
-</div>
-
-<div class="command-grid">
-
-<div class="command-item">
-<small>Role</small>
-<strong>Developer</strong>
-</div>
-
-<div class="command-item">
-<small>Focus</small>
-<strong>Digital Projects</strong>
-</div>
-
-<div class="command-item">
-<small>Country</small>
-<strong>Argentina 🇦🇷</strong>
-</div>
-
-<div class="command-item">
-<small>Version</small>
-<strong>RYAN.DEV 2026</strong>
-</div>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<strong data-target="5">0+</strong>
-<span>Proyectos</span>
-</div>
-
-<div class="stat">
-<strong data-target="3">0+</strong>
-<span>Sistemas</span>
-</div>
-
-<div class="stat">
-<strong data-target="5">0+</strong>
-<span>Servicios</span>
-</div>
-
-<div class="stat">
-<strong data-target="2">0+</strong>
-<span>Metas</span>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="dashboard reveal">
-
-<div class="panel">
-
-<h3>Estado actual</h3>
-
-<ul class="activity-list">
-
-<li>🟢 Aprendiendo programación</li>
-<li>🔴 Mejorando desarrollo web</li>
-<li>🟢 Trabajando en nuevos proyectos</li>
-<li>🟡 Explorando nuevas tecnologías</li>
-
-</ul>
-
-</div>
-
-
-<div class="panel">
-
-<h3>Currently Working On</h3>
-
-<div class="progress-row">
-
-<div class="progress-label">
-<span>Desarrollo web</span>
-<span>75%</span>
-</div>
-
-<div class="progress">
-<i style="width:75%"></i>
-</div>
-
-</div>
-
-<div class="progress-row">
-
-<div class="progress-label">
-<span>Programación</span>
-<span>60%</span>
-</div>
-
-<div class="progress">
-<i style="width:60%"></i>
-</div>
-
-</div>
-
-<div class="progress-row">
-
-<div class="progress-label">
-<span>Nuevos proyectos</span>
-<span>45%</span>
-</div>
-
-<div class="progress">
-<i style="width:45%"></i>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- SYSTEM MONITOR -->
-
-<div class="panel reveal" style="margin-top:20px">
-
-<h3>System Monitor</h3>
-
-<div class="monitor-grid">
-
-<div class="monitor">
-
-<small>CPU</small>
-<strong id="cpuValue">72%</strong>
-
-<div class="monitor-bar">
-<i id="cpuBar" style="width:72%"></i>
-</div>
-
-</div>
-
-<div class="monitor">
-
-<small>MEMORY</small>
-<strong id="memoryValue">48%</strong>
-
-<div class="monitor-bar">
-<i id="memoryBar" style="width:48%"></i>
-</div>
-
-</div>
-
-<div class="monitor">
-
-<small>PROJECTS</small>
-<strong>5+</strong>
-
-<div class="monitor-bar">
-<i style="width:90%"></i>
-</div>
-
-</div>
-
-<div class="monitor">
-
-<small>STATUS</small>
-<strong class="term-green">ONLINE</strong>
-
-<div class="monitor-bar">
-<i style="width:100%"></i>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ACTIVITY -->
-
-<div class="panel reveal" style="margin-top:20px">
-
-<h3>Activity Feed</h3>
-
-<ul class="activity-list">
-
-<li>🟢 Portfolio initialized successfully</li>
-<li>⚙️ Developer Mode available</li>
-<li>🌐 Web development in progress</li>
-<li>📱 Mobile interface optimized</li>
-<li>🚀 New projects planned</li>
-
-</ul>
-
-</div>
-
-
-<!-- DISCORD VISUAL -->
-
-<div class="discord-demo reveal">
-
-<div class="discord-top">
-# portfolio-community
-</div>
-
-<div class="discord-body">
-
-<div class="discord-sidebar">
-
-<p>GENERAL</p>
-
-<div class="discord-channel active">
-# general
-</div>
-
-<div class="discord-channel">
-# proyectos
-</div>
-
-<div class="discord-channel">
-# ideas
-</div>
-
-</div>
-
-<div class="discord-chat">
-
-<div class="message">
-<b>Ryan</b> <span>Hoy</span>
-<p>Construyendo nuevos proyectos.</p>
-</div>
-
-<div class="message">
-<b>System</b> <span>Hoy</span>
-<p>Portfolio status: ONLINE</p>
-</div>
+   <div class="pulse-bars">
+    <i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i>
+   </div>
+  </div>
+
+  <div class="pulse-card pulse-status">
+
+   <div class="pulse-status-row">
+    <span>Frontend</span>
+    <strong>ONLINE</strong>
+   </div>
+
+   <div class="pulse-status-row">
+    <span>Projects</span>
+    <strong>ACTIVE</strong>
+   </div>
+
+   <div class="pulse-status-row">
+    <span>System</span>
+    <strong>STABLE</strong>
+   </div>
+
+  </div>
+
+ </div>
+
+ <div class="panel reveal" style="margin-top:20px">
+
+  <h3>System Monitor</h3>
+
+  <div class="monitor-grid">
+
+   <div class="monitor">
+    <small>CPU</small>
+    <strong id="cpuValue">72%</strong>
+
+    <div class="monitor-bar">
+     <i id="cpuBar" style="width:72%"></i>
+    </div>
+   </div>
+
+   <div class="monitor">
+    <small>MEMORY</small>
+    <strong id="memoryValue">48%</strong>
+
+    <div class="monitor-bar">
+     <i id="memoryBar" style="width:48%"></i>
+    </div>
+   </div>
+
+   <div class="monitor">
+    <small>PROJECTS</small>
+    <strong>5+</strong>
+
+    <div class="monitor-bar">
+     <i style="width:90%"></i>
+    </div>
+   </div>
+
+   <div class="monitor">
+    <small>STATUS</small>
+    <strong class="term-green">ONLINE</strong>
+
+    <div class="monitor-bar">
+     <i style="width:100%"></i>
+    </div>
+   </div>
+
+  </div>
+ </div>
+
+ <div class="panel reveal" style="margin-top:20px">
+
+  <h3>Perfil de progreso</h3>
+
+  <div class="progress-row">
+   <div class="progress-label">
+    <span>Experiencia general</span>
+    <span>65%</span>
+   </div>
+
+   <div class="progress">
+    <i style="width:65%"></i>
+   </div>
+  </div>
+
+  <div class="progress-row">
+   <div class="progress-label">
+    <span>Aprendizaje</span>
+    <span>80%</span>
+   </div>
+
+   <div class="progress">
+    <i style="width:80%"></i>
+   </div>
+  </div>
+
+  <div class="progress-row">
+   <div class="progress-label">
+    <span>Proyectos</span>
+    <span>70%</span>
+   </div>
+
+   <div class="progress">
+    <i style="width:70%"></i>
+   </div>
+  </div>
+
+ </div>
 
 </div>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- SOBRE -->
 
 <section class="page" id="sobre">
-
 <div class="container">
 
-<div class="section-title reveal">
+ <div class="section-title reveal">
+  <span>01 / PROFILE</span>
+  <h2>Sobre mí</h2>
+  <p>Una pequeña introducción.</p>
+ </div>
 
-<span>01 / PROFILE</span>
+ <div class="about-grid">
 
-<h2>Sobre mí</h2>
+  <div class="about-profile reveal">
+   <div class="big-avatar">?</div>
+   <h3>Ryan Méndez</h3>
+   <p>16 años • Argentina 🇦🇷</p>
+  </div>
 
-<p>Una pequeña introducción.</p>
+  <div class="about-content">
 
-</div>
+   <div class="info-box reveal">
+    <h3>Programación</h3>
+    <p>
+     Me interesa aprender programación y utilizarla para crear proyectos
+     útiles, sistemas digitales y herramientas.
+    </p>
+   </div>
 
-<div class="about-grid">
+   <div class="info-box reveal">
+    <h3>Comunidades</h3>
+    <p>
+     También tengo interés en la administración y configuración
+     de comunidades digitales.
+    </p>
+   </div>
 
-<div class="about-profile reveal">
+   <div class="info-box reveal">
+    <h3>Objetivo</h3>
+    <p>
+     Seguir aprendiendo, mejorar mis conocimientos y construir
+     proyectos cada vez más completos.
+    </p>
+   </div>
 
-<div class="big-avatar">?</div>
-
-<h3>Ryan Méndez</h3>
-
-<p>16 años • Argentina 🇦🇷</p>
-
-</div>
-
-<div class="about-content">
-
-<div class="info-box reveal">
-
-<h3>Programación</h3>
-
-<p>
-Me interesa aprender programación y utilizarla para
-crear proyectos útiles, sistemas digitales y herramientas.
-</p>
-
-</div>
-
-<div class="info-box reveal">
-
-<h3>Comunidades</h3>
-
-<p>
-También tengo interés en la administración y configuración
-de comunidades digitales.
-</p>
-
-</div>
-
-<div class="info-box reveal">
-
-<h3>Objetivo</h3>
-
-<p>
-Seguir aprendiendo, mejorar mis conocimientos y construir
-proyectos cada vez más completos.
-</p>
+  </div>
+ </div>
 
 </div>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- SERVIDORES -->
 
 <section class="page" id="servidores">
-
 <div class="container">
 
-<div class="section-title reveal">
+ <div class="section-title reveal">
+  <span>02 / SERVERS</span>
+  <h2>Servidores</h2>
+  <p>Información del servidor.</p>
+ </div>
 
-<span>02 / SERVERS</span>
+ <div class="server-card reveal">
 
-<h2>Servidores</h2>
+  <div class="server-header">
 
-<p>Información del servidor.</p>
+   <div class="server-title">
+    <h3>SylenMC</h3>
+    <p>Head.Manager</p>
+   </div>
 
-</div>
+   <div class="server-status">● ONLINE</div>
 
-<div class="server-card reveal">
+  </div>
 
-<div class="server-header">
+  <div class="server-buttons">
+   <button class="btn btn-primary" onclick="mostrarServer('bedrock')">
+    Bedrock
+   </button>
 
-<div class="server-title">
+   <button class="btn btn-secondary" onclick="mostrarServer('java')">
+    Java
+   </button>
+  </div>
 
-<h3>SylenMC</h3>
+  <div class="server-info" id="serverInfo">
 
-<p>Head.Manager</p>
+   <div>
+    <small>IP</small>
 
-</div>
+    <div class="copy-line">
+     <strong>sylenmc.diavlohosting.com</strong>
+     <button class="icon-btn" onclick="copiar('sylenmc.diavlohosting.com')">
+      ⧉
+     </button>
+    </div>
+   </div>
 
-<div class="server-status">
-● ONLINE
-</div>
+   <div>
+    <small>PORT</small>
 
-</div>
+    <div class="copy-line">
+     <strong>19016</strong>
 
-<div class="server-buttons">
+     <button class="icon-btn" onclick="copiar('19016')">
+      ⧉
+     </button>
+    </div>
+   </div>
 
-<button class="btn btn-primary" onclick="mostrarServer('bedrock')">
-Bedrock
-</button>
-
-<button class="btn btn-secondary" onclick="mostrarServer('java')">
-Java
-</button>
-
-</div>
-
-<div class="server-info" id="serverInfo">
-
-<div>
-
-<small>IP</small>
-
-<div class="copy-line">
-
-<strong>sylenmc.diavlohosting.com</strong>
-
-<button class="icon-btn"
-onclick="copiar('sylenmc.diavlohosting.com')">
-⧉
-</button>
-
-</div>
-
-</div>
-
-<div>
-
-<small>PORT</small>
-
-<div class="copy-line">
-
-<strong>19016</strong>
-
-<button class="icon-btn"
-onclick="copiar('19016')">
-⧉
-</button>
+  </div>
+ </div>
 
 </div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- SERVICIOS -->
 
 <section class="page" id="servicios">
-
 <div class="container">
 
-<div class="section-title reveal">
+ <div class="section-title reveal">
+  <span>03 / SERVICES</span>
+  <h2>Servicios</h2>
+  <p>Áreas en las que trabajo.</p>
+ </div>
 
-<span>03 / SERVICES</span>
+ <div class="cards">
 
-<h2>Servicios</h2>
+  <div class="card clickable reveal" onclick="abrirServicio('discord')">
+   <div class="card-icon">01</div>
+   <h3>Bots de Discord</h3>
+   <p>Desarrollo y configuración de sistemas personalizados.</p>
+  </div>
 
-<p>Áreas en las que trabajo.</p>
+  <div class="card clickable reveal" onclick="abrirServicio('config')">
+   <div class="card-icon">02</div>
+   <h3>Configuración completa</h3>
+   <p>Configuración de comunidades y sistemas.</p>
+  </div>
+
+  <div class="card clickable reveal" onclick="abrirServicio('tickets')">
+   <div class="card-icon">03</div>
+   <h3>Tickets</h3>
+   <p>Sistemas de atención y soporte.</p>
+  </div>
+
+  <div class="card clickable reveal" onclick="abrirServicio('moderacion')">
+   <div class="card-icon">04</div>
+   <h3>Moderación</h3>
+   <p>Organización y herramientas para comunidades.</p>
+  </div>
+
+  <div class="card clickable reveal" onclick="abrirServicio('roles')">
+   <div class="card-icon">05</div>
+   <h3>Roles y permisos</h3>
+   <p>Estructuración de permisos y jerarquías.</p>
+  </div>
+
+  <div class="card clickable reveal" onclick="abrirServicio('logs')">
+   <div class="card-icon">06</div>
+   <h3>Logs y registros</h3>
+   <p>Sistemas de seguimiento y registros.</p>
+  </div>
+
+  <div class="card clickable reveal" onclick="abrirServicio('economia')">
+   <div class="card-icon">07</div>
+   <h3>Economía virtual</h3>
+   <p>Sistemas económicos para comunidades.</p>
+  </div>
+
+  <div class="card clickable reveal" onclick="abrirServicio('personalizacion')">
+   <div class="card-icon">08</div>
+   <h3>Personalización</h3>
+   <p>Adaptación de sistemas a necesidades concretas.</p>
+  </div>
+
+  <div class="card clickable reveal" onclick="abrirServicio('web')">
+   <div class="card-icon">09</div>
+   <h3>Desarrollo web</h3>
+   <p>Creación de páginas y proyectos web.</p>
+  </div>
+
+ </div>
+
+ <div class="panel reveal" style="margin-top:25px">
+
+  <h3>Showcase de configuraciones</h3>
+
+  <p style="color:#888;line-height:1.7">
+   Ejemplos de áreas que pueden organizarse y personalizarse
+   según cada proyecto.
+  </p>
+
+  <div class="cards" style="margin-top:20px">
+
+   <div class="card">
+    <div class="card-icon">A</div>
+    <h3>Estructura</h3>
+    <p>Canales, categorías y organización general.</p>
+   </div>
+
+   <div class="card">
+    <div class="card-icon">B</div>
+    <h3>Permisos</h3>
+    <p>Roles, jerarquías y acceso a diferentes áreas.</p>
+   </div>
+
+   <div class="card">
+    <div class="card-icon">C</div>
+    <h3>Diseño</h3>
+    <p>Personalización visual y adaptación del proyecto.</p>
+   </div>
+
+  </div>
+
+ </div>
 
 </div>
-
-<div class="cards">
-
-<div class="card clickable reveal" onclick="abrirServicio('discord')">
-<div class="card-icon">01</div>
-<h3>Bots de Discord</h3>
-<p>Desarrollo y configuración de sistemas personalizados.</p>
-</div>
-
-<div class="card clickable reveal" onclick="abrirServicio('config')">
-<div class="card-icon">02</div>
-<h3>Configuración completa</h3>
-<p>Configuración de comunidades y sistemas.</p>
-</div>
-
-<div class="card clickable reveal" onclick="abrirServicio('tickets')">
-<div class="card-icon">03</div>
-<h3>Tickets</h3>
-<p>Sistemas de atención y soporte.</p>
-</div>
-
-<div class="card clickable reveal" onclick="abrirServicio('moderacion')">
-<div class="card-icon">04</div>
-<h3>Moderación</h3>
-<p>Organización y herramientas para comunidades.</p>
-</div>
-
-<div class="card clickable reveal" onclick="abrirServicio('roles')">
-<div class="card-icon">05</div>
-<h3>Roles y permisos</h3>
-<p>Estructuración de permisos y jerarquías.</p>
-</div>
-
-<div class="card clickable reveal" onclick="abrirServicio('logs')">
-<div class="card-icon">06</div>
-<h3>Logs y registros</h3>
-<p>Sistemas de seguimiento y registros.</p>
-</div>
-
-<div class="card clickable reveal" onclick="abrirServicio('economia')">
-<div class="card-icon">07</div>
-<h3>Economía virtual</h3>
-<p>Sistemas económicos para comunidades.</p>
-</div>
-
-<div class="card clickable reveal" onclick="abrirServicio('personalizacion')">
-<div class="card-icon">08</div>
-<h3>Personalización</h3>
-<p>Adaptación de sistemas a necesidades concretas.</p>
-</div>
-
-<div class="card clickable reveal" onclick="abrirServicio('web')">
-<div class="card-icon">09</div>
-<h3>Desarrollo web</h3>
-<p>Creación de páginas y proyectos web.</p>
-</div>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- HABILIDADES -->
 
 <section class="page" id="habilidades">
-
 <div class="container">
 
-<div class="section-title reveal">
+ <div class="section-title reveal">
+  <span>04 / SKILLS</span>
+  <h2>Habilidades</h2>
+  <p>Mi progreso actual.</p>
+ </div>
 
-<span>04 / SKILLS</span>
+ <div class="cards">
 
-<h2>Habilidades</h2>
+  <div class="skill-card reveal">
+   <div class="skill-top">
+    <strong>Configuración de Discord</strong>
+    <span>Avanzando</span>
+   </div>
 
-<p>Mi progreso actual.</p>
+   <div class="progress">
+    <i style="width:80%"></i>
+   </div>
+  </div>
 
-</div>
+  <div class="skill-card reveal">
+   <div class="skill-top">
+    <strong>Bots de Discord</strong>
+    <span>Intermedio</span>
+   </div>
 
-<div class="cards">
+   <div class="progress">
+    <i style="width:65%"></i>
+   </div>
+  </div>
 
-<div class="skill-card reveal">
+  <div class="skill-card reveal">
+   <div class="skill-top">
+    <strong>Comunidades</strong>
+    <span>Avanzando</span>
+   </div>
 
-<div class="skill-top">
-<strong>Configuración de Discord</strong>
-<span>Avanzando</span>
-</div>
+   <div class="progress">
+    <i style="width:78%"></i>
+   </div>
+  </div>
 
-<div class="progress">
-<i style="width:80%"></i>
-</div>
+  <div class="skill-card reveal">
+   <div class="skill-top">
+    <strong>JavaScript</strong>
+    <span>Aprendiendo</span>
+   </div>
 
-</div>
+   <div class="progress">
+    <i style="width:50%"></i>
+   </div>
+  </div>
 
-<div class="skill-card reveal">
+  <div class="skill-card reveal">
+   <div class="skill-top">
+    <strong>Desarrollo web</strong>
+    <span>Aprendiendo</span>
+   </div>
 
-<div class="skill-top">
-<strong>Bots de Discord</strong>
-<span>Intermedio</span>
-</div>
+   <div class="progress">
+    <i style="width:55%"></i>
+   </div>
+  </div>
 
-<div class="progress">
-<i style="width:65%"></i>
-</div>
+  <div class="skill-card reveal">
+   <div class="skill-top">
+    <strong>Resolución de problemas</strong>
+    <span>En desarrollo</span>
+   </div>
 
-</div>
+   <div class="progress">
+    <i style="width:60%"></i>
+   </div>
+  </div>
 
-<div class="skill-card reveal">
+ </div>
 
-<div class="skill-top">
-<strong>Comunidades</strong>
-<span>Avanzando</span>
-</div>
+ <div class="panel reveal" style="margin-top:20px">
+  <h3>Technologies</h3>
 
-<div class="progress">
-<i style="width:78%"></i>
-</div>
+  <div class="techs">
+   <div class="tech">JavaScript</div>
+   <div class="tech">Node.js</div>
+   <div class="tech">Discord.js</div>
+   <div class="tech">HTML / CSS</div>
+   <div class="tech">Netlify</div>
+  </div>
+ </div>
 
-</div>
+ <div class="panel reveal" style="margin-top:20px">
 
-<div class="skill-card reveal">
+  <h3>Skills Dashboard 2.0</h3>
 
-<div class="skill-top">
-<strong>JavaScript</strong>
-<span>Aprendiendo</span>
-</div>
+  <p style="color:#888;line-height:1.7">
+   Las habilidades se encuentran en evolución constante.
+   El progreso mostrado es una referencia personal y no una certificación.
+  </p>
 
-<div class="progress">
-<i style="width:50%"></i>
-</div>
-
-</div>
-
-<div class="skill-card reveal">
-
-<div class="skill-top">
-<strong>Desarrollo web</strong>
-<span>Aprendiendo</span>
-</div>
-
-<div class="progress">
-<i style="width:55%"></i>
-</div>
-
-</div>
-
-<div class="skill-card reveal">
-
-<div class="skill-top">
-<strong>Resolución de problemas</strong>
-<span>En desarrollo</span>
-</div>
-
-<div class="progress">
-<i style="width:60%"></i>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="panel reveal" style="margin-top:20px">
-
-<h3>Technologies</h3>
-
-<div class="techs">
-
-<div class="tech">JavaScript</div>
-<div class="tech">Node.js</div>
-<div class="tech">Discord.js</div>
-<div class="tech">HTML / CSS</div>
-<div class="tech">Netlify</div>
+ </div>
 
 </div>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- PROYECTOS -->
 
 <section class="page" id="proyectos">
-
 <div class="container">
 
-<div class="section-title reveal">
+ <div class="section-title reveal">
+  <span>05 / PROJECTS</span>
+  <h2>Proyectos</h2>
+  <p>Proyectos actuales y experimentales.</p>
+ </div>
 
-<span>05 / PROJECTS</span>
+ <div class="cards">
 
-<h2>Proyectos</h2>
+  <div class="card project-card clickable reveal" onclick="abrirProyecto('custom')">
+   <div class="card-icon">01</div>
+   <h3>Proyectos personalizados</h3>
+   <p>Sistemas y proyectos digitales en desarrollo.</p>
+   <span class="project-status">● EN DESARROLLO</span>
+  </div>
 
-<p>Proyectos actuales y experimentales.</p>
+  <div class="card project-card clickable reveal" onclick="abrirProyecto('portfolio')">
+   <div class="card-icon">02</div>
+   <h3>Portafolio personal</h3>
+   <p>Este sitio web y sus sistemas interactivos.</p>
+   <span class="project-status">● ACTIVO</span>
+  </div>
 
-</div>
+  <div class="card project-card clickable reveal" onclick="abrirProyecto('config')">
+   <div class="card-icon">03</div>
+   <h3>Configuraciones</h3>
+   <p>Sistemas y configuraciones para comunidades.</p>
+   <span class="project-status">● ACTIVO</span>
+  </div>
 
-<div class="cards">
+ </div>
 
-<div class="card project-card clickable reveal"
-onclick="abrirProyecto('bots')">
+ <div class="project-explorer reveal">
 
-<div class="card-icon">01</div>
+  <div class="explorer-head">
+   PROJECT EXPLORER
+  </div>
 
-<h3>Proyectos personalizados</h3>
+  <div class="explorer-body">
 
-<p>
-Sistemas y proyectos digitales en desarrollo.
-</p>
+   <div class="file-list">
+    <div class="file" onclick="abrirArchivo('systems')">📁 /systems</div>
+    <div class="file" onclick="abrirArchivo('web')">📁 /web</div>
+    <div class="file" onclick="abrirArchivo('minecraft')">📁 /minecraft</div>
+    <div class="file" onclick="abrirArchivo('configurations')">📁 /configurations</div>
+   </div>
 
-<span class="project-status">● EN DESARROLLO</span>
+   <div class="file-content" id="fileContent">
+    Selecciona una carpeta para explorar el proyecto.
+   </div>
 
-</div>
+  </div>
+ </div>
 
+ <div class="terminal reveal">
 
-<div class="card project-card clickable reveal"
-onclick="abrirProyecto('portfolio')">
+  <div class="terminal-head">
+   <div class="term-dot"></div>
+   <div class="term-dot"></div>
+   <div class="term-dot"></div>
+  </div>
 
-<div class="card-icon">02</div>
+  <div class="terminal-body" id="terminalOutput">
+   <div class="term-line term-green">
+    RYAN.DEV Terminal v2026.3
+   </div>
 
-<h3>Portafolio personal</h3>
+   <div class="term-line">
+    Escribe <b>help</b> para ver los comandos disponibles.
+   </div>
+  </div>
 
-<p>
-Este sitio web y sus sistemas interactivos.
-</p>
+  <div class="term-input-row">
+   <span class="term-prompt">RYAN@DEV:~$</span>
+   <input id="terminalInput" autocomplete="off" spellcheck="false">
+  </div>
 
-<span class="project-status">● ACTIVO</span>
-
-</div>
-
-
-<div class="card project-card clickable reveal"
-onclick="abrirProyecto('config')">
-
-<div class="card-icon">03</div>
-
-<h3>Configuraciones</h3>
-
-<p>
-Sistemas y configuraciones para comunidades.
-</p>
-
-<span class="project-status">● ACTIVO</span>
-
-</div>
-
-</div>
-
-
-<div class="project-explorer reveal">
-
-<div class="explorer-head">
-PROJECT EXPLORER
-</div>
-
-<div class="explorer-body">
-
-<div class="file-list">
-
-<div class="file" onclick="abrirArchivo('discord')">
-📁 /discord-bots
-</div>
-
-<div class="file" onclick="abrirArchivo('web')">
-📁 /web
-</div>
-
-<div class="file" onclick="abrirArchivo('minecraft')">
-📁 /minecraft
-</div>
-
-<div class="file" onclick="abrirArchivo('configurations')">
-📁 /configurations
-</div>
+ </div>
 
 </div>
-
-<div class="file-content" id="fileContent">
-Selecciona una carpeta para explorar el proyecto.
-</div>
-
-</div>
-
-</div>
-
-
-<div class="terminal reveal">
-
-<div class="terminal-head">
-
-<div class="term-dot"></div>
-<div class="term-dot"></div>
-<div class="term-dot"></div>
-
-</div>
-
-<div class="terminal-body" id="terminalOutput">
-
-<div class="term-line term-green">
-RYAN.DEV Terminal v2026.1
-</div>
-
-<div class="term-line">
-Escribe <b>help</b> para ver los comandos disponibles.
-</div>
-
-</div>
-
-<div class="term-input-row">
-
-<span class="term-prompt">RYAN@DEV:~$</span>
-
-<input
-id="terminalInput"
-autocomplete="off"
-spellcheck="false"
->
-
-</div>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- EXPERIENCIA -->
 
 <section class="page" id="experiencia">
-
 <div class="container">
 
-<div class="section-title reveal">
+ <div class="section-title reveal">
+  <span>06 / EXPERIENCE</span>
+  <h2>Experiencia</h2>
+  <p>Áreas en las que he trabajado y aprendido.</p>
+ </div>
 
-<span>06 / EXPERIENCE</span>
+ <div class="timeline">
 
-<h2>Experiencia</h2>
+  <div class="timeline-item reveal">
+   <small>01</small>
+   <h3>Comunidades de Discord</h3>
+   <p>
+    Organización, configuración y administración de comunidades.
+   </p>
+  </div>
 
-<p>Áreas en las que he trabajado y aprendido.</p>
+  <div class="timeline-item reveal">
+   <small>02</small>
+   <h3>Automatización</h3>
+   <p>
+    Creación y configuración de sistemas digitales para automatizar tareas.
+   </p>
+  </div>
 
-</div>
+  <div class="timeline-item reveal">
+   <small>03</small>
+   <h3>Administración</h3>
+   <p>
+    Gestión de roles, permisos, canales y sistemas.
+   </p>
+  </div>
 
-<div class="timeline">
+  <div class="timeline-item reveal">
+   <small>04</small>
+   <h3>Programación y proyectos</h3>
+   <p>
+    Aprendizaje continuo y desarrollo de proyectos personales.
+   </p>
+  </div>
 
-<div class="timeline-item reveal">
+ </div>
 
-<small>01</small>
+ <div class="panel reveal" style="margin-top:35px">
 
-<h3>Comunidades de Discord</h3>
+  <h3>Testimonios</h3>
 
-<p>
-Organización, configuración y administración
-de comunidades.
-</p>
+  <p style="color:#888;line-height:1.7">
+   Todavía no hay testimonios publicados.
+   Esta sección queda preparada para añadir opiniones reales
+   de futuros proyectos.
+  </p>
 
-</div>
-
-<div class="timeline-item reveal">
-
-<small>02</small>
-
-<h3>Automatización</h3>
-
-<p>
-Creación y configuración de sistemas digitales
-para automatizar tareas.
-</p>
-
-</div>
-
-<div class="timeline-item reveal">
-
-<small>03</small>
-
-<h3>Administración</h3>
-
-<p>
-Gestión de roles, permisos, canales y sistemas.
-</p>
-
-</div>
-
-<div class="timeline-item reveal">
-
-<small>04</small>
-
-<h3>Programación y proyectos</h3>
-
-<p>
-Aprendizaje continuo y desarrollo de proyectos
-personales.
-</p>
+ </div>
 
 </div>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- METAS -->
 
 <section class="page" id="metas">
-
 <div class="container">
 
-<div class="section-title reveal">
+ <div class="section-title reveal">
+  <span>07 / GOALS</span>
+  <h2>Metas</h2>
+  <p>Objetivos actuales.</p>
+ </div>
 
-<span>07 / GOALS</span>
+ <div class="cards">
 
-<h2>Metas</h2>
+  <div class="card goal-card reveal">
+   <div class="card-icon">01</div>
+   <h3>Dominio propio</h3>
+   <p>Conseguir un dominio propio para futuros proyectos.</p>
+   <div class="goal-status">
+    Estado: <span>PENDIENTE</span>
+   </div>
+  </div>
 
-<p>Objetivos actuales.</p>
+  <div class="card goal-card reveal">
+   <div class="card-icon">02</div>
+   <h3>VPS propio</h3>
+   <p>Aprender más sobre servidores y administración.</p>
+   <div class="goal-status">
+    Estado: <span>PENDIENTE</span>
+   </div>
+  </div>
 
-</div>
+  <div class="card goal-card reveal">
+   <div class="card-icon">03</div>
+   <h3>Proyectos avanzados</h3>
+   <p>Crear proyectos cada vez más completos.</p>
+   <div class="goal-status">
+    Estado: <span>EN PROGRESO</span>
+   </div>
+  </div>
 
-<div class="cards">
+  <div class="card goal-card reveal">
+   <div class="card-icon">04</div>
+   <h3>Mejorar programación</h3>
+   <p>Seguir aprendiendo JavaScript y nuevas tecnologías.</p>
+   <div class="goal-status">
+    Estado: <span>EN PROGRESO</span>
+   </div>
+  </div>
 
-<div class="card goal-card reveal">
+  <div class="card goal-card reveal">
+   <div class="card-icon">05</div>
+   <h3>Desarrollo web</h3>
+   <p>Mejorar mis conocimientos de frontend y backend.</p>
+   <div class="goal-status">
+    Estado: <span>EN PROGRESO</span>
+   </div>
+  </div>
 
-<div class="card-icon">01</div>
+ </div>
 
-<h3>Dominio propio</h3>
+ <div class="panel reveal" style="margin-top:30px">
 
-<p>
-Conseguir un dominio propio para futuros proyectos.
-</p>
+  <h3>Changelog</h3>
 
-<div class="goal-status">
-Estado: <span>PENDIENTE</span>
-</div>
+  <div style="margin-top:25px">
 
-</div>
+   <div class="change">
+    <small>v2026.4</small>
+    <h3>Interactive UI Upgrade</h3>
+    <p>
+     Nuevas animaciones, Live Messages, Activity Pulse,
+     microinteracciones y mejoras visuales.
+    </p>
+   </div>
 
-<div class="card goal-card reveal">
+   <div class="change">
+    <small>v2026.3</small>
+    <h3>Portfolio Upgrade</h3>
+    <p>
+     Nuevas herramientas interactivas, temas, showcase
+     y mejoras de navegación.
+    </p>
+   </div>
 
-<div class="card-icon">02</div>
+   <div class="change">
+    <small>v2026.2</small>
+    <h3>Portfolio Expansion</h3>
+    <p>
+     Monitor de sistema, buscador y nuevas funciones interactivas.
+    </p>
+   </div>
 
-<h3>VPS propio</h3>
+   <div class="change">
+    <small>v2026.1</small>
+    <h3>Command Center</h3>
+    <p>
+     Dashboard principal, estadísticas y Project Explorer.
+    </p>
+   </div>
 
-<p>
-Aprender más sobre servidores y administración.
-</p>
+   <div class="change">
+    <small>v2026.0</small>
+    <h3>Initial Release</h3>
+    <p>
+     Primera versión del portafolio personal.
+    </p>
+   </div>
 
-<div class="goal-status">
-Estado: <span>PENDIENTE</span>
-</div>
+  </div>
 
-</div>
-
-<div class="card goal-card reveal">
-
-<div class="card-icon">03</div>
-
-<h3>Proyectos avanzados</h3>
-
-<p>
-Crear proyectos cada vez más completos.
-</p>
-
-<div class="goal-status">
-Estado: <span>EN PROGRESO</span>
-</div>
-
-</div>
-
-<div class="card goal-card reveal">
-
-<div class="card-icon">04</div>
-
-<h3>Mejorar programación</h3>
-
-<p>
-Seguir aprendiendo JavaScript y nuevas tecnologías.
-</p>
-
-<div class="goal-status">
-Estado: <span>EN PROGRESO</span>
-</div>
-
-</div>
-
-<div class="card goal-card reveal">
-
-<div class="card-icon">05</div>
-
-<h3>Desarrollo web</h3>
-
-<p>
-Mejorar mis conocimientos de frontend y backend.
-</p>
-
-<div class="goal-status">
-Estado: <span>EN PROGRESO</span>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- CHANGELOG -->
-
-<div class="panel reveal" style="margin-top:30px">
-
-<h3>Changelog</h3>
-
-<div style="margin-top:25px">
-
-<div class="change">
-
-<small>v2026.2</small>
-
-<h3>Portfolio Expansion</h3>
-
-<p>
-Nuevo Developer Mode, monitor de sistema,
-buscador y nuevas funciones interactivas.
-</p>
+ </div>
 
 </div>
-
-<div class="change">
-
-<small>v2026.1</small>
-
-<h3>Command Center</h3>
-
-<p>
-Dashboard principal, estadísticas y
-Project Explorer.
-</p>
-
-</div>
-
-<div class="change">
-
-<small>v2026.0</small>
-
-<h3>Initial Release</h3>
-
-<p>
-Primera versión del portafolio personal.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- CONTACTO -->
 
 <section class="page" id="contacto">
-
 <div class="container">
 
-<div class="section-title reveal">
+ <div class="section-title reveal">
+  <span>08 / CONTACT</span>
+  <h2>Contacto</h2>
+  <p>¿Tienes una idea? Podemos hablar.</p>
+ </div>
 
-<span>08 / CONTACT</span>
+ <div class="contact-grid">
 
-<h2>Contacto</h2>
+  <div class="contact-box reveal">
 
-<p>¿Tienes una idea? Podemos hablar.</p>
+   <h3>Discord</h3>
 
-</div>
+   <div class="contact-value">
+    <span>ryan_lamienyamal</span>
+    <button class="btn btn-secondary" onclick="copiar('ryan_lamienyamal')">
+     Copiar
+    </button>
+   </div>
 
-<div class="contact-grid">
+   <div class="panel" style="margin-top:20px">
 
-<div class="contact-box reveal">
+    <h3>Availability</h3>
 
-<h3>Discord</h3>
+    <p style="color:#39ff88;margin-top:8px">
+     ●
+     <span id="availabilityText">
+      Disponible para nuevos proyectos
+     </span>
+    </p>
 
-<div class="contact-value">
+   </div>
 
-<span>ryan_lamienyamal</span>
+  </div>
 
-<button class="btn btn-secondary"
-onclick="copiar('ryan_lamienyamal')">
-Copiar
-</button>
+  <div class="contact-box reveal">
 
-</div>
+   <h3>Solicitar servicio</h3>
 
-<div class="panel" style="margin-top:20px">
+   <div style="margin-top:20px">
 
-<h3>Availability</h3>
+    <div class="form-group">
+     <label>Servicio</label>
 
-<p style="color:#39ff88;margin-top:8px">
-● Disponible para nuevos proyectos
-</p>
+     <select id="servicioForm">
+      <option>Bots de Discord</option>
+      <option>Configuración completa</option>
+      <option>Tickets</option>
+      <option>Moderación</option>
+      <option>Roles y permisos</option>
+      <option>Logs y registros</option>
+      <option>Economía virtual</option>
+      <option>Personalización</option>
+      <option>Desarrollo web</option>
+     </select>
+    </div>
 
-</div>
+    <div class="form-group">
+     <label>Nombre</label>
+     <input id="nombreForm" placeholder="Tu nombre">
+    </div>
 
-</div>
+    <div class="form-group">
+     <label>Mensaje</label>
+     <textarea id="mensajeForm" placeholder="Cuéntame sobre tu proyecto..."></textarea>
+    </div>
 
+    <button class="btn btn-primary" onclick="prepararMensaje()">
+     Preparar mensaje
+    </button>
 
-<div class="contact-box reveal">
+   </div>
 
-<h3>Solicitar servicio</h3>
+  </div>
 
-<div style="margin-top:20px">
-
-<div class="form-group">
-
-<label>Servicio</label>
-
-<select id="servicioForm">
-
-<option>Bots de Discord</option>
-<option>Configuración completa</option>
-<option>Tickets</option>
-<option>Moderación</option>
-<option>Roles y permisos</option>
-<option>Logs y registros</option>
-<option>Economía virtual</option>
-<option>Personalización</option>
-<option>Desarrollo web</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-
-<label>Nombre</label>
-
-<input
-id="nombreForm"
-placeholder="Tu nombre"
->
-
-</div>
-
-<div class="form-group">
-
-<label>Mensaje</label>
-
-<textarea
-id="mensajeForm"
-placeholder="Cuéntame sobre tu proyecto..."
-></textarea>
+ </div>
 
 </div>
-
-<button class="btn btn-primary"
-onclick="prepararMensaje()">
-Preparar mensaje
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
-
-
-<!-- ACHIEVEMENTS -->
-
-<section class="page" id="achievements">
-
-<div class="container">
-
-<div class="section-title reveal">
-
-<span>09 / ACHIEVEMENTS</span>
-
-<h2>Achievements</h2>
-
-<p>Pequeños objetivos desbloqueables.</p>
-
-</div>
-
-<div class="cards">
-
-<div class="card achievement reveal">
-
-<div class="achievement-icon">🏗️</div>
-
-<h3>Project Builder</h3>
-
-<p>Has creado varios proyectos personales.</p>
-
-<span class="project-status">● DESBLOQUEADO</span>
-
-</div>
-
-<div class="card achievement reveal">
-
-<div class="achievement-icon">🌐</div>
-
-<h3>Web Creator</h3>
-
-<p>Has creado tu propio portafolio web.</p>
-
-<span class="project-status">● DESBLOQUEADO</span>
-
-</div>
-
-<div class="card achievement reveal">
-
-<div class="achievement-icon">⚙️</div>
-
-<h3>System Builder</h3>
-
-<p>Experimentas creando sistemas digitales.</p>
-
-<span class="project-status">● DESBLOQUEADO</span>
-
-</div>
-
-<div class="card achievement locked reveal">
-
-<div class="achievement-icon">🚀</div>
-
-<h3>Advanced Developer</h3>
-
-<p>Achievement bloqueado.</p>
-
-<span class="project-status">● LOCKED</span>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SEARCH -->
 
 <div class="search-overlay" id="searchOverlay">
 
-<div class="search-box">
+ <div class="search-box">
 
-<div style="display:flex;justify-content:space-between;align-items:center">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+   <strong>Buscar en el portafolio</strong>
+   <button class="close" onclick="cerrarBusqueda()">×</button>
+  </div>
 
-<strong>Buscar en el portafolio</strong>
+  <input id="searchInput" placeholder="Buscar proyectos, servicios, habilidades...">
 
-<button class="close" onclick="cerrarBusqueda()">×</button>
+  <div class="search-results" id="searchResults"></div>
 
-</div>
-
-<input
-id="searchInput"
-placeholder="Buscar proyectos, servicios, habilidades..."
-style="margin-top:15px"
->
-
-<div class="search-results" id="searchResults"></div>
+ </div>
 
 </div>
 
+<div class="palette-overlay" id="paletteOverlay">
+
+ <div class="palette-box">
+
+  <div style="display:flex;justify-content:space-between;align-items:center">
+   <strong>Command Palette</strong>
+   <button class="close" onclick="cerrarPalette()">×</button>
+  </div>
+
+  <input id="paletteInput" placeholder="Escribe una acción...">
+
+  <div id="paletteResults" style="margin-top:10px"></div>
+
+ </div>
+
 </div>
-
-
-<!-- MODAL -->
 
 <div class="modal" id="modal">
 
-<div class="modal-content">
+ <div class="modal-content">
 
-<div class="modal-top">
+  <div class="modal-top">
+   <h2 id="modalTitle">Información</h2>
+   <button class="close" onclick="cerrarModal()">×</button>
+  </div>
 
-<h2 id="modalTitle">Información</h2>
+  <div id="modalBody"></div>
 
-<button class="close" onclick="cerrarModal()">×</button>
-
-</div>
-
-<div id="modalBody"></div>
-
-</div>
+ </div>
 
 </div>
 
+<div class="welcome-popup" id="welcomePopup">
 
-<!-- DEV MODE -->
+ <div class="welcome-inner">
 
-<div class="dev-mode" id="devMode">
+  <div class="welcome-icon">👋</div>
 
-<div class="dev-terminal">
+  <div class="welcome-text">
+   <strong>Bienvenido a RYAN.DEV</strong>
+   <span>Explora el portafolio y descubre los proyectos.</span>
+  </div>
 
-<div class="dev-header">
-
-<strong>RYAN.DEV // COMMAND CENTER</strong>
-
-<button onclick="cerrarDevMode()">EXIT</button>
-
-</div>
-
-<div class="dev-output" id="devOutput">
-
-<div class="dev-line dev-green">
-[SYSTEM] Portfolio initialized successfully.
-</div>
-
-<div class="dev-line">
-[STATUS] <span class="dev-green">ONLINE</span>
-</div>
-
-<div class="dev-line">
-[VERSION] RYAN.DEV v2026.1
-</div>
-
-<div class="dev-line">
-[SECURITY] <span class="dev-green">NORMAL</span>
-</div>
-
-<div class="dev-line" style="margin-top:15px">
-Escribe <span class="dev-yellow">help</span> para ver los comandos.
-</div>
+ </div>
 
 </div>
-
-<div class="dev-input-row">
-
-<span class="dev-prompt">RYAN@DEV:~$</span>
-
-<input
-id="devInput"
-autocomplete="off"
-spellcheck="false"
->
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- TOAST -->
 
 <div id="toast"></div>
 
 <button id="topButton" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-↑
+ ↑
 </button>
 
-
 <footer>
-© 2026 Ryan Méndez • Portafolio personal
+ © 2026 Ryan Méndez • Portafolio personal
 </footer>
-
 
 <script>
 
-/* NAVIGATION */
+const portfolioConfig={
+ disponible:true,
+ version:'RYAN.DEV v2026.4'
+};
+
+/* =========================
+   NAVEGACIÓN
+========================= */
 
 function abrir(id,element){
 
-    document.querySelectorAll('.page').forEach(page=>{
-        page.classList.remove('active');
-    });
+ document.querySelectorAll('.page').forEach(p=>{
+  p.classList.remove('active');
+ });
 
-    const target=document.getElementById(id);
+ const target=document.getElementById(id);
 
-    if(target){
-        target.classList.add('active');
-    }
+ if(target)target.classList.add('active');
 
-    document.querySelectorAll('.nav-link').forEach(link=>{
-        link.classList.remove('active');
-    });
+ document.querySelectorAll('.nav-link').forEach(x=>{
+  x.classList.remove('active');
+ });
 
-    if(element){
-        element.classList.add('active');
-    }
+ if(element){
+  element.classList.add('active');
+ }else{
 
-    document.getElementById('navLinks').classList.remove('active');
+  const link=[
+   ...document.querySelectorAll('.nav-link')
+  ].find(x=>
+   x.getAttribute('onclick')?.includes("'"+id+"'")
+  );
 
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
+  if(link)link.classList.add('active');
+ }
 
-    setTimeout(iniciarReveal,100);
+ document.getElementById('navLinks').classList.remove('active');
 
-    if(id==='inicio'){
-        iniciarContadores();
-    }
+ window.scrollTo({
+  top:0,
+  behavior:'smooth'
+ });
+
+ setTimeout(iniciarReveal,100);
+
+ if(id==='inicio')iniciarContadores();
 }
-
-
-/* MOBILE MENU */
 
 function toggleMenu(){
-
-    document
-    .getElementById('navLinks')
-    .classList
-    .toggle('active');
-
+ document.getElementById('navLinks').classList.toggle('active');
 }
 
-
-/* SERVER */
+/* =========================
+   SERVIDORES
+========================= */
 
 function mostrarServer(tipo){
 
-    const box=document.getElementById('serverInfo');
+ const box=document.getElementById('serverInfo');
 
-    if(tipo==='java'){
+ if(tipo==='java'){
 
-        box.innerHTML=`
+  box.innerHTML=`
+   <div>
+    <small>IP JAVA</small>
 
-        <div>
+    <div class="copy-line">
+     <strong>sylenmc.diavlohosting.com</strong>
 
-            <small>IP JAVA</small>
+     <button class="icon-btn"
+      onclick="copiar('sylenmc.diavlohosting.com')">
+      ⧉
+     </button>
+    </div>
+   </div>
 
-            <div class="copy-line">
+   <div>
+    <small>PUERTO</small>
+    <strong>25565</strong>
+   </div>
+  `;
 
-                <strong>sylenmc.diavlohosting.com</strong>
+ }else{
 
-                <button class="icon-btn"
-                onclick="copiar('sylenmc.diavlohosting.com')">
-                ⧉
-                </button>
+  box.innerHTML=`
+   <div>
+    <small>IP BEDROCK</small>
 
-            </div>
+    <div class="copy-line">
+     <strong>sylenmc.diavlohosting.com</strong>
 
-        </div>
+     <button class="icon-btn"
+      onclick="copiar('sylenmc.diavlohosting.com')">
+      ⧉
+     </button>
+    </div>
+   </div>
 
-        <div>
+   <div>
+    <small>PORT</small>
 
-            <small>PUERTO</small>
+    <div class="copy-line">
+     <strong>19016</strong>
 
-            <strong>25565</strong>
+     <button class="icon-btn"
+      onclick="copiar('19016')">
+      ⧉
+     </button>
+    </div>
+   </div>
+  `;
 
-        </div>
-
-        `;
-
-    }else{
-
-        box.innerHTML=`
-
-        <div>
-
-            <small>IP BEDROCK</small>
-
-            <div class="copy-line">
-
-                <strong>sylenmc.diavlohosting.com</strong>
-
-                <button class="icon-btn"
-                onclick="copiar('sylenmc.diavlohosting.com')">
-                ⧉
-                </button>
-
-            </div>
-
-        </div>
-
-        <div>
-
-            <small>PORT</small>
-
-            <div class="copy-line">
-
-                <strong>19016</strong>
-
-                <button class="icon-btn"
-                onclick="copiar('19016')">
-                ⧉
-                </button>
-
-            </div>
-
-        </div>
-
-        `;
-
-    }
-
+ }
 }
 
-
-/* COPY */
+/* =========================
+   COPIAR
+========================= */
 
 function copiar(texto){
 
-    if(navigator.clipboard){
+ if(navigator.clipboard){
 
-        navigator.clipboard.writeText(texto)
-        .then(()=>{
-            mostrarCopiado();
-        });
-
-    }else{
-
-        const area=document.createElement('textarea');
-
-        area.value=texto;
-
-        document.body.appendChild(area);
-
-        area.select();
-
-        document.execCommand('copy');
-
-        area.remove();
-
-        mostrarCopiado();
-
-    }
-
-}
-
-
-function mostrarCopiado(){
-
+  navigator.clipboard.writeText(texto)
+   .then(()=>{
     mostrarToast('Copiado correctamente ✓');
+   })
+   .catch(()=>{
+    mostrarToast('No se pudo copiar');
+   });
 
+ }else{
+
+  const a=document.createElement('textarea');
+
+  a.value=texto;
+
+  document.body.appendChild(a);
+
+  a.select();
+
+  document.execCommand('copy');
+
+  a.remove();
+
+  mostrarToast('Copiado correctamente ✓');
+ }
 }
-
-
-/* TOAST */
 
 let toastTimer;
 
 function mostrarToast(texto){
 
-    const toast=document.getElementById('toast');
+ const t=document.getElementById('toast');
 
-    toast.textContent=texto;
+ t.textContent=texto;
 
-    toast.classList.add('show');
+ t.classList.add('show');
 
-    clearTimeout(toastTimer);
+ clearTimeout(toastTimer);
 
-    toastTimer=setTimeout(()=>{
-        toast.classList.remove('show');
-    },2200);
-
+ toastTimer=setTimeout(()=>{
+  t.classList.remove('show');
+ },2200);
 }
 
-
-/* CURSOR */
+/* =========================
+   CURSOR
+========================= */
 
 document.addEventListener('mousemove',e=>{
 
-    const cursor=document.getElementById('cursorGlow');
+ const c=document.getElementById('cursorGlow');
 
-    cursor.style.left=e.clientX+'px';
-    cursor.style.top=e.clientY+'px';
+ if(c){
 
+  c.style.left=e.clientX+'px';
+  c.style.top=e.clientY+'px';
+
+ }
 });
 
-
-/* COUNTERS */
+/* =========================
+   CONTADORES
+========================= */
 
 function iniciarContadores(){
 
-    document.querySelectorAll('[data-target]').forEach(el=>{
+ document.querySelectorAll('[data-target]').forEach(el=>{
 
-        if(el.dataset.done==='true') return;
+  if(el.dataset.done==='true')return;
 
-        const target=parseInt(el.dataset.target);
+  const target=parseInt(el.dataset.target);
 
-        let current=0;
+  let current=0;
 
-        const interval=setInterval(()=>{
+  const interval=setInterval(()=>{
 
-            current++;
+   current++;
 
-            el.textContent=current+'+';
+   el.textContent=current+'+';
 
-            if(current>=target){
+   if(current>=target){
 
-                clearInterval(interval);
+    clearInterval(interval);
 
-                el.dataset.done='true';
+    el.dataset.done='true';
+   }
 
-            }
+  },100);
 
-        },120);
-
-    });
-
+ });
 }
 
-
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 function abrirModal(title,html){
 
-    document.getElementById('modalTitle').textContent=title;
+ document.getElementById('modalTitle').textContent=title;
 
-    document.getElementById('modalBody').innerHTML=html;
+ document.getElementById('modalBody').innerHTML=html;
 
-    document.getElementById('modal').classList.add('active');
-
+ document.getElementById('modal').classList.add('active');
 }
-
 
 function cerrarModal(){
 
-    document.getElementById('modal').classList.remove('active');
-
+ document.getElementById('modal').classList.remove('active');
 }
 
+document.getElementById('modal').addEventListener('click',e=>{
 
-function cerrarModalExterior(event){
+ if(e.target.id==='modal'){
+  cerrarModal();
+ }
 
-    if(event.target.id==='modal'){
-        cerrarModal();
-    }
+});
 
-}
+/* =========================
+   SERVICIOS
+========================= */
 
-document.getElementById('modal')
-.addEventListener('click',cerrarModalExterior);
+const servicios={
 
+ discord:{
+  title:'Bots de Discord',
+  body:`
+   <p>Desarrollo y configuración de sistemas personalizados para comunidades.</p>
+   <ul>
+    <li>Comandos</li>
+    <li>Sistemas personalizados</li>
+    <li>Automatización</li>
+    <li>Configuración</li>
+   </ul>
+  `
+ },
 
-/* SERVICES */
+ config:{
+  title:'Configuración completa',
+  body:`
+   <p>Organización y configuración general de comunidades.</p>
+   <ul>
+    <li>Canales</li>
+    <li>Roles</li>
+    <li>Permisos</li>
+    <li>Estructura</li>
+   </ul>
+  `
+ },
+
+ tickets:{
+  title:'Tickets',
+  body:`
+   <p>Sistemas de soporte para gestionar solicitudes.</p>
+   <ul>
+    <li>Categorías</li>
+    <li>Botones</li>
+    <li>Logs</li>
+    <li>Gestión</li>
+   </ul>
+  `
+ },
+
+ moderacion:{
+  title:'Moderación',
+  body:`
+   <p>Herramientas para mejorar la organización de comunidades.</p>
+  `
+ },
+
+ roles:{
+  title:'Roles y permisos',
+  body:`
+   <p>Diseño de estructuras de roles y permisos.</p>
+  `
+ },
+
+ logs:{
+  title:'Logs y registros',
+  body:`
+   <p>Sistemas de seguimiento y registro de actividades.</p>
+  `
+ },
+
+ economia:{
+  title:'Economía virtual',
+  body:`
+   <p>Sistemas económicos y monedas virtuales.</p>
+  `
+ },
+
+ personalizacion:{
+  title:'Personalización',
+  body:`
+   <p>Adaptación de sistemas según las necesidades del proyecto.</p>
+  `
+ },
+
+ web:{
+  title:'Desarrollo web',
+  body:`
+   <p>Creación de sitios web modernos, responsivos e interactivos.</p>
+  `
+ }
+
+};
 
 function abrirServicio(id){
 
-    const servicios={
-
-        discord:{
-            title:'Bots de Discord',
-            body:`
-            <p>Desarrollo y configuración de sistemas personalizados para comunidades.</p>
-            <ul>
-            <li>Comandos</li>
-            <li>Sistemas personalizados</li>
-            <li>Automatización</li>
-            <li>Configuración</li>
-            </ul>
-            `
-        },
-
-        config:{
-            title:'Configuración completa',
-            body:`
-            <p>Organización y configuración general de comunidades.</p>
-            <ul>
-            <li>Canales</li>
-            <li>Roles</li>
-            <li>Permisos</li>
-            <li>Estructura</li>
-            </ul>
-            `
-        },
-
-        tickets:{
-            title:'Tickets',
-            body:`
-            <p>Sistemas de soporte para gestionar solicitudes.</p>
-            <ul>
-            <li>Categorías</li>
-            <li>Botones</li>
-            <li>Logs</li>
-            <li>Gestión</li>
-            </ul>
-            `
-        },
-
-        moderacion:{
-            title:'Moderación',
-            body:`
-            <p>Herramientas para mejorar la organización de comunidades.</p>
-            `
-        },
-
-        roles:{
-            title:'Roles y permisos',
-            body:`
-            <p>Diseño de estructuras de roles y permisos.</p>
-            `
-        },
-
-        logs:{
-            title:'Logs y registros',
-            body:`
-            <p>Sistemas de seguimiento y registro de actividades.</p>
-            `
-        },
-
-        economia:{
-            title:'Economía virtual',
-            body:`
-            <p>Sistemas económicos y monedas virtuales.</p>
-            `
-        },
-
-        personalizacion:{
-            title:'Personalización',
-            body:`
-            <p>Adaptación de sistemas según las necesidades del proyecto.</p>
-            `
-        },
-
-        web:{
-            title:'Desarrollo web',
-            body:`
-            <p>Creación de sitios web modernos, responsivos e interactivos.</p>
-            `
-        }
-
-    };
-
-    const servicio=servicios[id];
-
-    if(!servicio) return;
-
-    abrirModal(servicio.title,servicio.body);
+ if(servicios[id]){
+  abrirModal(
+   servicios[id].title,
+   servicios[id].body
+  );
+ }
 
 }
 
+/* =========================
+   PROYECTOS
+========================= */
 
-/* PROJECTS */
+const proyectos={
+
+ custom:{
+  title:'Proyectos personalizados',
+  body:`
+   <p>Proyectos digitales actualmente en desarrollo.</p>
+   <ul>
+    <li>Sistemas personalizados</li>
+    <li>Automatización</li>
+    <li>Experimentación</li>
+   </ul>
+  `
+ },
+
+ portfolio:{
+  title:'Portafolio personal',
+  body:`
+   <p>
+    Este portafolio está construido con HTML,
+    CSS y JavaScript.
+   </p>
+
+   <ul>
+    <li>Diseño responsive</li>
+    <li>Animaciones</li>
+    <li>Terminal interactiva</li>
+    <li>Command Palette</li>
+    <li>Live Messages</li>
+    <li>Activity Pulse</li>
+   </ul>
+  `
+ },
+
+ config:{
+  title:'Configuraciones',
+  body:`
+   <p>
+    Proyectos relacionados con organización,
+    configuración y sistemas digitales.
+   </p>
+  `
+ }
+
+};
 
 function abrirProyecto(id){
 
-    const proyectos={
-
-        bots:{
-            title:'Proyectos personalizados',
-            body:`
-            <p>
-            Proyectos digitales actualmente en desarrollo.
-            </p>
-
-            <ul>
-            <li>Sistemas personalizados</li>
-            <li>Automatización</li>
-            <li>Experimentación</li>
-            </ul>
-            `
-        },
-
-        portfolio:{
-            title:'Portafolio personal',
-            body:`
-            <p>
-            Este portafolio está construido con HTML,
-            CSS y JavaScript.
-            </p>
-
-            <ul>
-            <li>Diseño responsive</li>
-            <li>Animaciones</li>
-            <li>Terminal interactiva</li>
-            <li>Developer Mode</li>
-            </ul>
-            `
-        },
-
-        config:{
-            title:'Configuraciones',
-            body:`
-            <p>
-            Proyectos relacionados con organización,
-            configuración y sistemas digitales.
-            </p>
-            `
-        }
-
-    };
-
-    const proyecto=proyectos[id];
-
-    if(proyecto){
-        abrirModal(proyecto.title,proyecto.body);
-    }
+ if(proyectos[id]){
+  abrirModal(
+   proyectos[id].title,
+   proyectos[id].body
+  );
+ }
 
 }
 
-
-/* PROJECT EXPLORER */
+/* =========================
+   PROJECT EXPLORER
+========================= */
 
 const archivos={
 
-    discord:`
-/discord-bots
+ systems:`/systems
 
-├── systems
-├── commands
+├── architecture
+├── automation
 ├── configuration
 └── documentation
 
-Status: DEVELOPMENT
-`,
+Status: DEVELOPMENT`,
 
-    web:`
-/web
+ web:`/web
 
 ├── index.html
 ├── styles
 ├── scripts
 └── assets
 
-Status: ACTIVE
-`,
+Status: ACTIVE`,
 
-    minecraft:`
-/minecraft
+ minecraft:`/minecraft
 
 ├── configuration
 ├── systems
 └── management
 
-Status: ACTIVE
-`,
+Status: ACTIVE`,
 
-    configurations:`
-/configurations
+ configurations:`/configurations
 
 ├── permissions
 ├── channels
 ├── roles
 └── systems
 
-Status: ACTIVE
-`
+Status: ACTIVE`
 
 };
 
-
 function abrirArchivo(id){
 
-    document.getElementById('fileContent')
-    .textContent=archivos[id]||'Archivo no encontrado.';
+ document.getElementById('fileContent').textContent=
+ archivos[id]||'Archivo no encontrado.';
 
 }
 
+/* =========================
+   TERMINAL
+========================= */
 
-/* TERMINAL */
+const terminalInput=
+ document.getElementById('terminalInput');
 
-const terminalInput=document.getElementById('terminalInput');
-
-const terminalOutput=document.getElementById('terminalOutput');
+const terminalOutput=
+ document.getElementById('terminalOutput');
 
 let terminalHistory=[];
-
 let terminalHistoryIndex=-1;
 
+function escribirTerminal(
+ texto,
+ className=''
+){
 
-function escribirTerminal(texto,className=''){
+ const line=document.createElement('div');
 
-    const line=document.createElement('div');
+ line.className=
+  'term-line '+className;
 
-    line.className='term-line '+className;
+ line.innerHTML=texto;
 
-    line.innerHTML=texto;
+ terminalOutput.appendChild(line);
 
-    terminalOutput.appendChild(line);
-
-    terminalOutput.scrollTop=terminalOutput.scrollHeight;
-
+ terminalOutput.scrollTop=
+  terminalOutput.scrollHeight;
 }
-
 
 function escapeHTML(text){
 
-    return text
-    .replaceAll('&','&amp;')
-    .replaceAll('<','&lt;')
-    .replaceAll('>','&gt;')
-    .replaceAll('"','&quot;')
-    .replaceAll("'","&#039;");
+ return text
+  .replaceAll('&','&amp;')
+  .replaceAll('<','&lt;')
+  .replaceAll('>','&gt;')
+  .replaceAll('"','&quot;')
+  .replaceAll("'","&#039;");
 
 }
-
 
 function ejecutarTerminal(){
 
-    const raw=terminalInput.value.trim();
+ const raw=
+  terminalInput.value.trim();
 
-    if(!raw) return;
+ if(!raw)return;
 
-    const command=raw.toLowerCase();
+ const command=
+  raw.toLowerCase();
 
-    terminalHistory.push(raw);
+ terminalHistory.push(raw);
 
-    terminalHistoryIndex=terminalHistory.length;
+ terminalHistoryIndex=
+  terminalHistory.length;
 
-    escribirTerminal(
-        'RYAN@DEV:~$ '+escapeHTML(raw)
-    );
+ escribirTerminal(
+  'RYAN@DEV:~$ '+escapeHTML(raw)
+ );
 
-    terminalInput.value='';
+ terminalInput.value='';
 
-    switch(command){
+ const respuestas={
 
-        case 'help':
+  help:`
+   Comandos disponibles:<br><br>
+   about<br>
+   skills<br>
+   projects<br>
+   servers<br>
+   status<br>
+   version<br>
+   contact<br>
+   share<br>
+   clear
+  `,
 
-            escribirTerminal(`
-Comandos disponibles:
+  about:`
+   Ryan Méndez<br>
+   16 años<br>
+   Argentina 🇦🇷<br><br>
+   Intereses:<br>
+   - Programación<br>
+   - Desarrollo web<br>
+   - Comunidades<br>
+   - Minecraft
+  `,
 
-about
-skills
-projects
-servers
-status
-version
-contact
-clear
+  skills:`
+   JavaScript<br>
+   Node.js<br>
+   Discord.js<br>
+   HTML / CSS<br>
+   Netlify<br>
+   Configuración de comunidades
+  `,
 
-Escribe un comando para continuar.
-`);
+  projects:`
+   [01] Proyectos personalizados<br>
+   [02] Portafolio personal<br>
+   [03] Configuraciones
+  `,
 
-        break;
+  servers:`
+   SylenMC<br>
+   IP: sylenmc.diavlohosting.com<br>
+   Bedrock Port: 19016
+  `,
 
+  status:`
+   [STATUS] ONLINE
+  `,
 
-        case 'about':
+  version:
+   portfolioConfig.version,
 
-            escribirTerminal(`
-Ryan Méndez
-16 años
-Argentina 🇦🇷
+  contact:
+   `Discord: ryan_lamienyamal`
 
-Intereses:
-- Programación
-- Desarrollo web
-- Comunidades
-- Minecraft
-`);
+ };
 
-        break;
+ if(command==='clear'){
 
+  terminalOutput.innerHTML='';
 
-        case 'skills':
+  return;
+ }
 
-            escribirTerminal(`
-JavaScript
-Node.js
-Discord.js
-HTML / CSS
-Netlify
-Configuración de comunidades
-`);
+ if(command==='share'){
 
-        break;
+  compartir();
 
+  return;
+ }
 
-        case 'projects':
+ if(respuestas[command]){
 
-            escribirTerminal(`
-[01] Proyectos personalizados
-[02] Portafolio personal
-[03] Configuraciones
-`);
+  escribirTerminal(
+   respuestas[command],
+   command==='status'
+    ?'term-green'
+    :''
+  );
 
-        break;
+ }else{
 
+  escribirTerminal(
+   'Comando no encontrado. Escribe "help".',
+   'term-red'
+  );
 
-        case 'servers':
-
-            escribirTerminal(`
-SylenMC
-IP: sylenmc.diavlohosting.com
-Bedrock Port: 19016
-`);
-
-        break;
-
-
-        case 'status':
-
-            escribirTerminal(
-                '[STATUS] ONLINE',
-                'term-green'
-            );
-
-        break;
-
-
-        case 'version':
-
-            escribirTerminal(
-                'RYAN.DEV v2026.1'
-            );
-
-        break;
-
-
-        case 'contact':
-
-            escribirTerminal(
-                'Discord: ryan_lamienyamal'
-            );
-
-        break;
-
-
-        case 'clear':
-
-            terminalOutput.innerHTML='';
-
-        break;
-
-
-        default:
-
-            escribirTerminal(
-                'Comando no encontrado. Escribe "help".',
-                'term-red'
-            );
-
-    }
+ }
 
 }
 
+terminalInput.addEventListener(
+ 'keydown',
+ e=>{
 
-terminalInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){
+   ejecutarTerminal();
+  }
 
-    if(e.key==='Enter'){
+  if(
+   e.key==='ArrowUp' &&
+   terminalHistory.length
+  ){
 
-        ejecutarTerminal();
+   terminalHistoryIndex=
+    Math.max(
+     0,
+     terminalHistoryIndex-1
+    );
 
-    }
+   terminalInput.value=
+    terminalHistory[
+     terminalHistoryIndex
+    ]||'';
 
-    if(e.key==='ArrowUp'){
+   e.preventDefault();
 
-        if(terminalHistory.length===0) return;
+  }
 
-        terminalHistoryIndex=Math.max(
-            0,
-            terminalHistoryIndex-1
-        );
+  if(
+   e.key==='ArrowDown' &&
+   terminalHistory.length
+  ){
 
-        terminalInput.value=
-            terminalHistory[terminalHistoryIndex]||'';
+   terminalHistoryIndex=
+    Math.min(
+     terminalHistory.length,
+     terminalHistoryIndex+1
+    );
 
-        e.preventDefault();
+   terminalInput.value=
+    terminalHistory[
+     terminalHistoryIndex
+    ]||'';
 
-    }
+   e.preventDefault();
 
-    if(e.key==='ArrowDown'){
+  }
 
-        if(terminalHistory.length===0) return;
+ });
 
-        terminalHistoryIndex=Math.min(
-            terminalHistory.length,
-            terminalHistoryIndex+1
-        );
-
-        terminalInput.value=
-            terminalHistory[terminalHistoryIndex]||'';
-
-        e.preventDefault();
-
-    }
-
-});
-
-
-/* FORM */
+/* =========================
+   CONTACTO
+========================= */
 
 function prepararMensaje(){
 
-    const servicio=
-        document.getElementById('servicioForm').value;
+ const servicio=
+  document.getElementById(
+   'servicioForm'
+  ).value;
 
-    const nombre=
-        document.getElementById('nombreForm').value.trim();
+ const nombre=
+  document.getElementById(
+   'nombreForm'
+  ).value.trim();
 
-    const mensaje=
-        document.getElementById('mensajeForm').value.trim();
+ const mensaje=
+  document.getElementById(
+   'mensajeForm'
+  ).value.trim();
 
-    if(!nombre||!mensaje){
+ if(!nombre||!mensaje){
 
-        mostrarToast('Completa nombre y mensaje.');
+  mostrarToast(
+   'Completa nombre y mensaje.'
+  );
 
-        return;
+  return;
+ }
 
-    }
-
-    const texto=
-`Hola Ryan, soy ${nombre}.
+ copiar(
+ `Hola Ryan, soy ${nombre}.
 
 Estoy interesado en: ${servicio}.
 
-${mensaje}`;
+${mensaje}`
+ );
 
-    copiar(texto);
-
-    mostrarToast(
-        'Mensaje preparado y copiado ✓'
-    );
-
-}
-
-
-/* THEME */
-
-function cambiarTema(){
-
-    const root=document.documentElement;
-
-    const actual=
-        getComputedStyle(root)
-        .getPropertyValue('--red')
-        .trim();
-
-    if(actual==='#ff1744'){
-
-        root.style.setProperty('--red','#7c4dff');
-        root.style.setProperty('--red2','#b388ff');
-
-        mostrarToast('Tema púrpura activado');
-
-    }else{
-
-        root.style.setProperty('--red','#ff1744');
-        root.style.setProperty('--red2','#ff4d6d');
-
-        mostrarToast('Tema rojo activado');
-
-    }
+ mostrarToast(
+  'Mensaje preparado y copiado ✓'
+ );
 
 }
 
+/* =========================
+   TEMAS
+========================= */
 
-/* SEARCH */
+const temas={
+
+ rojo:['#ff1744','#ff4d6d'],
+ morado:['#7c4dff','#b388ff'],
+ azul:['#2979ff','#448aff'],
+ verde:['#00c853','#69f0ae'],
+ naranja:['#ff6d00','#ffab40']
+
+};
+
+function aplicarTema(nombre){
+
+ const t=temas[nombre];
+
+ if(!t)return;
+
+ document.documentElement.style.setProperty(
+  '--red',
+  t[0]
+ );
+
+ document.documentElement.style.setProperty(
+  '--red2',
+  t[1]
+ );
+
+ localStorage.setItem(
+  'portfolio_theme',
+  nombre
+ );
+
+ mostrarToast(
+  'Tema '+nombre+' activado ✓'
+ );
+
+}
+
+function abrirTemas(){
+
+ const html=`
+
+ <p>
+  Selecciona el color principal del portafolio.
+ </p>
+
+ <div class="theme-grid">
+
+  <button class="theme-choice"
+   onclick="aplicarTema('rojo');cerrarModal()">
+
+   <div class="theme-dot"
+    style="background:#ff1744">
+   </div>
+
+   Rojo
+
+  </button>
+
+  <button class="theme-choice"
+   onclick="aplicarTema('morado');cerrarModal()">
+
+   <div class="theme-dot"
+    style="background:#7c4dff">
+   </div>
+
+   Morado
+
+  </button>
+
+  <button class="theme-choice"
+   onclick="aplicarTema('azul');cerrarModal()">
+
+   <div class="theme-dot"
+    style="background:#2979ff">
+   </div>
+
+   Azul
+
+  </button>
+
+  <button class="theme-choice"
+   onclick="aplicarTema('verde');cerrarModal()">
+
+   <div class="theme-dot"
+    style="background:#00c853">
+   </div>
+
+   Verde
+
+  </button>
+
+  <button class="theme-choice"
+   onclick="aplicarTema('naranja');cerrarModal()">
+
+   <div class="theme-dot"
+    style="background:#ff6d00">
+   </div>
+
+   Naranja
+
+  </button>
+
+ </div>
+ `;
+
+ abrirModal(
+  'Theme Engine',
+  html
+ );
+
+}
+
+/* =========================
+   BUSCADOR
+========================= */
 
 const searchData=[
 
-    {
-        title:'Bots de Discord',
-        category:'Servicio',
-        target:'servicios'
-    },
+ {
+  title:'Bots de Discord',
+  category:'Servicio',
+  target:'servicios'
+ },
 
-    {
-        title:'Desarrollo web',
-        category:'Servicio',
-        target:'servicios'
-    },
+ {
+  title:'Desarrollo web',
+  category:'Servicio',
+  target:'servicios'
+ },
 
-    {
-        title:'Portafolio personal',
-        category:'Proyecto',
-        target:'proyectos'
-    },
+ {
+  title:'Portafolio personal',
+  category:'Proyecto',
+  target:'proyectos'
+ },
 
-    {
-        title:'SylenMC',
-        category:'Servidor',
-        target:'servidores'
-    },
+ {
+  title:'SylenMC',
+  category:'Servidor',
+  target:'servidores'
+ },
 
-    {
-        title:'JavaScript',
-        category:'Tecnología',
-        target:'habilidades'
-    },
+ {
+  title:'JavaScript',
+  category:'Tecnología',
+  target:'habilidades'
+ },
 
-    {
-        title:'Node.js',
-        category:'Tecnología',
-        target:'habilidades'
-    },
+ {
+  title:'Node.js',
+  category:'Tecnología',
+  target:'habilidades'
+ },
 
-    {
-        title:'HTML / CSS',
-        category:'Tecnología',
-        target:'habilidades'
-    },
+ {
+  title:'HTML / CSS',
+  category:'Tecnología',
+  target:'habilidades'
+ },
 
-    {
-        title:'Dominio propio',
-        category:'Meta',
-        target:'metas'
-    },
+ {
+  title:'Dominio propio',
+  category:'Meta',
+  target:'metas'
+ },
 
-    {
-        title:'VPS propio',
-        category:'Meta',
-        target:'metas'
-    }
+ {
+  title:'VPS propio',
+  category:'Meta',
+  target:'metas'
+ },
+
+ {
+  title:'Contacto',
+  category:'Página',
+  target:'contacto'
+ }
 
 ];
 
-
 function abrirBusqueda(){
 
-    document
-    .getElementById('searchOverlay')
-    .classList
-    .add('active');
+ document
+  .getElementById('searchOverlay')
+  .classList.add('active');
 
-    const input=document.getElementById('searchInput');
+ const input=
+  document.getElementById(
+   'searchInput'
+  );
 
-    input.value='';
+ input.value='';
 
-    mostrarResultados('');
+ mostrarResultados('');
 
-    setTimeout(()=>{
-        input.focus();
-    },100);
+ setTimeout(
+  ()=>input.focus(),
+  100
+ );
 
 }
-
 
 function cerrarBusqueda(){
 
-    document
-    .getElementById('searchOverlay')
-    .classList
-    .remove('active');
+ document
+  .getElementById('searchOverlay')
+  .classList.remove('active');
 
 }
-
 
 function mostrarResultados(query){
 
-    const container=
-        document.getElementById('searchResults');
+ const container=
+  document.getElementById(
+   'searchResults'
+  );
 
-    const results=
-        searchData.filter(item=>
-            item.title
-            .toLowerCase()
-            .includes(query.toLowerCase())
-        );
+ const results=
+  searchData.filter(x=>
+   x.title
+    .toLowerCase()
+    .includes(
+     query.toLowerCase()
+    )
+  );
 
-    container.innerHTML='';
+ container.innerHTML='';
 
-    if(results.length===0){
+ if(!results.length){
 
-        container.innerHTML=
-        '<div class="search-result">Sin resultados.</div>';
+  container.innerHTML=
+   '<div class="search-result">Sin resultados.</div>';
 
-        return;
+  return;
+ }
 
-    }
+ results.forEach(item=>{
 
-    results.forEach(item=>{
+  const div=
+   document.createElement('div');
 
-        const div=document.createElement('div');
+  div.className='search-result';
 
-        div.className='search-result';
+  div.innerHTML=`
+   <strong>${item.title}</strong>
+   <span>${item.category}</span>
+  `;
 
-        div.innerHTML=`
-        <strong>${item.title}</strong>
-        <span>${item.category}</span>
-        `;
+  div.onclick=()=>{
 
-        div.onclick=()=>{
+   cerrarBusqueda();
 
-            cerrarBusqueda();
+   abrir(item.target);
 
-            abrir(item.target);
+  };
 
-        };
+  container.appendChild(div);
 
-        container.appendChild(div);
-
-    });
+ });
 
 }
-
 
 document
-.getElementById('searchInput')
-.addEventListener('input',e=>{
+ .getElementById('searchInput')
+ .addEventListener(
+  'input',
+  e=>mostrarResultados(
+   e.target.value
+  )
+ );
 
-    mostrarResultados(e.target.value);
+/* =========================
+   COMMAND PALETTE
+========================= */
 
-});
+const paletteCommands=[
 
+ ['Ir a Inicio','inicio'],
+ ['Ir a Sobre mí','sobre'],
+ ['Ver Servidores','servidores'],
+ ['Ver Servicios','servicios'],
+ ['Ver Habilidades','habilidades'],
+ ['Ver Proyectos','proyectos'],
+ ['Ver Experiencia','experiencia'],
+ ['Ver Metas','metas'],
+ ['Abrir Contacto','contacto']
 
-/* DEVELOPER MODE */
+];
 
-function activarDevMode(){
+function abrirPalette(){
 
-    document
-    .getElementById('devMode')
-    .classList
-    .add('active');
+ document
+  .getElementById('paletteOverlay')
+  .classList.add('active');
 
-    setTimeout(()=>{
+ const input=
+  document.getElementById(
+   'paletteInput'
+  );
 
-        document
-        .getElementById('devInput')
-        .focus();
+ input.value='';
 
-    },100);
+ mostrarPalette('');
 
-}
-
-
-function cerrarDevMode(){
-
-    document
-    .getElementById('devMode')
-    .classList
-    .remove('active');
-
-}
-
-
-const devInput=document.getElementById('devInput');
-
-const devOutput=document.getElementById('devOutput');
-
-let devHistory=[];
-
-let devHistoryIndex=-1;
-
-
-function devPrint(text,className=''){
-
-    const line=document.createElement('div');
-
-    line.className='dev-line '+className;
-
-    line.innerHTML=text;
-
-    devOutput.appendChild(line);
-
-    devOutput.scrollTop=devOutput.scrollHeight;
+ setTimeout(
+  ()=>input.focus(),
+  100
+ );
 
 }
 
+function cerrarPalette(){
 
-function devCommand(){
-
-    const raw=devInput.value.trim();
-
-    if(!raw) return;
-
-    const command=raw.toLowerCase();
-
-    devHistory.push(raw);
-
-    devHistoryIndex=devHistory.length;
-
-    devPrint(
-        'RYAN@DEV:~$ '+escapeHTML(raw)
-    );
-
-    devInput.value='';
-
-    switch(command){
-
-        case 'help':
-
-            devPrint(`
-Available commands:
-
-help       Show commands
-about      About Ryan
-projects   Show projects
-skills     Show skills
-system     System information
-status     Current status
-version    Developer version
-clear      Clear terminal
-close      Exit Developer Mode
-`);
-
-        break;
-
-
-        case 'about':
-
-            devPrint(`
-Ryan Méndez
-16 años
-Argentina 🇦🇷
-
-Focus:
-Programming • Web • Digital Projects
-`);
-
-        break;
-
-
-        case 'projects':
-
-            devPrint(`
-PROJECTS
-
-[01] Proyectos personalizados
-[02] Portafolio personal
-[03] Configuraciones
-`);
-
-        break;
-
-
-        case 'skills':
-
-            devPrint(`
-SKILLS
-
-JavaScript
-Node.js
-Discord.js
-HTML / CSS
-Netlify
-Community Configuration
-`);
-
-        break;
-
-
-        case 'system':
-
-            devPrint(`
-SYSTEM INFORMATION
-
-Portfolio: ONLINE
-Version: RYAN.DEV v2026.1
-Projects: 5+
-Systems: 3+
-Services: 5+
-Security: NORMAL
-`);
-
-        break;
-
-
-        case 'status':
-
-            devPrint(
-                '[STATUS] ONLINE',
-                'dev-green'
-            );
-
-        break;
-
-
-        case 'version':
-
-            devPrint(
-                'RYAN.DEV v2026.1',
-                'dev-blue'
-            );
-
-        break;
-
-
-        case 'clear':
-
-            devOutput.innerHTML='';
-
-        break;
-
-
-        case 'close':
-
-            cerrarDevMode();
-
-        break;
-
-
-        case 'sudo':
-
-            devPrint(
-                'Nice try 😎',
-                'dev-yellow'
-            );
-
-        break;
-
-
-        case 'konami':
-
-            devPrint(
-                'Easter egg unlocked! 🚀',
-                'dev-green'
-            );
-
-            mostrarToast('Easter egg desbloqueado 🚀');
-
-        break;
-
-
-        default:
-
-            devPrint(
-                'Command not found. Type "help".',
-                'dev-red'
-            );
-
-    }
+ document
+  .getElementById('paletteOverlay')
+  .classList.remove('active');
 
 }
 
+function mostrarPalette(query){
 
-devInput.addEventListener('keydown',e=>{
+ const box=
+  document.getElementById(
+   'paletteResults'
+  );
 
-    if(e.key==='Enter'){
+ const list=
+  paletteCommands.filter(x=>
+   x[0]
+    .toLowerCase()
+    .includes(
+     query.toLowerCase()
+    )
+  );
 
-        devCommand();
+ box.innerHTML='';
 
-    }
+ list.forEach(x=>{
 
-    if(e.key==='ArrowUp'){
+  const d=
+   document.createElement('div');
 
-        if(devHistory.length===0) return;
+  d.className='palette-item';
 
-        devHistoryIndex=Math.max(
-            0,
-            devHistoryIndex-1
-        );
+  d.innerHTML=`
+   <strong>${x[0]}</strong>
+   <span>→</span>
+  `;
 
-        devInput.value=
-            devHistory[devHistoryIndex]||'';
+  d.onclick=()=>{
 
-        e.preventDefault();
+   cerrarPalette();
 
-    }
+   abrir(x[1]);
 
-    if(e.key==='ArrowDown'){
+  };
 
-        if(devHistory.length===0) return;
+  box.appendChild(d);
 
-        devHistoryIndex=Math.min(
-            devHistory.length,
-            devHistoryIndex+1
-        );
+ });
 
-        devInput.value=
-            devHistory[devHistoryIndex]||'';
+}
 
-        e.preventDefault();
+document
+ .getElementById('paletteInput')
+ .addEventListener(
+  'input',
+  e=>mostrarPalette(
+   e.target.value
+  )
+ );
 
-    }
+/* =========================
+   COMPARTIR
+========================= */
 
-});
+async function compartir(){
 
+ const url=location.href;
 
-/* KEYBOARD SHORTCUTS */
+ if(navigator.share){
 
-document.addEventListener('keydown',e=>{
+  try{
 
-    if(e.key==='Escape'){
+   await navigator.share({
+    title:'Portafolio | Ryan Méndez',
+    text:'Mira mi portafolio personal.',
+    url
+   });
 
-        cerrarModal();
-        cerrarBusqueda();
-        cerrarDevMode();
+  }catch(e){}
 
-    }
+ }else{
 
-    if(
-        e.key.toLowerCase()==='t' &&
-        document.activeElement.tagName!=='INPUT' &&
-        document.activeElement.tagName!=='TEXTAREA'
-    ){
+  copiar(url);
 
-        cambiarTema();
+  mostrarToast(
+   'Enlace copiado ✓'
+  );
 
-    }
+ }
 
-});
+}
 
+/* =========================
+   TECLADO
+========================= */
 
-/* SCROLL */
+document.addEventListener(
+ 'keydown',
+ e=>{
 
-window.addEventListener('scroll',()=>{
+  if(e.key==='Escape'){
 
-    const scrollTop=
-        window.scrollY;
+   cerrarModal();
+   cerrarBusqueda();
+   cerrarPalette();
 
-    const height=
-        document.documentElement.scrollHeight-
-        window.innerHeight;
+  }
 
-    const percentage=
-        height>0
-        ?(scrollTop/height)*100
-        :0;
+  if(
+   (e.ctrlKey||e.metaKey) &&
+   e.key.toLowerCase()==='k'
+  ){
 
-    document
-    .getElementById('scrollProgress')
-    .style.width=percentage+'%';
+   e.preventDefault();
 
+   abrirPalette();
 
-    const top=
-        document.getElementById('topButton');
+  }
 
-    top.style.display=
-        scrollTop>500
-        ?'block'
-        :'none';
+  if(
+   e.key.toLowerCase()==='t' &&
+   document.activeElement.tagName!=='INPUT' &&
+   document.activeElement.tagName!=='TEXTAREA'
+  ){
 
-});
+   abrirTemas();
 
+  }
 
-/* REVEAL */
+ });
+
+/* =========================
+   SCROLL
+========================= */
+
+window.addEventListener(
+ 'scroll',
+ ()=>{
+
+  const top=
+   window.scrollY;
+
+  const height=
+   document.documentElement.scrollHeight-
+   window.innerHeight;
+
+  document.getElementById(
+   'scrollProgress'
+  ).style.width=
+   (height>0
+    ?top/height*100
+    :0
+   )+'%';
+
+  document.getElementById(
+   'topButton'
+  ).style.display=
+   top>500
+    ?'block'
+    :'none';
+
+ });
+
+/* =========================
+   REVEAL
+========================= */
+
+let revealObserver;
 
 function iniciarReveal(){
 
-    const elements=
-        document.querySelectorAll('.reveal');
+ if(revealObserver)
+  revealObserver.disconnect();
 
-    const observer=
-        new IntersectionObserver(
-        entries=>{
+ revealObserver=
+  new IntersectionObserver(
+   entries=>{
 
-            entries.forEach(entry=>{
+    entries.forEach(entry=>{
 
-                if(entry.isIntersecting){
+     if(entry.isIntersecting){
 
-                    entry.target
-                    .classList
-                    .add('visible');
+      entry.target
+       .classList
+       .add('visible');
 
-                }
+     }
 
-            });
-
-        },
-        {
-            threshold:.08
-        });
-
-    elements.forEach(el=>{
-        observer.observe(el);
     });
+
+   },
+   {threshold:.08}
+  );
+
+ document
+  .querySelectorAll('.reveal')
+  .forEach(el=>
+   revealObserver.observe(el)
+  );
 
 }
 
-
-/* RANDOM SYSTEM MONITOR */
+/* =========================
+   SYSTEM MONITOR
+========================= */
 
 setInterval(()=>{
 
-    const cpu=
-        Math.floor(55+Math.random()*35);
+ const cpu=
+  Math.floor(
+   55+Math.random()*35
+  );
 
-    const memory=
-        Math.floor(35+Math.random()*35);
+ const memory=
+  Math.floor(
+   35+Math.random()*35
+  );
 
-    const cpuValue=
-        document.getElementById('cpuValue');
+ const cv=
+  document.getElementById(
+   'cpuValue'
+  );
 
-    const memoryValue=
-        document.getElementById('memoryValue');
+ const mv=
+  document.getElementById(
+   'memoryValue'
+  );
 
-    const cpuBar=
-        document.getElementById('cpuBar');
+ const cb=
+  document.getElementById(
+   'cpuBar'
+  );
 
-    const memoryBar=
-        document.getElementById('memoryBar');
+ const mb=
+  document.getElementById(
+   'memoryBar'
+  );
 
-    if(cpuValue){
+ if(cv){
 
-        cpuValue.textContent=cpu+'%';
-        cpuBar.style.width=cpu+'%';
+  cv.textContent=
+   cpu+'%';
 
-    }
+  cb.style.width=
+   cpu+'%';
 
-    if(memoryValue){
+ }
 
-        memoryValue.textContent=memory+'%';
-        memoryBar.style.width=memory+'%';
+ if(mv){
 
-    }
+  mv.textContent=
+   memory+'%';
+
+  mb.style.width=
+   memory+'%';
+
+ }
 
 },3000);
 
-
-/* VISITS */
+/* =========================
+   VISITAS
+========================= */
 
 function registrarVisita(){
 
-    const key='portfolio_visits';
+ const key=
+  'portfolio_visits';
 
-    let visits=
-        parseInt(
-            localStorage.getItem(key)||'0'
-        );
+ let visits=
+  parseInt(
+   localStorage.getItem(key)||'0'
+  );
 
-    visits++;
-
-    localStorage.setItem(
-        key,
-        visits
-    );
+ localStorage.setItem(
+  key,
+  ++visits
+ );
 
 }
 
+/* =========================
+   CERRAR MENÚ
+========================= */
 
-/* DOCUMENT CLICK */
+document.addEventListener(
+ 'click',
+ e=>{
 
-document.addEventListener('click',e=>{
+  const nav=
+   document.getElementById(
+    'navLinks'
+   );
 
-    const nav=
-        document.getElementById('navLinks');
+  const menu=
+   document.querySelector(
+    '.menu-btn'
+   );
 
-    const menu=
-        document.querySelector('.menu-btn');
+  if(
+   nav.classList.contains('active') &&
+   !nav.contains(e.target) &&
+   e.target!==menu
+  ){
 
-    if(
-        nav.classList.contains('active') &&
-        !nav.contains(e.target) &&
-        e.target!==menu
-    ){
+   nav.classList.remove('active');
 
-        nav.classList.remove('active');
+  }
 
-    }
+ });
 
-});
+/* =========================
+   LIVE MESSAGES
+========================= */
 
+const liveMessages=[
 
-/* INITIALIZATION */
+ {
+  icon:'👋',
+  text:'¡Bienvenido a mi portafolio!'
+ },
 
-document.addEventListener('DOMContentLoaded',()=>{
+ {
+  icon:'💻',
+  text:'Construyendo nuevas ideas digitales...'
+ },
 
-    registrarVisita();
+ {
+  icon:'🚀',
+  text:'Proyecto en progreso.'
+ },
 
-    iniciarContadores();
+ {
+  icon:'✨',
+  text:'Todo comienza con una idea.'
+ },
 
-    iniciarReveal();
+ {
+  icon:'🎮',
+  text:'Minecraft + Discord + desarrollo.'
+ },
 
-});
+ {
+  icon:'⚡',
+  text:'RYAN.DEV ONLINE.'
+ },
+
+ {
+  icon:'🧠',
+  text:'Aprendiendo algo nuevo cada día.'
+ },
+
+ {
+  icon:'🛠️',
+  text:'Diseñando, configurando y construyendo.'
+ }
+
+];
+
+let liveMessageIndex=0;
+
+function cambiarLiveMessage(){
+
+ const icon=
+  document.getElementById(
+   'liveMessageIcon'
+  );
+
+ const text=
+  document.getElementById(
+   'liveMessageText'
+  );
+
+ if(!icon||!text)return;
+
+ const message=
+  liveMessages[
+   liveMessageIndex
+  ];
+
+ text.style.opacity='0';
+ text.style.transform='translateY(6px)';
+
+ setTimeout(()=>{
+
+  icon.textContent=
+   message.icon;
+
+  text.textContent=
+   message.text;
+
+  text.classList.remove(
+   'typing'
+  );
+
+  void text.offsetWidth;
+
+  text.classList.add(
+   'typing'
+  );
+
+  text.style.opacity='1';
+  text.style.transform=
+   'translateY(0)';
+
+ },250);
+
+ liveMessageIndex++;
+
+ if(
+  liveMessageIndex>=
+  liveMessages.length
+ ){
+  liveMessageIndex=0;
+ }
+
+}
+
+/* =========================
+   RELOJ
+========================= */
+
+function actualizarLiveClock(){
+
+ const clock=
+  document.getElementById(
+   'liveClock'
+  );
+
+ if(!clock)return;
+
+ const now=
+  new Date();
+
+ clock.textContent=
+  now.toLocaleTimeString(
+   'es-ES',
+   {
+    hour12:false
+   }
+  );
+
+}
+
+/* =========================
+   FLOATING EMOJIS
+========================= */
+
+const floatingItems=[
+ '✨',
+ '💻',
+ '🚀',
+ '⚡',
+ '🎮',
+ '🌐',
+ '⭐',
+ '🛠️',
+ '💡'
+];
+
+function crearFloatingEmoji(){
+
+ const layer=
+  document.getElementById(
+   'floatingLayer'
+  );
+
+ if(!layer)return;
+
+ const item=
+  document.createElement('div');
+
+ item.className=
+  'floating-emoji';
+
+ item.textContent=
+  floatingItems[
+   Math.floor(
+    Math.random()*
+    floatingItems.length
+   )
+  ];
+
+ item.style.left=
+  Math.random()*100+'%';
+
+ item.style.setProperty(
+  '--moveX',
+  (
+   Math.random()*180-90
+  )+'px'
+ );
+
+ item.style.animationDuration=
+  (
+   9+Math.random()*8
+  )+'s';
+
+ item.style.fontSize=
+  (
+   11+Math.random()*9
+  )+'px';
+
+ layer.appendChild(item);
+
+ setTimeout(
+  ()=>item.remove(),
+  18000
+ );
+
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+function mostrarBienvenida(){
+
+ const popup=
+  document.getElementById(
+   'welcomePopup'
+  );
+
+ if(!popup)return;
+
+ if(
+  sessionStorage.getItem(
+   'welcome_shown'
+  )
+ )return;
+
+ sessionStorage.setItem(
+  'welcome_shown',
+  'true'
+ );
+
+ setTimeout(()=>{
+
+  popup.classList.add('show');
+
+  setTimeout(()=>{
+
+   popup.classList.remove(
+    'show'
+   );
+
+  },5500);
+
+ },700);
+
+}
+
+/* =========================
+   INICIALIZACIÓN
+========================= */
+
+document.addEventListener(
+ 'DOMContentLoaded',
+ ()=>{
+
+  const saved=
+   localStorage.getItem(
+    'portfolio_theme'
+   );
+
+  if(
+   saved &&
+   temas[saved]
+  ){
+
+   document.documentElement
+    .style
+    .setProperty(
+     '--red',
+     temas[saved][0]
+    );
+
+   document.documentElement
+    .style
+    .setProperty(
+     '--red2',
+     temas[saved][1]
+    );
+
+  }
+
+  registrarVisita();
+
+  iniciarContadores();
+
+  iniciarReveal();
+
+  mostrarResultados('');
+
+  mostrarPalette('');
+
+  actualizarLiveClock();
+
+  mostrarBienvenida();
+
+  setInterval(
+   cambiarLiveMessage,
+   4500
+  );
+
+  setInterval(
+   actualizarLiveClock,
+   1000
+  );
+
+  setInterval(
+   crearFloatingEmoji,
+   1800
+  );
+
+  /* Primeros elementos */
+  for(let i=0;i<4;i++){
+
+   setTimeout(
+    crearFloatingEmoji,
+    i*700
+   );
+
+  }
+
+ });
 
 </script>
 
